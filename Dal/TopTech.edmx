@@ -1,0 +1,1156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TopTechDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TopTechDB.dbo.Archive' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Archive">
+          <Key>
+            <PropertyRef Name="CallID" />
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="BusinessDayID" />
+            <PropertyRef Name="CallStatusID" />
+          </Key>
+          <Property Name="CallID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="BusinessDayID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Note" Type="nchar" MaxLength="50" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="CallStatusID" Type="int" Nullable="false" />
+          <Property Name="ServiceID" Type="int" />
+        </EntityType>
+        <EntityType Name="BusinessDay_tbl">
+          <Key>
+            <PropertyRef Name="BusinessDayID" />
+          </Key>
+          <Property Name="BusinessDayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="OpeningTime" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ClosingTime" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Call_tbl">
+          <Key>
+            <PropertyRef Name="CallID" />
+          </Key>
+          <Property Name="CallID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="BusinessDayID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Note" Type="nchar" MaxLength="50" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="CallStatusID" Type="int" Nullable="false" />
+          <Property Name="ServiceID" Type="int" />
+        </EntityType>
+        <EntityType Name="Company_tbl">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="20" />
+          <Property Name="EmployeesNumber" Type="int" />
+          <Property Name="CommitmentForSeveralBusinessDays" Type="int" />
+        </EntityType>
+        <EntityType Name="Customer_tbl">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="20" />
+          <Property Name="Note" Type="nchar" MaxLength="50" />
+          <Property Name="Phone" Type="nchar" MaxLength="20" />
+          <Property Name="LocationX" Type="money" />
+          <Property Name="LocationY" Type="money" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DailyEmployees">
+          <Key>
+            <PropertyRef Name="BusinessDayID" />
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="BusinessDayID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee_tbl">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="20" />
+          <Property Name="CompanyEntryDate" Type="date" />
+          <Property Name="LocationX" Type="money" />
+          <Property Name="LocationY" Type="money" />
+        </EntityType>
+        <EntityType Name="History_tbl">
+          <Key>
+            <PropertyRef Name="HistoryID" />
+          </Key>
+          <Property Name="HistoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="CallID" Type="int" Nullable="false" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permission_tbl">
+          <Key>
+            <PropertyRef Name="PermissionID" />
+          </Key>
+          <Property Name="PermissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Service_tbl">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Detail" Type="nchar" MaxLength="50" />
+          <Property Name="Duration" Type="int" />
+        </EntityType>
+        <EntityType Name="Status_tbl">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="StatusDetail" Type="nchar" MaxLength="20" />
+          <Property Name="AssociatedWith" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Visit_tbl">
+          <Key>
+            <PropertyRef Name="VisitingID" />
+          </Key>
+          <Property Name="VisitingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BusinessDayID" Type="int" Nullable="false" />
+          <Property Name="EstimatedTime" Type="time" Precision="7" />
+          <Property Name="CallId" Type="int" Nullable="false" />
+          <Property Name="EmploeeID" Type="int" Nullable="false" />
+          <Property Name="VisitStatusID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Warehouse_tbl">
+          <Key>
+            <PropertyRef Name="WarehouseID" />
+          </Key>
+          <Property Name="WarehouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="20" />
+          <Property Name="LocationX" Type="money" />
+          <Property Name="LocationY" Type="money" />
+        </EntityType>
+        <EntityType Name="WarehouseAssociation_tbl">
+          <Key>
+            <PropertyRef Name="AssociationID" />
+          </Key>
+          <Property Name="AssociationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WarehouseID" Type="int" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BusinessDay_tbl_Company_tbl">
+          <End Role="Company_tbl" Type="Self.Company_tbl" Multiplicity="1" />
+          <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company_tbl">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="BusinessDay_tbl">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Call_tbl_BusinessDay_tbl">
+          <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="1" />
+          <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessDay_tbl">
+              <PropertyRef Name="BusinessDayID" />
+            </Principal>
+            <Dependent Role="Call_tbl">
+              <PropertyRef Name="BusinessDayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Call_tbl_Customer_tbl">
+          <End Role="Customer_tbl" Type="Self.Customer_tbl" Multiplicity="1" />
+          <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer_tbl">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Call_tbl">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Call_tbl_Service_tbl">
+          <End Role="Service_tbl" Type="Self.Service_tbl" Multiplicity="0..1" />
+          <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service_tbl">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="Call_tbl">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Call_tbl_Status_tbl">
+          <End Role="Status_tbl" Type="Self.Status_tbl" Multiplicity="1" />
+          <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_tbl">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Call_tbl">
+              <PropertyRef Name="CallStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyEmployees_BusinessDay_tbl">
+          <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="1" />
+          <End Role="DailyEmployees" Type="Self.DailyEmployees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessDay_tbl">
+              <PropertyRef Name="BusinessDayID" />
+            </Principal>
+            <Dependent Role="DailyEmployees">
+              <PropertyRef Name="BusinessDayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyEmployees_Employee_tbl">
+          <End Role="Employee_tbl" Type="Self.Employee_tbl" Multiplicity="1" />
+          <End Role="DailyEmployees" Type="Self.DailyEmployees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_tbl">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="DailyEmployees">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_tbl_Call_tbl">
+          <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="1" />
+          <End Role="History_tbl" Type="Self.History_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Call_tbl">
+              <PropertyRef Name="CallID" />
+            </Principal>
+            <Dependent Role="History_tbl">
+              <PropertyRef Name="CallID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_tbl_Status_tbl">
+          <End Role="Status_tbl" Type="Self.Status_tbl" Multiplicity="1" />
+          <End Role="History_tbl" Type="Self.History_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_tbl">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="History_tbl">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permission_tbl_Company_tbl">
+          <End Role="Company_tbl" Type="Self.Company_tbl" Multiplicity="1" />
+          <End Role="Permission_tbl" Type="Self.Permission_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company_tbl">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Permission_tbl">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_tbl_BusinessDay_tbl">
+          <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="1" />
+          <End Role="Visit_tbl" Type="Self.Visit_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessDay_tbl">
+              <PropertyRef Name="BusinessDayID" />
+            </Principal>
+            <Dependent Role="Visit_tbl">
+              <PropertyRef Name="BusinessDayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_tbl_Call_tbl">
+          <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="1" />
+          <End Role="Visit_tbl" Type="Self.Visit_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Call_tbl">
+              <PropertyRef Name="CallID" />
+            </Principal>
+            <Dependent Role="Visit_tbl">
+              <PropertyRef Name="CallId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_tbl_Employee_tbl">
+          <End Role="Employee_tbl" Type="Self.Employee_tbl" Multiplicity="1" />
+          <End Role="Visit_tbl" Type="Self.Visit_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_tbl">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Visit_tbl">
+              <PropertyRef Name="EmploeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_tbl_Status_tbl">
+          <End Role="Status_tbl" Type="Self.Status_tbl" Multiplicity="1" />
+          <End Role="Visit_tbl" Type="Self.Visit_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_tbl">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Visit_tbl">
+              <PropertyRef Name="VisitStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseAssociation_tbl_Company_tbl">
+          <End Role="Company_tbl" Type="Self.Company_tbl" Multiplicity="1" />
+          <End Role="WarehouseAssociation_tbl" Type="Self.WarehouseAssociation_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company_tbl">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseAssociation_tbl">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseAssociation_tbl_Warehouse_tbl">
+          <End Role="Warehouse_tbl" Type="Self.Warehouse_tbl" Multiplicity="1" />
+          <End Role="WarehouseAssociation_tbl" Type="Self.WarehouseAssociation_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse_tbl">
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="WarehouseAssociation_tbl">
+              <PropertyRef Name="WarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="TopTechDBModelStoreContainer">
+          <EntitySet Name="BusinessDay_tbl" EntityType="Self.BusinessDay_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Call_tbl" EntityType="Self.Call_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company_tbl" EntityType="Self.Company_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer_tbl" EntityType="Self.Customer_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee_tbl" EntityType="Self.Employee_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History_tbl" EntityType="Self.History_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permission_tbl" EntityType="Self.Permission_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service_tbl" EntityType="Self.Service_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status_tbl" EntityType="Self.Status_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visit_tbl" EntityType="Self.Visit_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouse_tbl" EntityType="Self.Warehouse_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WarehouseAssociation_tbl" EntityType="Self.WarehouseAssociation_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Archive" EntityType="Self.Archive" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Archive].[CallID] AS [CallID], 
+    [Archive].[CustomerID] AS [CustomerID], 
+    [Archive].[BusinessDayID] AS [BusinessDayID], 
+    [Archive].[Date] AS [Date], 
+    [Archive].[Note] AS [Note], 
+    [Archive].[Priority] AS [Priority], 
+    [Archive].[CallStatusID] AS [CallStatusID], 
+    [Archive].[ServiceID] AS [ServiceID]
+    FROM [dbo].[Archive] AS [Archive]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DailyEmployees" EntityType="Self.DailyEmployees" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DailyEmployees].[BusinessDayID] AS [BusinessDayID], 
+    [DailyEmployees].[EmployeeID] AS [EmployeeID]
+    FROM [dbo].[DailyEmployees] AS [DailyEmployees]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_BusinessDay_tbl_Company_tbl" Association="Self.FK_BusinessDay_tbl_Company_tbl">
+            <End Role="Company_tbl" EntitySet="Company_tbl" />
+            <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_tbl_BusinessDay_tbl" Association="Self.FK_Call_tbl_BusinessDay_tbl">
+            <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
+            <End Role="Call_tbl" EntitySet="Call_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_tbl_Customer_tbl" Association="Self.FK_Call_tbl_Customer_tbl">
+            <End Role="Customer_tbl" EntitySet="Customer_tbl" />
+            <End Role="Call_tbl" EntitySet="Call_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_tbl_Service_tbl" Association="Self.FK_Call_tbl_Service_tbl">
+            <End Role="Service_tbl" EntitySet="Service_tbl" />
+            <End Role="Call_tbl" EntitySet="Call_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_tbl_Status_tbl" Association="Self.FK_Call_tbl_Status_tbl">
+            <End Role="Status_tbl" EntitySet="Status_tbl" />
+            <End Role="Call_tbl" EntitySet="Call_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyEmployees_BusinessDay_tbl" Association="Self.FK_DailyEmployees_BusinessDay_tbl">
+            <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
+            <End Role="DailyEmployees" EntitySet="DailyEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyEmployees_Employee_tbl" Association="Self.FK_DailyEmployees_Employee_tbl">
+            <End Role="Employee_tbl" EntitySet="Employee_tbl" />
+            <End Role="DailyEmployees" EntitySet="DailyEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_tbl_Call_tbl" Association="Self.FK_History_tbl_Call_tbl">
+            <End Role="Call_tbl" EntitySet="Call_tbl" />
+            <End Role="History_tbl" EntitySet="History_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_tbl_Status_tbl" Association="Self.FK_History_tbl_Status_tbl">
+            <End Role="Status_tbl" EntitySet="Status_tbl" />
+            <End Role="History_tbl" EntitySet="History_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permission_tbl_Company_tbl" Association="Self.FK_Permission_tbl_Company_tbl">
+            <End Role="Company_tbl" EntitySet="Company_tbl" />
+            <End Role="Permission_tbl" EntitySet="Permission_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_tbl_BusinessDay_tbl" Association="Self.FK_Visit_tbl_BusinessDay_tbl">
+            <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
+            <End Role="Visit_tbl" EntitySet="Visit_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_tbl_Call_tbl" Association="Self.FK_Visit_tbl_Call_tbl">
+            <End Role="Call_tbl" EntitySet="Call_tbl" />
+            <End Role="Visit_tbl" EntitySet="Visit_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_tbl_Employee_tbl" Association="Self.FK_Visit_tbl_Employee_tbl">
+            <End Role="Employee_tbl" EntitySet="Employee_tbl" />
+            <End Role="Visit_tbl" EntitySet="Visit_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_tbl_Status_tbl" Association="Self.FK_Visit_tbl_Status_tbl">
+            <End Role="Status_tbl" EntitySet="Status_tbl" />
+            <End Role="Visit_tbl" EntitySet="Visit_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseAssociation_tbl_Company_tbl" Association="Self.FK_WarehouseAssociation_tbl_Company_tbl">
+            <End Role="Company_tbl" EntitySet="Company_tbl" />
+            <End Role="WarehouseAssociation_tbl" EntitySet="WarehouseAssociation_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseAssociation_tbl_Warehouse_tbl" Association="Self.FK_WarehouseAssociation_tbl_Warehouse_tbl">
+            <End Role="Warehouse_tbl" EntitySet="Warehouse_tbl" />
+            <End Role="WarehouseAssociation_tbl" EntitySet="WarehouseAssociation_tbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TopTechDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BusinessDay_tbl">
+          <Key>
+            <PropertyRef Name="BusinessDayID" />
+          </Key>
+          <Property Name="BusinessDayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="OpeningTime" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ClosingTime" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Company_tbl" Relationship="Self.FK_BusinessDay_tbl_Company_tbl" FromRole="BusinessDay_tbl" ToRole="Company_tbl" />
+          <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Call_tbl_BusinessDay_tbl" FromRole="BusinessDay_tbl" ToRole="Call_tbl" />
+          <NavigationProperty Name="Visit_tbl" Relationship="Self.FK_Visit_tbl_BusinessDay_tbl" FromRole="BusinessDay_tbl" ToRole="Visit_tbl" />
+          <NavigationProperty Name="Employee_tbl" Relationship="Self.DailyEmployees" FromRole="BusinessDay_tbl" ToRole="Employee_tbl" />
+        </EntityType>
+        <EntityType Name="Call_tbl">
+          <Key>
+            <PropertyRef Name="CallID" />
+          </Key>
+          <Property Name="CallID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="BusinessDayID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Priority" Type="Int32" />
+          <Property Name="CallStatusID" Type="Int32" Nullable="false" />
+          <Property Name="ServiceID" Type="Int32" />
+          <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.FK_Call_tbl_BusinessDay_tbl" FromRole="Call_tbl" ToRole="BusinessDay_tbl" />
+          <NavigationProperty Name="Customer_tbl" Relationship="Self.FK_Call_tbl_Customer_tbl" FromRole="Call_tbl" ToRole="Customer_tbl" />
+          <NavigationProperty Name="Service_tbl" Relationship="Self.FK_Call_tbl_Service_tbl" FromRole="Call_tbl" ToRole="Service_tbl" />
+          <NavigationProperty Name="Status_tbl" Relationship="Self.FK_Call_tbl_Status_tbl" FromRole="Call_tbl" ToRole="Status_tbl" />
+          <NavigationProperty Name="History_tbl" Relationship="Self.FK_History_tbl_Call_tbl" FromRole="Call_tbl" ToRole="History_tbl" />
+          <NavigationProperty Name="Visit_tbl" Relationship="Self.FK_Visit_tbl_Call_tbl" FromRole="Call_tbl" ToRole="Visit_tbl" />
+        </EntityType>
+        <EntityType Name="Company_tbl">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="EmployeesNumber" Type="Int32" />
+          <Property Name="CommitmentForSeveralBusinessDays" Type="Int32" />
+          <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.FK_BusinessDay_tbl_Company_tbl" FromRole="Company_tbl" ToRole="BusinessDay_tbl" />
+          <NavigationProperty Name="Permission_tbl" Relationship="Self.FK_Permission_tbl_Company_tbl" FromRole="Company_tbl" ToRole="Permission_tbl" />
+          <NavigationProperty Name="WarehouseAssociation_tbl" Relationship="Self.FK_WarehouseAssociation_tbl_Company_tbl" FromRole="Company_tbl" ToRole="WarehouseAssociation_tbl" />
+        </EntityType>
+        <EntityType Name="Customer_tbl">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="LocationX" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LocationY" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Call_tbl_Customer_tbl" FromRole="Customer_tbl" ToRole="Call_tbl" />
+        </EntityType>
+        <EntityType Name="Employee_tbl">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="CompanyEntryDate" Type="DateTime" Precision="0" />
+          <Property Name="LocationX" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LocationY" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Visit_tbl" Relationship="Self.FK_Visit_tbl_Employee_tbl" FromRole="Employee_tbl" ToRole="Visit_tbl" />
+          <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.DailyEmployees" FromRole="Employee_tbl" ToRole="BusinessDay_tbl" />
+        </EntityType>
+        <EntityType Name="History_tbl">
+          <Key>
+            <PropertyRef Name="HistoryID" />
+          </Key>
+          <Property Name="HistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="CallID" Type="Int32" Nullable="false" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Call_tbl" Relationship="Self.FK_History_tbl_Call_tbl" FromRole="History_tbl" ToRole="Call_tbl" />
+          <NavigationProperty Name="Status_tbl" Relationship="Self.FK_History_tbl_Status_tbl" FromRole="History_tbl" ToRole="Status_tbl" />
+        </EntityType>
+        <EntityType Name="Permission_tbl">
+          <Key>
+            <PropertyRef Name="PermissionID" />
+          </Key>
+          <Property Name="PermissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Company_tbl" Relationship="Self.FK_Permission_tbl_Company_tbl" FromRole="Permission_tbl" ToRole="Company_tbl" />
+        </EntityType>
+        <EntityType Name="Service_tbl">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Detail" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Duration" Type="Int32" />
+          <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Call_tbl_Service_tbl" FromRole="Service_tbl" ToRole="Call_tbl" />
+        </EntityType>
+        <EntityType Name="Status_tbl">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="StatusDetail" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="AssociatedWith" Type="Int32" />
+          <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Call_tbl_Status_tbl" FromRole="Status_tbl" ToRole="Call_tbl" />
+          <NavigationProperty Name="History_tbl" Relationship="Self.FK_History_tbl_Status_tbl" FromRole="Status_tbl" ToRole="History_tbl" />
+          <NavigationProperty Name="Visit_tbl" Relationship="Self.FK_Visit_tbl_Status_tbl" FromRole="Status_tbl" ToRole="Visit_tbl" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Visit_tbl">
+          <Key>
+            <PropertyRef Name="VisitingID" />
+          </Key>
+          <Property Name="VisitingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BusinessDayID" Type="Int32" Nullable="false" />
+          <Property Name="EstimatedTime" Type="Time" Precision="7" />
+          <Property Name="CallId" Type="Int32" Nullable="false" />
+          <Property Name="EmploeeID" Type="Int32" Nullable="false" />
+          <Property Name="VisitStatusID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.FK_Visit_tbl_BusinessDay_tbl" FromRole="Visit_tbl" ToRole="BusinessDay_tbl" />
+          <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Visit_tbl_Call_tbl" FromRole="Visit_tbl" ToRole="Call_tbl" />
+          <NavigationProperty Name="Employee_tbl" Relationship="Self.FK_Visit_tbl_Employee_tbl" FromRole="Visit_tbl" ToRole="Employee_tbl" />
+          <NavigationProperty Name="Status_tbl" Relationship="Self.FK_Visit_tbl_Status_tbl" FromRole="Visit_tbl" ToRole="Status_tbl" />
+        </EntityType>
+        <EntityType Name="Warehouse_tbl">
+          <Key>
+            <PropertyRef Name="WarehouseID" />
+          </Key>
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="LocationX" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LocationY" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="WarehouseAssociation_tbl" Relationship="Self.FK_WarehouseAssociation_tbl_Warehouse_tbl" FromRole="Warehouse_tbl" ToRole="WarehouseAssociation_tbl" />
+        </EntityType>
+        <EntityType Name="WarehouseAssociation_tbl">
+          <Key>
+            <PropertyRef Name="AssociationID" />
+          </Key>
+          <Property Name="AssociationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Company_tbl" Relationship="Self.FK_WarehouseAssociation_tbl_Company_tbl" FromRole="WarehouseAssociation_tbl" ToRole="Company_tbl" />
+          <NavigationProperty Name="Warehouse_tbl" Relationship="Self.FK_WarehouseAssociation_tbl_Warehouse_tbl" FromRole="WarehouseAssociation_tbl" ToRole="Warehouse_tbl" />
+        </EntityType>
+        <EntityType Name="Archive">
+          <Key>
+            <PropertyRef Name="CallID" />
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="BusinessDayID" />
+            <PropertyRef Name="CallStatusID" />
+          </Key>
+          <Property Name="CallID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="BusinessDayID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Priority" Type="Int32" />
+          <Property Name="CallStatusID" Type="Int32" Nullable="false" />
+          <Property Name="ServiceID" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_BusinessDay_tbl_Company_tbl">
+          <End Role="Company_tbl" Type="Self.Company_tbl" Multiplicity="1" />
+          <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company_tbl">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="BusinessDay_tbl">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Call_tbl_BusinessDay_tbl">
+          <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="1" />
+          <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessDay_tbl">
+              <PropertyRef Name="BusinessDayID" />
+            </Principal>
+            <Dependent Role="Call_tbl">
+              <PropertyRef Name="BusinessDayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_tbl_BusinessDay_tbl">
+          <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="1" />
+          <End Role="Visit_tbl" Type="Self.Visit_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessDay_tbl">
+              <PropertyRef Name="BusinessDayID" />
+            </Principal>
+            <Dependent Role="Visit_tbl">
+              <PropertyRef Name="BusinessDayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Call_tbl_Customer_tbl">
+          <End Role="Customer_tbl" Type="Self.Customer_tbl" Multiplicity="1" />
+          <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer_tbl">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Call_tbl">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Call_tbl_Service_tbl">
+          <End Role="Service_tbl" Type="Self.Service_tbl" Multiplicity="0..1" />
+          <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service_tbl">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="Call_tbl">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Call_tbl_Status_tbl">
+          <End Role="Status_tbl" Type="Self.Status_tbl" Multiplicity="1" />
+          <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_tbl">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Call_tbl">
+              <PropertyRef Name="CallStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_tbl_Call_tbl">
+          <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="1" />
+          <End Role="History_tbl" Type="Self.History_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Call_tbl">
+              <PropertyRef Name="CallID" />
+            </Principal>
+            <Dependent Role="History_tbl">
+              <PropertyRef Name="CallID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_tbl_Call_tbl">
+          <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="1" />
+          <End Role="Visit_tbl" Type="Self.Visit_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Call_tbl">
+              <PropertyRef Name="CallID" />
+            </Principal>
+            <Dependent Role="Visit_tbl">
+              <PropertyRef Name="CallId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permission_tbl_Company_tbl">
+          <End Role="Company_tbl" Type="Self.Company_tbl" Multiplicity="1" />
+          <End Role="Permission_tbl" Type="Self.Permission_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company_tbl">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Permission_tbl">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseAssociation_tbl_Company_tbl">
+          <End Role="Company_tbl" Type="Self.Company_tbl" Multiplicity="1" />
+          <End Role="WarehouseAssociation_tbl" Type="Self.WarehouseAssociation_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company_tbl">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseAssociation_tbl">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_tbl_Employee_tbl">
+          <End Role="Employee_tbl" Type="Self.Employee_tbl" Multiplicity="1" />
+          <End Role="Visit_tbl" Type="Self.Visit_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_tbl">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Visit_tbl">
+              <PropertyRef Name="EmploeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_tbl_Status_tbl">
+          <End Role="Status_tbl" Type="Self.Status_tbl" Multiplicity="1" />
+          <End Role="History_tbl" Type="Self.History_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_tbl">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="History_tbl">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_tbl_Status_tbl">
+          <End Role="Status_tbl" Type="Self.Status_tbl" Multiplicity="1" />
+          <End Role="Visit_tbl" Type="Self.Visit_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_tbl">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Visit_tbl">
+              <PropertyRef Name="VisitStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseAssociation_tbl_Warehouse_tbl">
+          <End Role="Warehouse_tbl" Type="Self.Warehouse_tbl" Multiplicity="1" />
+          <End Role="WarehouseAssociation_tbl" Type="Self.WarehouseAssociation_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse_tbl">
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="WarehouseAssociation_tbl">
+              <PropertyRef Name="WarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DailyEmployees">
+          <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="*" />
+          <End Role="Employee_tbl" Type="Self.Employee_tbl" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="TopTechDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BusinessDay_tbl" EntityType="Self.BusinessDay_tbl" />
+          <EntitySet Name="Call_tbl" EntityType="Self.Call_tbl" />
+          <EntitySet Name="Company_tbl" EntityType="Self.Company_tbl" />
+          <EntitySet Name="Customer_tbl" EntityType="Self.Customer_tbl" />
+          <EntitySet Name="Employee_tbl" EntityType="Self.Employee_tbl" />
+          <EntitySet Name="History_tbl" EntityType="Self.History_tbl" />
+          <EntitySet Name="Permission_tbl" EntityType="Self.Permission_tbl" />
+          <EntitySet Name="Service_tbl" EntityType="Self.Service_tbl" />
+          <EntitySet Name="Status_tbl" EntityType="Self.Status_tbl" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Visit_tbl" EntityType="Self.Visit_tbl" />
+          <EntitySet Name="Warehouse_tbl" EntityType="Self.Warehouse_tbl" />
+          <EntitySet Name="WarehouseAssociation_tbl" EntityType="Self.WarehouseAssociation_tbl" />
+          <EntitySet Name="Archive" EntityType="Self.Archive" />
+          <AssociationSet Name="FK_BusinessDay_tbl_Company_tbl" Association="Self.FK_BusinessDay_tbl_Company_tbl">
+            <End Role="Company_tbl" EntitySet="Company_tbl" />
+            <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_tbl_BusinessDay_tbl" Association="Self.FK_Call_tbl_BusinessDay_tbl">
+            <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
+            <End Role="Call_tbl" EntitySet="Call_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_tbl_BusinessDay_tbl" Association="Self.FK_Visit_tbl_BusinessDay_tbl">
+            <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
+            <End Role="Visit_tbl" EntitySet="Visit_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_tbl_Customer_tbl" Association="Self.FK_Call_tbl_Customer_tbl">
+            <End Role="Customer_tbl" EntitySet="Customer_tbl" />
+            <End Role="Call_tbl" EntitySet="Call_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_tbl_Service_tbl" Association="Self.FK_Call_tbl_Service_tbl">
+            <End Role="Service_tbl" EntitySet="Service_tbl" />
+            <End Role="Call_tbl" EntitySet="Call_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_tbl_Status_tbl" Association="Self.FK_Call_tbl_Status_tbl">
+            <End Role="Status_tbl" EntitySet="Status_tbl" />
+            <End Role="Call_tbl" EntitySet="Call_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_tbl_Call_tbl" Association="Self.FK_History_tbl_Call_tbl">
+            <End Role="Call_tbl" EntitySet="Call_tbl" />
+            <End Role="History_tbl" EntitySet="History_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_tbl_Call_tbl" Association="Self.FK_Visit_tbl_Call_tbl">
+            <End Role="Call_tbl" EntitySet="Call_tbl" />
+            <End Role="Visit_tbl" EntitySet="Visit_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permission_tbl_Company_tbl" Association="Self.FK_Permission_tbl_Company_tbl">
+            <End Role="Company_tbl" EntitySet="Company_tbl" />
+            <End Role="Permission_tbl" EntitySet="Permission_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseAssociation_tbl_Company_tbl" Association="Self.FK_WarehouseAssociation_tbl_Company_tbl">
+            <End Role="Company_tbl" EntitySet="Company_tbl" />
+            <End Role="WarehouseAssociation_tbl" EntitySet="WarehouseAssociation_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_tbl_Employee_tbl" Association="Self.FK_Visit_tbl_Employee_tbl">
+            <End Role="Employee_tbl" EntitySet="Employee_tbl" />
+            <End Role="Visit_tbl" EntitySet="Visit_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_tbl_Status_tbl" Association="Self.FK_History_tbl_Status_tbl">
+            <End Role="Status_tbl" EntitySet="Status_tbl" />
+            <End Role="History_tbl" EntitySet="History_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_tbl_Status_tbl" Association="Self.FK_Visit_tbl_Status_tbl">
+            <End Role="Status_tbl" EntitySet="Status_tbl" />
+            <End Role="Visit_tbl" EntitySet="Visit_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseAssociation_tbl_Warehouse_tbl" Association="Self.FK_WarehouseAssociation_tbl_Warehouse_tbl">
+            <End Role="Warehouse_tbl" EntitySet="Warehouse_tbl" />
+            <End Role="WarehouseAssociation_tbl" EntitySet="WarehouseAssociation_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="DailyEmployees" Association="Self.DailyEmployees">
+            <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
+            <End Role="Employee_tbl" EntitySet="Employee_tbl" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TopTechDBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TopTechDBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TopTechDBModelStoreContainer" CdmEntityContainer="TopTechDBEntities">
+          <EntitySetMapping Name="BusinessDay_tbl">
+            <EntityTypeMapping TypeName="TopTechDBModel.BusinessDay_tbl">
+              <MappingFragment StoreEntitySet="BusinessDay_tbl">
+                <ScalarProperty Name="BusinessDayID" ColumnName="BusinessDayID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="OpeningTime" ColumnName="OpeningTime" />
+                <ScalarProperty Name="ClosingTime" ColumnName="ClosingTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Call_tbl">
+            <EntityTypeMapping TypeName="TopTechDBModel.Call_tbl">
+              <MappingFragment StoreEntitySet="Call_tbl">
+                <ScalarProperty Name="CallID" ColumnName="CallID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="BusinessDayID" ColumnName="BusinessDayID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="CallStatusID" ColumnName="CallStatusID" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company_tbl">
+            <EntityTypeMapping TypeName="TopTechDBModel.Company_tbl">
+              <MappingFragment StoreEntitySet="Company_tbl">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmployeesNumber" ColumnName="EmployeesNumber" />
+                <ScalarProperty Name="CommitmentForSeveralBusinessDays" ColumnName="CommitmentForSeveralBusinessDays" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer_tbl">
+            <EntityTypeMapping TypeName="TopTechDBModel.Customer_tbl">
+              <MappingFragment StoreEntitySet="Customer_tbl">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="LocationX" ColumnName="LocationX" />
+                <ScalarProperty Name="LocationY" ColumnName="LocationY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee_tbl">
+            <EntityTypeMapping TypeName="TopTechDBModel.Employee_tbl">
+              <MappingFragment StoreEntitySet="Employee_tbl">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CompanyEntryDate" ColumnName="CompanyEntryDate" />
+                <ScalarProperty Name="LocationX" ColumnName="LocationX" />
+                <ScalarProperty Name="LocationY" ColumnName="LocationY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_tbl">
+            <EntityTypeMapping TypeName="TopTechDBModel.History_tbl">
+              <MappingFragment StoreEntitySet="History_tbl">
+                <ScalarProperty Name="HistoryID" ColumnName="HistoryID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CallID" ColumnName="CallID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permission_tbl">
+            <EntityTypeMapping TypeName="TopTechDBModel.Permission_tbl">
+              <MappingFragment StoreEntitySet="Permission_tbl">
+                <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service_tbl">
+            <EntityTypeMapping TypeName="TopTechDBModel.Service_tbl">
+              <MappingFragment StoreEntitySet="Service_tbl">
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status_tbl">
+            <EntityTypeMapping TypeName="TopTechDBModel.Status_tbl">
+              <MappingFragment StoreEntitySet="Status_tbl">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusDetail" ColumnName="StatusDetail" />
+                <ScalarProperty Name="AssociatedWith" ColumnName="AssociatedWith" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TopTechDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Visit_tbl">
+            <EntityTypeMapping TypeName="TopTechDBModel.Visit_tbl">
+              <MappingFragment StoreEntitySet="Visit_tbl">
+                <ScalarProperty Name="VisitingID" ColumnName="VisitingID" />
+                <ScalarProperty Name="BusinessDayID" ColumnName="BusinessDayID" />
+                <ScalarProperty Name="EstimatedTime" ColumnName="EstimatedTime" />
+                <ScalarProperty Name="CallId" ColumnName="CallId" />
+                <ScalarProperty Name="EmploeeID" ColumnName="EmploeeID" />
+                <ScalarProperty Name="VisitStatusID" ColumnName="VisitStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouse_tbl">
+            <EntityTypeMapping TypeName="TopTechDBModel.Warehouse_tbl">
+              <MappingFragment StoreEntitySet="Warehouse_tbl">
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LocationX" ColumnName="LocationX" />
+                <ScalarProperty Name="LocationY" ColumnName="LocationY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WarehouseAssociation_tbl">
+            <EntityTypeMapping TypeName="TopTechDBModel.WarehouseAssociation_tbl">
+              <MappingFragment StoreEntitySet="WarehouseAssociation_tbl">
+                <ScalarProperty Name="AssociationID" ColumnName="AssociationID" />
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Archive">
+            <EntityTypeMapping TypeName="TopTechDBModel.Archive">
+              <MappingFragment StoreEntitySet="Archive">
+                <ScalarProperty Name="CallID" ColumnName="CallID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="BusinessDayID" ColumnName="BusinessDayID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="CallStatusID" ColumnName="CallStatusID" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="DailyEmployees" TypeName="TopTechDBModel.DailyEmployees" StoreEntitySet="DailyEmployees">
+            <EndProperty Name="BusinessDay_tbl">
+              <ScalarProperty Name="BusinessDayID" ColumnName="BusinessDayID" />
+            </EndProperty>
+            <EndProperty Name="Employee_tbl">
+              <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="TopTechDBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="TopTechDBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="TopTechDBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="TopTechDBModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TopTechDBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="TopTechDBModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TopTechDBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="TopTechDBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="TopTechDBModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
