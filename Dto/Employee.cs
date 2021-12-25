@@ -13,8 +13,8 @@ namespace Dto
         public int EmployeeID { get; set; }
         public string Name { get; set; }
         public Nullable<System.DateTime> CompanyEntryDate { get; set; }
-        private double LocationX;
-        private double LocationY;
+        private decimal LocationX;
+        private decimal LocationY;
         public Location Location { get; set; }
 
         public Employee()

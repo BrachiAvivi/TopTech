@@ -11,11 +11,12 @@ namespace TopTech.Controllers
     public class EmployeeController : ApiController
     {
         // TODO לבדוק איפה צריך לשים conectionString
+        
         ClsDB db = ClsDB.Instance;
         // GET: api/Employee
         public RequestResponse Get()
         {
-            return db.GetEmployees();
+            return db.GetEmployeesResponse();
         }
 
         // GET: api/Employee/5

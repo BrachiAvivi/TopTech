@@ -14,8 +14,8 @@ namespace Dto
         public string Name { get; set; }
         public string Note { get; set; }
         public string Phone { get; set; }
-        private double LocationX;
-        private double LocationY;
+        private decimal LocationX;
+        private decimal LocationY;
         public Location Location { get; set; }
 
         public Customer()

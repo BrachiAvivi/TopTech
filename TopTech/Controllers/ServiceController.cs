@@ -14,7 +14,7 @@ namespace TopTech.Controllers
         // GET: api/Service
         public RequestResponse Get()
         {
-            return db.GetService();
+            return db.GetServicesRequest();
         }
 
         // GET: api/Service/5
