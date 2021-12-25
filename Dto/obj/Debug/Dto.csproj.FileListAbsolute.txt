@@ -1,0 +1,42 @@
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dto\bin\Debug\Dto.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dto\bin\Debug\Dto.pdb
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dto\bin\Debug\AutoMapper.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dto\bin\Debug\Dal.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dto\bin\Debug\EntityFramework.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dto\bin\Debug\Dal.pdb
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dto\bin\Debug\Dal.dll.config
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dto\bin\Debug\AutoMapper.xml
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dto\bin\Debug\EntityFramework.xml
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dto\obj\Debug\Dto.csprojAssemblyReference.cache
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dto\obj\Debug\Dto.csproj.CoreCompileInputs.cache
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dto\obj\Debug\Dto.csproj.CopyComplete
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dto\obj\Debug\Dto.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dto\obj\Debug\Dto.pdb
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dto\bin\Debug\Dto.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dto\bin\Debug\Dto.pdb
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dto\bin\Debug\AutoMapper.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dto\bin\Debug\Dal.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dto\bin\Debug\EntityFramework.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dto\bin\Debug\Dal.pdb
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dto\bin\Debug\Dal.dll.config
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dto\bin\Debug\AutoMapper.xml
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dto\bin\Debug\EntityFramework.xml
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dto\obj\Debug\Dto.csproj.AssemblyReference.cache
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dto\obj\Debug\Dto.csproj.CoreCompileInputs.cache
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dto\obj\Debug\Dto.csproj.CopyComplete
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dto\obj\Debug\Dto.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dto\obj\Debug\Dto.pdb
+H:\TopTech\TopTech\Dto\bin\Debug\Dto.dll
+H:\TopTech\TopTech\Dto\bin\Debug\Dto.pdb
+H:\TopTech\TopTech\Dto\bin\Debug\AutoMapper.dll
+H:\TopTech\TopTech\Dto\bin\Debug\Dal.dll
+H:\TopTech\TopTech\Dto\bin\Debug\EntityFramework.dll
+H:\TopTech\TopTech\Dto\bin\Debug\Dal.pdb
+H:\TopTech\TopTech\Dto\bin\Debug\Dal.dll.config
+H:\TopTech\TopTech\Dto\bin\Debug\AutoMapper.xml
+H:\TopTech\TopTech\Dto\bin\Debug\EntityFramework.xml
+H:\TopTech\TopTech\Dto\obj\Debug\Dto.csprojAssemblyReference.cache
+H:\TopTech\TopTech\Dto\obj\Debug\Dto.csproj.CoreCompileInputs.cache
+H:\TopTech\TopTech\Dto\obj\Debug\Dto.csproj.CopyComplete
+H:\TopTech\TopTech\Dto\obj\Debug\Dto.dll
+H:\TopTech\TopTech\Dto\obj\Debug\Dto.pdb

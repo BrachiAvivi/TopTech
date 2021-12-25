@@ -1,0 +1,36 @@
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dal\bin\Debug\Dal.dll.config
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dal\bin\Debug\Dal.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dal\bin\Debug\Dal.pdb
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dal\bin\Debug\EntityFramework.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dal\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dal\bin\Debug\EntityFramework.xml
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dal\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dal\obj\Debug\Dal.csprojAssemblyReference.cache
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dal\obj\Debug\Dal.csproj.CoreCompileInputs.cache
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dal\obj\Debug\Dal.csproj.CopyComplete
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dal\obj\Debug\Dal.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\Dal\obj\Debug\Dal.pdb
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dal\bin\Debug\Dal.dll.config
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dal\bin\Debug\Dal.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dal\bin\Debug\Dal.pdb
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dal\bin\Debug\EntityFramework.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dal\bin\Debug\EntityFramework.SqlServer.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dal\bin\Debug\EntityFramework.xml
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dal\bin\Debug\EntityFramework.SqlServer.xml
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dal\obj\Debug\Dal.csproj.AssemblyReference.cache
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dal\obj\Debug\Dal.csproj.CoreCompileInputs.cache
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dal\obj\Debug\Dal.csproj.CopyComplete
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dal\obj\Debug\Dal.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\Dal\obj\Debug\Dal.pdb
+H:\TopTech\TopTech\Dal\bin\Debug\Dal.dll.config
+H:\TopTech\TopTech\Dal\bin\Debug\Dal.dll
+H:\TopTech\TopTech\Dal\bin\Debug\Dal.pdb
+H:\TopTech\TopTech\Dal\bin\Debug\EntityFramework.dll
+H:\TopTech\TopTech\Dal\bin\Debug\EntityFramework.SqlServer.dll
+H:\TopTech\TopTech\Dal\bin\Debug\EntityFramework.xml
+H:\TopTech\TopTech\Dal\bin\Debug\EntityFramework.SqlServer.xml
+H:\TopTech\TopTech\Dal\obj\Debug\Dal.csprojAssemblyReference.cache
+H:\TopTech\TopTech\Dal\obj\Debug\Dal.csproj.CoreCompileInputs.cache
+H:\TopTech\TopTech\Dal\obj\Debug\Dal.csproj.CopyComplete
+H:\TopTech\TopTech\Dal\obj\Debug\Dal.dll
+H:\TopTech\TopTech\Dal\obj\Debug\Dal.pdb

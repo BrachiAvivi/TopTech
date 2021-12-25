@@ -1,0 +1,255 @@
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\obj\Debug\TopTech.csprojAssemblyReference.cache
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\obj\Debug\TopTech.csproj.CoreCompileInputs.cache
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\grpc_csharp_ext.x86.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\grpc_csharp_ext.x64.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\libgrpc_csharp_ext.x64.so
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\libgrpc_csharp_ext.x64.dylib
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\TopTech.dll.config
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\TopTech.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\TopTech.pdb
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\csc.exe
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\csc.exe.config
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\csc.rsp
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\csi.exe
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\csi.exe.config
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\csi.rsp
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.AppContext.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Console.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.IO.Compression.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Net.Http.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Net.Sockets.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.ValueTuple.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Xml.XPath.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\vbc.exe
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\vbc.exe.config
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\vbc.rsp
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\VBCSCompiler.exe
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\Bll.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\Newtonsoft.Json.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\System.Net.Http.Formatting.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\System.Web.Http.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\System.Web.Http.WebHost.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\Dal.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\Dto.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\EntityFramework.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\AutoMapper.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\Bll.pdb
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\Bll.dll.config
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\Newtonsoft.Json.xml
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\System.Net.Http.Formatting.xml
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\System.Web.Http.xml
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\System.Web.Http.WebHost.xml
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\Dal.pdb
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\Dal.dll.config
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\Dto.pdb
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\EntityFramework.xml
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\AutoMapper.xml
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\obj\Debug\TopTech.csproj.CopyComplete
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\obj\Debug\TopTech.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\obj\Debug\TopTech.pdb
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\obj\Debug\TopTech.csproj.CoreCompileInputs.cache
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\obj\Debug\TopTech.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\obj\Debug\TopTech.pdb
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\grpc_csharp_ext.x86.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\grpc_csharp_ext.x64.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\libgrpc_csharp_ext.x64.so
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\libgrpc_csharp_ext.x64.dylib
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\TopTech.dll.config
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\TopTech.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\TopTech.pdb
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\csc.exe
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\csc.exe.config
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\csc.rsp
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\csi.exe
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\csi.exe.config
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\csi.rsp
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CSharp.Core.targets
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.Managed.Core.targets
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.VisualBasic.Core.targets
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.Win32.Primitives.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.AppContext.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Collections.Immutable.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Console.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Diagnostics.StackTrace.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Globalization.Calendars.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.IO.Compression.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.IO.Compression.ZipFile.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.IO.FileSystem.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.IO.FileSystem.Primitives.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Net.Http.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Net.Sockets.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Reflection.Metadata.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Security.Cryptography.Encoding.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Security.Cryptography.Primitives.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Text.Encoding.CodePages.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Threading.Tasks.Extensions.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.ValueTuple.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Xml.ReaderWriter.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Xml.XmlDocument.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Xml.XPath.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\System.Xml.XPath.XDocument.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\vbc.exe
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\vbc.exe.config
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\vbc.rsp
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\VBCSCompiler.exe
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\roslyn\VBCSCompiler.exe.config
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\Bll.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\Newtonsoft.Json.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\System.Net.Http.Formatting.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\System.Web.Http.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\System.Web.Http.WebHost.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\Dal.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\Dto.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\EntityFramework.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\AutoMapper.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\Bll.pdb
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\Bll.dll.config
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\Newtonsoft.Json.xml
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\System.Net.Http.Formatting.xml
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\System.Web.Http.xml
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\System.Web.Http.WebHost.xml
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\Dal.pdb
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\Dal.dll.config
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\Dto.pdb
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\EntityFramework.xml
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\AutoMapper.xml
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\obj\Debug\TopTech.csproj.CopyComplete
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\EntityFramework.SqlServer.dll
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\bin\EntityFramework.SqlServer.xml
+L:\שנה ב\משרד החינוך\אנחנו\ברכי אביבי\TopTech\TopTech\TopTech\obj\Debug\TopTech.csprojAssemblyReference.cache
+H:\TopTech\TopTech\TopTech\bin\grpc_csharp_ext.x86.dll
+H:\TopTech\TopTech\TopTech\bin\grpc_csharp_ext.x64.dll
+H:\TopTech\TopTech\TopTech\bin\libgrpc_csharp_ext.x64.so
+H:\TopTech\TopTech\TopTech\bin\libgrpc_csharp_ext.x64.dylib
+H:\TopTech\TopTech\TopTech\bin\TopTech.dll.config
+H:\TopTech\TopTech\TopTech\bin\TopTech.dll
+H:\TopTech\TopTech\TopTech\bin\TopTech.pdb
+H:\TopTech\TopTech\TopTech\bin\roslyn\csc.exe
+H:\TopTech\TopTech\TopTech\bin\roslyn\csc.exe.config
+H:\TopTech\TopTech\TopTech\bin\roslyn\csc.rsp
+H:\TopTech\TopTech\TopTech\bin\roslyn\csi.exe
+H:\TopTech\TopTech\TopTech\bin\roslyn\csi.exe.config
+H:\TopTech\TopTech\TopTech\bin\roslyn\csi.rsp
+H:\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.CSharp.Core.targets
+H:\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.Managed.Core.targets
+H:\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.VisualBasic.Core.targets
+H:\TopTech\TopTech\TopTech\bin\roslyn\Microsoft.Win32.Primitives.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.AppContext.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Collections.Immutable.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Console.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Diagnostics.StackTrace.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Globalization.Calendars.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.IO.Compression.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.IO.Compression.ZipFile.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.IO.FileSystem.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.IO.FileSystem.Primitives.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Net.Http.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Net.Sockets.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Reflection.Metadata.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Security.Cryptography.Encoding.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Security.Cryptography.Primitives.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Text.Encoding.CodePages.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Threading.Tasks.Extensions.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.ValueTuple.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Xml.ReaderWriter.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Xml.XmlDocument.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Xml.XPath.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\System.Xml.XPath.XDocument.dll
+H:\TopTech\TopTech\TopTech\bin\roslyn\vbc.exe
+H:\TopTech\TopTech\TopTech\bin\roslyn\vbc.exe.config
+H:\TopTech\TopTech\TopTech\bin\roslyn\vbc.rsp
+H:\TopTech\TopTech\TopTech\bin\roslyn\VBCSCompiler.exe
+H:\TopTech\TopTech\TopTech\bin\roslyn\VBCSCompiler.exe.config
+H:\TopTech\TopTech\TopTech\bin\Bll.dll
+H:\TopTech\TopTech\TopTech\bin\EntityFramework.dll
+H:\TopTech\TopTech\TopTech\bin\EntityFramework.SqlServer.dll
+H:\TopTech\TopTech\TopTech\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+H:\TopTech\TopTech\TopTech\bin\Newtonsoft.Json.dll
+H:\TopTech\TopTech\TopTech\bin\System.Net.Http.Formatting.dll
+H:\TopTech\TopTech\TopTech\bin\System.Web.Http.dll
+H:\TopTech\TopTech\TopTech\bin\System.Web.Http.WebHost.dll
+H:\TopTech\TopTech\TopTech\bin\Dal.dll
+H:\TopTech\TopTech\TopTech\bin\Dto.dll
+H:\TopTech\TopTech\TopTech\bin\AutoMapper.dll
+H:\TopTech\TopTech\TopTech\bin\Bll.pdb
+H:\TopTech\TopTech\TopTech\bin\Bll.dll.config
+H:\TopTech\TopTech\TopTech\bin\EntityFramework.xml
+H:\TopTech\TopTech\TopTech\bin\EntityFramework.SqlServer.xml
+H:\TopTech\TopTech\TopTech\bin\Newtonsoft.Json.xml
+H:\TopTech\TopTech\TopTech\bin\System.Net.Http.Formatting.xml
+H:\TopTech\TopTech\TopTech\bin\System.Web.Http.xml
+H:\TopTech\TopTech\TopTech\bin\System.Web.Http.WebHost.xml
+H:\TopTech\TopTech\TopTech\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+H:\TopTech\TopTech\TopTech\bin\Dal.pdb
+H:\TopTech\TopTech\TopTech\bin\Dal.dll.config
+H:\TopTech\TopTech\TopTech\bin\Dto.pdb
+H:\TopTech\TopTech\TopTech\bin\AutoMapper.xml
+H:\TopTech\TopTech\TopTech\obj\Debug\TopTech.csprojAssemblyReference.cache
+H:\TopTech\TopTech\TopTech\obj\Debug\TopTech.csproj.CoreCompileInputs.cache
+H:\TopTech\TopTech\TopTech\obj\Debug\TopTech.csproj.CopyComplete
+H:\TopTech\TopTech\TopTech\obj\Debug\TopTech.dll
+H:\TopTech\TopTech\TopTech\obj\Debug\TopTech.pdb
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\EntityFramework.SqlServer.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\EntityFramework.SqlServer.xml
