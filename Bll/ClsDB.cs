@@ -19,7 +19,7 @@ namespace Bll
             db = new TopTechDBEntities();
             //there is just one company
             //todo ask teacher why it save just one company - edilshtein
-            company = db.Company_tbl.First();
+            //company = db.Company_tbl.First();
         }
 
         public RequestResponse GetServicesRequest()
@@ -44,6 +44,7 @@ namespace Bll
         }
         public List<Employee> GetEmployees()
         {
+            
             return db.Employee_tbl.ToList().Select(item => Employee.DalToDto(item)).ToList();
         }
 

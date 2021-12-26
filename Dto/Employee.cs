@@ -13,14 +13,10 @@ namespace Dto
         public int EmployeeID { get; set; }
         public string Name { get; set; }
         public Nullable<System.DateTime> CompanyEntryDate { get; set; }
-        private decimal LocationX;
-        private decimal LocationY;
+        public Nullable<decimal> LocationX { get; set; }
+        public Nullable<decimal> LocationY { get; set; }
         public Location Location { get; set; }
 
-        public Employee()
-        {
-            this.Location = new Location(LocationX, LocationY);
-        }
 
         public Employee_tbl DtoToDal()
         {
@@ -35,7 +31,9 @@ namespace Dto
             var config = new MapperConfiguration(
                 x => x.CreateMap<Employee_tbl, Employee>());
             var mapper = new Mapper(config);
-            return mapper.Map<Employee>(employee);
+            Employee e= mapper.Map<Employee>(employee);
+            e.Location = new Location(e.LocationX, e.LocationY);
+            return e;
         }
     }
 }

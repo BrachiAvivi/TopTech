@@ -12,13 +12,12 @@ namespace Dto
     {
         public int WarehouseID { get; set; }
         public string Name { get; set; }
-        private int LocationX;
-        private int LocationY; 
+        public Nullable<decimal> LocationX { get; set; }
+        public Nullable<decimal> LocationY { get; set; }
         public Location Location { get; set; }
 
         public Warehouse()
         {
-            Location = new Location(LocationX, LocationY);
         }
 
         public Warehouse_tbl DtoToDal()
@@ -34,7 +33,9 @@ namespace Dto
             var config = new MapperConfiguration(
                 x => x.CreateMap<Warehouse_tbl, Warehouse>());
             var mapper = new Mapper(config);
-            return mapper.Map<Warehouse>(warehouse);
+            Warehouse w= mapper.Map<Warehouse>(warehouse);
+            w.Location = new Location(w.LocationX, w.LocationY);
+            return w;
         }
     }
 }

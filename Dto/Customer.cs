@@ -14,14 +14,12 @@ namespace Dto
         public string Name { get; set; }
         public string Note { get; set; }
         public string Phone { get; set; }
-        private decimal LocationX;
-        private decimal LocationY;
+        public Nullable<decimal> LocationX { get; set; }
+        public Nullable<decimal> LocationY { get; set; }
         public Location Location { get; set; }
 
         public Customer()
-        {
-            this.Location = new Location(LocationX, LocationY);
-        }
+        {   }
 
 
         public Customer_tbl DtoToDal()
@@ -37,7 +35,9 @@ namespace Dto
             var config = new MapperConfiguration(
                 x => x.CreateMap<Customer_tbl, Customer>());
             var mapper = new Mapper(config);
-            return mapper.Map<Customer>(customer);
+            Customer c =  mapper.Map<Customer>(customer);
+            c.Location = new Location(c.LocationX, c.LocationY);
+            return c;
         }
     }
 }
