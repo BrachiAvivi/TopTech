@@ -34,6 +34,7 @@ namespace Bll
 
 
 
+
         public void OpenDay()
         {
             //opening new day to save in database
