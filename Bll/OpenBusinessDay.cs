@@ -14,11 +14,18 @@ namespace Bll
         //פונקציה זו מופעלת כל יום בשעה מסוימת
         //BusinessDay BusinessDay = new BusinessDay();
         //רשימה של קריאות שלא טופלו
-        List<Call> calls = new List<Call>();
+        ClsDB db;
+        List<Call> calls;
+        Company company;
 
-        public BusinessDay BusinessDay { get; set; }
+        public OpenBusinessDay()
+        {
+            db = ClsDB.Instance;
+            
+        }
 
-        List<Destination> destinations;
+
+        
         public void CreateDestinations()
         {
             destinations = new List<Destination>();
@@ -30,7 +37,14 @@ namespace Bll
             }
         }
         
+        public void OpenDay()
+        {
+            //opening new day to save in database
+            BusinessDay day = new BusinessDay();
+            //all the destinations that can by chosen today
+            List<Destination> destinations = db.GetDestinations();
 
+        }
 
 
 

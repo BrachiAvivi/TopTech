@@ -193,12 +193,16 @@ namespace Bll
         public Warehouse ChoseWarehose(Employee employee)
         {//A heuristic choice for a warehouse
             //data from google for the first warehose
-            TimeSpan min_distance = GoogleMaps(employee.Location, warehouses[0].Location);
+
+            //time to check - at mid night
+            TimeSpan time = new TimeSpan(0, 0, 0);
+
+            TimeSpan min_distance = GoogleMaps(employee.Location, warehouses[0].Location,time);
             int min_i = 0;
             for (int i = 1; i < warehouses.Length; i++)
             {
                 //data from google
-                TimeSpan distance = GoogleMaps(employee.Location, warehouses[i].Location);
+                TimeSpan distance = GoogleMaps(employee.Location, warehouses[i].Location,time);
                 if (distance < min_distance)
                 {
                     min_distance = distance;
@@ -209,7 +213,7 @@ namespace Bll
         }
 
 
-        private TimeSpan GoogleMaps(Location source, Location destination)
+        private TimeSpan GoogleMaps(Location source, Location destination, TimeSpan time)
         {
             //data from GoogleMaps site
             return new TimeSpan();
@@ -233,7 +237,7 @@ namespace Bll
                         times[i, j] = zero;
                     else
                         //cost[i,j]=google maps data for traveling time + duration time of working 
-                        times[i, j] = GoogleMaps(destinations[i].Location, destinations[j].Location) + destinations[j].Duration;
+                        times[i, j] = GoogleMaps(destinations[i].Location, destinations[j].Location, time) + destinations[j].Duration;
                 }
             }
             return times;

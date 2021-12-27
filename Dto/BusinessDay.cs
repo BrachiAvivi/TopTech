@@ -20,6 +20,7 @@ namespace Dto
 
         public BusinessDay()
         {
+            //todo מה זה אומר רק חברה אחת?
             this.Date = DateTime.Today;
             this.OpeningTime = new TimeSpan(10, 0, 0);
             this.ClosingTime = new TimeSpan(16, 0, 0);
