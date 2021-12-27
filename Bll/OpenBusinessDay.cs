@@ -30,8 +30,6 @@ namespace Bll
             employees = db.GetEmployees().ToArray();
             random = new Random();
         }
-        //hello
-
 
 
 
