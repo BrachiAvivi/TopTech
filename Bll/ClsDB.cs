@@ -33,6 +33,11 @@ namespace Bll
             };
         }
 
+        internal Company GetCompany()
+        {
+            return db.Company_tbl.First();
+        }
+
         public List<Service> GetServices()
         {
             return db.Service_tbl.Select(s => Service.DalToDto(s)).ToList();

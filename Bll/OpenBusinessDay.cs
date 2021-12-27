@@ -15,7 +15,6 @@ namespace Bll
         //BusinessDay BusinessDay = new BusinessDay();
         //רשימה של קריאות שלא טופלו
         ClsDB db;
-        List<Call> calls;
         Company company;
         Random random;
         BusinessDay day;
@@ -26,6 +25,7 @@ namespace Bll
         public OpenBusinessDay()
         {
             db = ClsDB.Instance;
+            company = db.GetCompany();
             destinations = db.GetDestinations();
             employees = db.GetEmployees().ToArray();
             random = new Random();
