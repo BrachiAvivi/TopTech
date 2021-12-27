@@ -30,6 +30,7 @@ namespace Dto
             return mapper.Map<Customer_tbl>(this);
         }
 
+
         public static Customer DalToDto(Customer_tbl customer)
         {
             var config = new MapperConfiguration(

@@ -12,7 +12,7 @@ namespace Dal
     using System;
     using System.Collections.Generic;
     
-    public partial class Archive
+    public partial class Archive_tbl
     {
         public int CallID { get; set; }
         public int CustomerID { get; set; }

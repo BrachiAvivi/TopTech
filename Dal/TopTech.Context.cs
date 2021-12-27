@@ -40,7 +40,7 @@ namespace Dal
         public virtual DbSet<Visit_tbl> Visit_tbl { get; set; }
         public virtual DbSet<Warehouse_tbl> Warehouse_tbl { get; set; }
         public virtual DbSet<WarehouseAssociation_tbl> WarehouseAssociation_tbl { get; set; }
-        public virtual DbSet<Archive> Archive { get; set; }
+        public virtual DbSet<Archive_tbl> Archive_tbl { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

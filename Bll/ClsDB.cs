@@ -1,4 +1,5 @@
-﻿using Dal;
+﻿using AutoMapper;
+using Dal;
 using Dto;
 using System;
 using System.Collections.Generic;
@@ -40,11 +41,11 @@ namespace Bll
         public List<Warehouse> GetWarehouses()
         {
             return db.Warehouse_tbl.ToList().Select(item => Warehouse.DalToDto(item)).ToList();
-            
+
         }
         public List<Employee> GetEmployees()
         {
-            
+
             return db.Employee_tbl.ToList().Select(item => Employee.DalToDto(item)).ToList();
         }
 
@@ -63,6 +64,10 @@ namespace Bll
             return db.Status_tbl.Select(item => Status.DalToDto(item)).ToList();
         }
 
+        internal void AddVisit(Visit visit)
+        {
+            db.Visit_tbl.Add(visit.DtoToDal());
+        }
 
         public List<Destination> GetDestinations()
         {
@@ -96,6 +101,39 @@ namespace Bll
             var calls = db.Call_tbl.Where(x => x.Status_tbl.StatusID == (int)StatusOf.AwaitingPlacement).ToList();
             return (from item in calls
                     select Call.DalToDto(item)).ToList();
+        }
+
+
+        public void UpdateCallStatus(Call call, StatusOf status)
+        {
+            //todo איך משנים במסד נתונים?
+            //todo שומרים רק את המפתח והוא משלים לבד את העצם?
+
+            if (status == StatusOf.Done || status == StatusOf.CallCanceled)
+            {
+                var config = new MapperConfiguration
+                    (x => x.CreateMap<Call_tbl, Archive_tbl>());
+                var mapper = new Mapper(config);
+                Archive_tbl archive = mapper.Map<Archive_tbl>(call);
+                //insert new archive
+                db.Archive_tbl.Add(archive);
+                //delete fom calls list
+                db.Call_tbl.Remove(call.DtoToDal());
+            }
+            else
+            {
+                //change status
+                db.Call_tbl.Find(call.CallID).CallStatusID = (int)status;
+                History_tbl history = new History_tbl
+                {
+                    CallID = call.CallID,
+                    Date = DateTime.Now,
+                    StatusID = (int)status
+                };
+                //adding to history
+                db.History_tbl.Add(history);
+            }
+            db.SaveChanges();
         }
     }
 }
