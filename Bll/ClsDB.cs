@@ -13,7 +13,7 @@ namespace Bll
     public class ClsDB
     {
         TopTechDBEntities db;
-        Company_tbl company;
+        //Company_tbl company;
         public static ClsDB Instance { get; } = new ClsDB();
         private ClsDB()
         {
@@ -35,7 +35,7 @@ namespace Bll
 
         internal Company GetCompany()
         {
-            return db.Company_tbl.First();
+            return Company.DalToDto(db.Company_tbl.First());
         }
 
         public List<Service> GetServices()
