@@ -12,6 +12,10 @@ namespace TopTech
             // Web API configuration and services
 
             // Web API routes
+
+            //cors
+            config.EnableCors();
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

@@ -338,3 +338,6 @@ C:\Users\user1\Source\Repos\TopTech\TopTech\obj\Debug\TopTech.csproj.CoreCompile
 C:\Users\user1\Source\Repos\TopTech\TopTech\obj\Debug\TopTech.csproj.CopyComplete
 C:\Users\user1\Source\Repos\TopTech\TopTech\obj\Debug\TopTech.dll
 C:\Users\user1\Source\Repos\TopTech\TopTech\obj\Debug\TopTech.pdb
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\System.Web.Cors.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\System.Web.Http.Cors.dll
+C:\Users\user1\Documents\תכנות\TopTech\TopTech\TopTech\bin\System.Web.Http.Cors.xml

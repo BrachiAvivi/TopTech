@@ -13,7 +13,7 @@ namespace Bll
     public class ClsDB
     {
         TopTechDBEntities db;
-        //Company_tbl company;
+        Company_tbl company;
         public static ClsDB Instance { get; } = new ClsDB();
         private ClsDB()
         {
