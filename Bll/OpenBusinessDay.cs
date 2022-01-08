@@ -12,7 +12,7 @@ namespace Bll
     {
         //צריך משהוא מלמעלה שמנהל את הענינים
         //פונקציה זו מופעלת כל יום בשעה מסוימת
-        //BusinessDay BusinessDay = new BusinessDay();
+        BusinessDay BusinessDay = new BusinessDay();
         //רשימה של קריאות שלא טופלו
         ClsDB db;
         Company company;
@@ -28,6 +28,8 @@ namespace Bll
             company = db.GetCompany();
             destinations = db.GetDestinations();
             employees = db.GetEmployees().ToArray();
+            //opening new day to save in database
+            day = new BusinessDay();
             random = new Random();
         }
 
@@ -35,11 +37,14 @@ namespace Bll
 
         public void OpenDay()
         {
-            //opening new day to save in database
-            day = new BusinessDay();
             FindNearest();
             //all the destinations that can by chosen today
             List<Destination>[] destinations = Simulated_Annealing();
+            Save(destinations);
+        }
+
+        public void Save(List<Destination>[] destinations)
+        {
             for (int i = 0; i < destinations.Length; i++)
             {
                 foreach (var destination in destinations[i])
@@ -58,7 +63,7 @@ namespace Bll
         }
 
         //------------------FIND NEAREST DESTIANTIONS-------------------
-        
+
         /// <summary>
         /// init each destination naer destination
         /// לפי הכלל: אם יעד מבודד - יש בסביבתו רק יעד אחד
@@ -113,10 +118,11 @@ namespace Bll
         /// <summary>
         /// 
         /// </summary>
+        /// <returns></returns>
         public List<Destination>[] Simulated_Annealing()
         {
-            int iterations=5;
-            int step_size=3;
+            int iterations = 5;
+            int step_size = 3;
 
             bool[] isUsed = new bool[destinations.Count];
             const int temp = 100;
@@ -148,7 +154,6 @@ namespace Bll
                     currMark = nextMark;
                     isUsed = localUsed;
                 }
-
             }
             return best;
         }
@@ -157,7 +162,7 @@ namespace Bll
         {
             for (int i = 0; i < isUsed.Length; i++)
                 isUsed[i] = false;
-            
+
 
             List<Destination>[] arr = new List<Destination>[employees.Length];
             for (int i = 0; i < employees.Length; i++)
@@ -259,7 +264,7 @@ namespace Bll
                 //בדיקה האם כאשר יתוסף יעד זה,
                 //עלויות הנסיעות שמשתנות +  משך זמן הביקור (הקודם והנוכחי), עדיין בתווך האפשרי
                 if (span + curr.Duration
-                    + GoogleMaps(curr.Location, after.Location, span+curr.Duration) < after.Timeline)
+                    + GoogleMaps(curr.Location, after.Location, span + curr.Duration) < after.Timeline)
                 {
                     //Mark that destination being used
                     used[curr.Index] = true;

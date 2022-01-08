@@ -18,9 +18,9 @@ namespace TopTech.Controllers
         }
 
         // GET: api/Service/5
-        public string Get(int id)
+        public object Get(int id)
         {
-            return "value";
+            return "abc";
         }
 
         // POST: api/Service

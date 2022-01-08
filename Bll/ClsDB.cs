@@ -74,10 +74,15 @@ namespace Bll
             db.Visit_tbl.Add(visit.DtoToDal());
         }
 
+        /// <summary>
+        /// create destination object from all the calls that awaiting to place
+        /// </summary>
+        /// <returns>list of destinations</returns>
         public List<Destination> GetDestinations()
         {
             List<Destination> lst = new List<Destination>();
-            List<Call_tbl> calls = db.Call_tbl.Where(x => x.Status_tbl.StatusID == 10).ToList();
+            List<Call_tbl> calls = db.Call_tbl
+                .Where(x => x.Status_tbl.StatusID == Convert.ToInt32(StatusOf.AwaitingPlacement)).ToList();
             int index = 0;
             foreach (Call_tbl item in calls)
             {
@@ -90,12 +95,16 @@ namespace Bll
             return lst;
         }
 
-
+        /// <summary>
+        /// calculate the priority
+        /// </summary>
+        /// <param name="call"></param>
+        /// <returns>The calculation return the number of days that have passed. If this is the last day - a high number will be returned</returns>
         private int CalculatePriority(Call_tbl call)
         {
             //How many days have passed since the calling
             int dayOver = db.BusinessDay_tbl.Last().BusinessDayID - call.BusinessDayID;
-            if (dayOver == company.CommitmentForSeveralBusinessDays)
+            if (dayOver >= company.CommitmentForSeveralBusinessDays)
                 //מספר גבוה מאוד שיחייב את האלגוריתם לבחור יעד זה דווקא
                 return 1000;
             return dayOver;
