@@ -1,10 +1,10 @@
-﻿using Dto;
+﻿using Dal;
+using Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dal;
 
 namespace Bll
 {
@@ -20,21 +20,16 @@ namespace Bll
         public KindOf Kind { get; set; }
         public List<Destination> Nearest { get; set; }
 
-        public Destination(Location location, TimeSpan duration, int priority, TimeSpan timeline, KindOf kind)
-            : this(location, duration, priority, timeline, kind, null) { }
+        public Destination(int index, Location location, TimeSpan timeline, KindOf kind)//without index & duration & priority & call => warehouse
+            : this(0, location, new TimeSpan(), 0, timeline, null, kind) { }
 
-        public Destination(Location location, TimeSpan duration, int priority, TimeSpan timeline, KindOf kind, Call call)
-        {
-            Location = location;
-            Duration = duration;
-            Priority = priority;
-            Timeline = timeline;
-            Kind = kind;
-            Call = call;
-            Nearest = new List<Destination>();
-        }
+        //public Destination(int index, Location location, TimeSpan timeline)//index -> id ,without duration & priority & call => employee
+        //    : this(index, location, new TimeSpan(), 0, timeline, null, KindOf.customer) { }
 
-        public Destination(int index, Location location, TimeSpan duration, int priority, Call call, KindOf kind)
+        public Destination(int index, Location location, TimeSpan duration, int priority, TimeSpan timeline, Call call)
+            : this(index, location, duration, priority, timeline, call, KindOf.customer) { }
+        
+        public Destination(int index, Location location, TimeSpan duration, int priority, TimeSpan timeline, Call call, KindOf kind)
         {
             Index = index;
             Location = location;
@@ -43,14 +38,6 @@ namespace Bll
             Call = call;
             Kind = kind;
             Nearest = new List<Destination>();
-        }
-
-        public Destination(int index, Location location, int? duration, int priority, Call call, KindOf customer)
-        {
-            Index = index;
-            Location = location;
-            Priority = priority;
-            Call = call;
         }
 
         public void AddNearestDestination(Destination near)

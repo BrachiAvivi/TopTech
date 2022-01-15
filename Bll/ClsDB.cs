@@ -78,7 +78,7 @@ namespace Bll
         /// create destination object from all the calls that awaiting to place
         /// </summary>
         /// <returns>list of destinations</returns>
-        public List<Destination> GetDestinations()
+        public List<Destination> GetDestinations(TimeSpan openTime)
         {
             List<Destination> lst = new List<Destination>();
             List<Call_tbl> calls = db.Call_tbl
@@ -88,7 +88,14 @@ namespace Bll
             {
                 Customer_tbl customer = item.Customer_tbl;
                 int priority = CalculatePriority(item);
-                Destination d = new Destination(index, new Location(customer.LocationX, customer.LocationY), item.Service_tbl.Duration, priority, Call.DalToDto(item), KindOf.customer);
+                Destination d = new Destination(
+                    index,
+                    new Location(customer.LocationX, customer.LocationY),
+                    (TimeSpan)item.Service_tbl.Duration,
+                    priority, 
+                    openTime,
+                    Call.DalToDto(item)
+                    );
                 index++;
                 lst.Add(d);
             }
@@ -117,7 +124,17 @@ namespace Bll
                     select Call.DalToDto(item)).ToList();
         }
 
+        internal void AddBusinessDay(BusinessDay day)
+        {
+            db.BusinessDay_tbl.Add(day.DtoToDal());
+            db.SaveChanges();
+        }
 
+        /// <summary>
+        /// update status, save history status and when needed, moved to arcive
+        /// </summary>
+        /// <param name="call"></param>
+        /// <param name="status"></param>
         public void UpdateCallStatus(Call call, StatusOf status)
         {
             //todo איך משנים במסד נתונים?
@@ -135,18 +152,17 @@ namespace Bll
                 db.Call_tbl.Remove(call.DtoToDal());
             }
             else
-            {
                 //change status
                 db.Call_tbl.Find(call.CallID).CallStatusID = (int)status;
-                History_tbl history = new History_tbl
-                {
-                    CallID = call.CallID,
-                    Date = DateTime.Now,
-                    StatusID = (int)status
-                };
-                //adding to history
-                db.History_tbl.Add(history);
-            }
+
+            History_tbl history = new History_tbl
+            {
+                CallID = call.CallID,
+                Date = DateTime.Now,
+                StatusID = (int)status
+            };
+            //adding to history
+            db.History_tbl.Add(history);
             db.SaveChanges();
         }
     }

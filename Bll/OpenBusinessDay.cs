@@ -1,10 +1,7 @@
 ﻿using Dto;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bll
 {
@@ -12,28 +9,75 @@ namespace Bll
     {
         //צריך משהוא מלמעלה שמנהל את הענינים
         //פונקציה זו מופעלת כל יום בשעה מסוימת
-        BusinessDay BusinessDay = new BusinessDay();
+        
         //רשימה של קריאות שלא טופלו
         ClsDB db;
         Company company;
         Random random;
         BusinessDay day;
-        Employee[] employees;
-
+        List<Employee> employeesData;
+        List<Destination> employees;
+        List<Destination> warehouses;
         List<Destination> destinations;
+        TimeSpan[][,] GoogleMapsData;
+        TimeSpan[][,] GoogleMapsDataWarehouse;
+        TimeSpan[][,] GoogleMapsDataEmplyee;
 
         public OpenBusinessDay()
         {
             db = ClsDB.Instance;
             company = db.GetCompany();
-            destinations = db.GetDestinations();
-            employees = db.GetEmployees().ToArray();
             //opening new day to save in database
             day = new BusinessDay();
+            destinations = db.GetDestinations(day.OpeningTime);
+            employeesData = db.GetEmployees();
+            int index = 0;
+            foreach (var item in employeesData)
+            {
+                employees.Add(new Destination(index++, item.Location, day.OpeningTime,KindOf.home));
+            }
+            index = 0;
+            foreach (var item in db.GetWarehouses())
+            {
+                warehouses.Add(new Destination(index++,item.Location, day.ClosingTime,KindOf.warehouse));
+            }
+            GoogleMapsData = CopyDataFromGoogleMaps(destinations,destinations);
+            GoogleMapsDataEmplyee = CopyDataFromGoogleMaps(employees, destinations);
+            GoogleMapsDataWarehouse = CopyDataFromGoogleMaps(destinations, warehouses);
+
             random = new Random();
+
+            OpenDay();
         }
 
+        private TimeSpan[][,] CopyDataFromGoogleMaps(List<Destination> from, List<Destination> to)
+        {
+            TimeSpan[][,] googleMaps = new TimeSpan[4][,];
+            googleMaps[0] = CopyDataFromGoogleMaps(new TimeSpan(7, 0, 0),from,to);
+            googleMaps[1] = CopyDataFromGoogleMaps(new TimeSpan(9, 0, 0),from,to);
+            googleMaps[2] = CopyDataFromGoogleMaps(new TimeSpan(14, 0, 0), from, to);
+            googleMaps[3] = CopyDataFromGoogleMaps(new TimeSpan(16, 0, 0), from, to);
+            return googleMaps;
+        }
 
+        private TimeSpan[,] CopyDataFromGoogleMaps(TimeSpan time, List<Destination> from, List<Destination> to)
+        {
+            TimeSpan zero = new TimeSpan();
+            //[from,to]
+            TimeSpan[,] googleMaps = new TimeSpan[from.Count, to.Count];
+            for (int i = 0; i < from.Count; i++)
+            {
+                for (int j = 0; j < to.Count; j++)
+                {
+                    if (from[i] == to[j])//the same place
+                        googleMaps[i, j] = zero;
+                    else
+                        //cost[i,j]=google maps data for traveling time + duration time of working 
+                        googleMaps[i, j] = GoogleMaps(from[i].Location, to[j].Location, time);
+                }
+            }
+            return googleMaps;
+        }
 
         public void OpenDay()
         {
@@ -53,13 +97,14 @@ namespace Bll
                     {
                         BusinessDayID = day.BusinessDayID,
                         CallId = destination.Call.CallID,
-                        EmploeeID = employees[i].EmployeeID,
+                        EmploeeID = employeesData[i].EmployeeID,
                         EstimatedTime = destination.Timeline
                     };
                     db.AddVisit(visit);
                     db.UpdateCallStatus(destination.Call, Dal.StatusOf.Inlade);
                 }
             }
+            db.AddBusinessDay(day);
         }
 
         //------------------FIND NEAREST DESTIANTIONS-------------------
@@ -71,7 +116,7 @@ namespace Bll
         /// </summary>
         private void FindNearest()
         {
-            TimeSpan[,] times = CreateCostMat(new TimeSpan(0, 0, 0));
+            TimeSpan[,] times = GoogleMapsData[1];//9-13 pm
             //The distance in this time range
             TimeSpan min20 = new TimeSpan(0, 20, 0);
             for (int i = 0; i < destinations.Count; i++)
@@ -94,24 +139,6 @@ namespace Bll
             }
         }
 
-        private TimeSpan[,] CreateCostMat(TimeSpan time)
-        {
-            TimeSpan zero = new TimeSpan();
-            //[from,to]
-            TimeSpan[,] times = new TimeSpan[destinations.Count, destinations.Count];
-            for (int i = 0; i < destinations.Count; i++)
-            {
-                for (int j = 0; j < destinations.Count; j++)
-                {
-                    if (i == j)//the same place
-                        times[i, j] = zero;
-                    else
-                        //cost[i,j]=google maps data for traveling time + duration time of working 
-                        times[i, j] = GoogleMaps(destinations[i].Location, destinations[j].Location, time) + destinations[j].Duration;
-                }
-            }
-            return times;
-        }
 
         //---------------Algoritem------------
 
@@ -164,14 +191,14 @@ namespace Bll
                 isUsed[i] = false;
 
 
-            List<Destination>[] arr = new List<Destination>[employees.Length];
-            for (int i = 0; i < employees.Length; i++)
+            List<Destination>[] arr = new List<Destination>[employees.Count];
+            for (int i = 0; i < employees.Count; i++)
             {
                 List<Destination> list = new List<Destination>();
-                //first - chose the nearest warehouse
-                list.Add(new Destination(ChoseWarehose(employees[i]).Location, new TimeSpan(), 0, day.OpeningTime, KindOf.warehouse));
+                //first - choose the nearest warehouse
+                list.Add(ChoseWarehose(employees[i].Location));
                 //at last - the employee's house
-                list.Add(new Destination(employees[i].Location, new TimeSpan(), 0, day.ClosingTime, KindOf.home));
+                list.Add(employees[i]);
 
                 //The algorithm performs a heuristic selection
                 Destination destination = FindDestination(list[0], list[1], isUsed);
@@ -185,20 +212,20 @@ namespace Bll
             return arr;
         }
 
-        public Warehouse ChoseWarehose(Employee employee)
+        public Destination ChoseWarehose(Location employeeLocation)
         {//A heuristic choice for a warehouse
-            //data from google for the first warehose
+         //data from google for the first warehose
 
             //time to check - at mid night
-            Warehouse[] warehouses = db.GetWarehouses().ToArray();
+
             TimeSpan time = new TimeSpan(0, 0, 0);
 
-            TimeSpan min_distance = GoogleMaps(employee.Location, warehouses[0].Location, time);
+            TimeSpan min_distance = GoogleMaps(employeeLocation, warehouses[0].Location, time);
             int min_i = 0;
-            for (int i = 1; i < warehouses.Length; i++)
+            for (int i = 1; i < warehouses.Count; i++)
             {
                 //data from google
-                TimeSpan distance = GoogleMaps(employee.Location, warehouses[i].Location, time);
+                TimeSpan distance = GoogleMaps(employeeLocation, warehouses[i].Location, time);
                 if (distance < min_distance)
                 {
                     min_distance = distance;
@@ -260,11 +287,11 @@ namespace Bll
             if (!used[curr.Index])
             {
                 //time to traver form the sours destination to that checking destination
-                TimeSpan span = before.Timeline + before.Duration + GoogleMaps(before.Location, curr.Location, before.Timeline + before.Duration);
+                TimeSpan span = before.Timeline + before.Duration + GoogleMaps(before, curr, before.Timeline + before.Duration);
                 //בדיקה האם כאשר יתוסף יעד זה,
                 //עלויות הנסיעות שמשתנות +  משך זמן הביקור (הקודם והנוכחי), עדיין בתווך האפשרי
                 if (span + curr.Duration
-                    + GoogleMaps(curr.Location, after.Location, span + curr.Duration) < after.Timeline)
+                    + GoogleMaps(curr, after, span + curr.Duration) < after.Timeline)
                 {
                     //Mark that destination being used
                     used[curr.Index] = true;
@@ -312,6 +339,27 @@ namespace Bll
         private int Marking(List<Destination>[] step)
         {
             return step.Sum(x => x.Sum(y => y.Priority));
+        }
+
+
+        private TimeSpan GoogleMaps(Destination source, Destination destination, TimeSpan time)
+        {
+            if (source.Kind == KindOf.customer && destination.Kind == KindOf.customer)
+                return GoogleMapsData[GetTime(time)][source.Index, destination.Index];
+            if(source.Kind==KindOf.warehouse)
+                return GoogleMapsDataWarehouse[GetTime(time)][source.Index, destination.Index];
+            return GoogleMapsDataEmplyee[GetTime(time)][source.Index, destination.Index];
+        }
+
+        private int GetTime(TimeSpan time)
+        {
+            if (time.Hours > 9)
+                return 0;
+            if (time.Hours > 13)
+                return 1;
+            if (time.Hours > 16)
+                return 2;
+            return 3;
         }
 
         private TimeSpan GoogleMaps(Location source, Location destination, TimeSpan time)
