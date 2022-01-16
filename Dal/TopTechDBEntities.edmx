@@ -6,8 +6,8 @@
     <edmx:StorageModels>
       <Schema Namespace="TopTechDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
-warning 6002: The table/view 'TopTechDB.dbo.Archive' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Archive">
+warning 6002: The table/view 'TopTechDB.dbo.Archive_tbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Archive_tbl">
           <Key>
             <PropertyRef Name="CallID" />
             <PropertyRef Name="CustomerID" />
@@ -19,7 +19,6 @@ warning 6002: The table/view 'TopTechDB.dbo.Archive' does not have a primary key
           <Property Name="BusinessDayID" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" />
           <Property Name="Note" Type="nchar" MaxLength="50" />
-          <Property Name="Priority" Type="int" />
           <Property Name="CallStatusID" Type="int" Nullable="false" />
           <Property Name="ServiceID" Type="int" />
         </EntityType>
@@ -28,10 +27,9 @@ warning 6002: The table/view 'TopTechDB.dbo.Archive' does not have a primary key
             <PropertyRef Name="BusinessDayID" />
           </Key>
           <Property Name="BusinessDayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CompanyID" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" />
-          <Property Name="OpeningTime" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="ClosingTime" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="OpeningTime" Type="time" Precision="7" />
+          <Property Name="ClosingTime" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="Call_tbl">
           <Key>
@@ -42,7 +40,6 @@ warning 6002: The table/view 'TopTechDB.dbo.Archive' does not have a primary key
           <Property Name="BusinessDayID" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" />
           <Property Name="Note" Type="nchar" MaxLength="50" />
-          <Property Name="Priority" Type="int" />
           <Property Name="CallStatusID" Type="int" Nullable="false" />
           <Property Name="ServiceID" Type="int" />
         </EntityType>
@@ -54,6 +51,7 @@ warning 6002: The table/view 'TopTechDB.dbo.Archive' does not have a primary key
           <Property Name="Name" Type="nchar" MaxLength="20" />
           <Property Name="EmployeesNumber" Type="int" />
           <Property Name="CommitmentForSeveralBusinessDays" Type="int" />
+          <Property Name="ManagementPermissionCode" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Customer_tbl">
           <Key>
@@ -63,8 +61,10 @@ warning 6002: The table/view 'TopTechDB.dbo.Archive' does not have a primary key
           <Property Name="Name" Type="nchar" MaxLength="20" />
           <Property Name="Note" Type="nchar" MaxLength="50" />
           <Property Name="Phone" Type="nchar" MaxLength="20" />
-          <Property Name="LocationX" Type="money" />
-          <Property Name="LocationY" Type="money" />
+          <Property Name="LocationX" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="LocationY" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Floor" Type="int" />
+          <Property Name="ApartmentNumber" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -73,18 +73,18 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             <PropertyRef Name="BusinessDayID" />
             <PropertyRef Name="EmployeeID" />
           </Key>
-          <Property Name="BusinessDayID" Type="int" Nullable="false" />
+          <Property Name="BusinessDayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee_tbl">
           <Key>
             <PropertyRef Name="EmployeeID" />
           </Key>
-          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="20" />
           <Property Name="CompanyEntryDate" Type="date" />
-          <Property Name="LocationX" Type="money" />
-          <Property Name="LocationY" Type="money" />
+          <Property Name="LocationX" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="LocationY" Type="decimal" Precision="18" Scale="9" />
         </EntityType>
         <EntityType Name="History_tbl">
           <Key>
@@ -95,21 +95,13 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <Property Name="CallID" Type="int" Nullable="false" />
           <Property Name="StatusID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Permission_tbl">
-          <Key>
-            <PropertyRef Name="PermissionID" />
-          </Key>
-          <Property Name="PermissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CompanyID" Type="int" Nullable="false" />
-          <Property Name="Description" Type="nchar" MaxLength="20" />
-        </EntityType>
         <EntityType Name="Service_tbl">
           <Key>
             <PropertyRef Name="ServiceID" />
           </Key>
           <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Detail" Type="nchar" MaxLength="50" />
-          <Property Name="Duration" Type="int" />
+          <Property Name="Duration" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="Status_tbl">
           <Key>
@@ -146,29 +138,9 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           </Key>
           <Property Name="WarehouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="20" />
-          <Property Name="LocationX" Type="money" />
-          <Property Name="LocationY" Type="money" />
+          <Property Name="LocationX" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="LocationY" Type="decimal" Precision="18" Scale="9" />
         </EntityType>
-        <EntityType Name="WarehouseAssociation_tbl">
-          <Key>
-            <PropertyRef Name="AssociationID" />
-          </Key>
-          <Property Name="AssociationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="WarehouseID" Type="int" Nullable="false" />
-          <Property Name="CompanyID" Type="int" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_BusinessDay_tbl_Company_tbl">
-          <End Role="Company_tbl" Type="Self.Company_tbl" Multiplicity="1" />
-          <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Company_tbl">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="BusinessDay_tbl">
-              <PropertyRef Name="CompanyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Call_tbl_BusinessDay_tbl">
           <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="1" />
           <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="*" />
@@ -265,18 +237,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Permission_tbl_Company_tbl">
-          <End Role="Company_tbl" Type="Self.Company_tbl" Multiplicity="1" />
-          <End Role="Permission_tbl" Type="Self.Permission_tbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Company_tbl">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="Permission_tbl">
-              <PropertyRef Name="CompanyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Visit_tbl_BusinessDay_tbl">
           <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="1" />
           <End Role="Visit_tbl" Type="Self.Visit_tbl" Multiplicity="*" />
@@ -325,30 +285,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_WarehouseAssociation_tbl_Company_tbl">
-          <End Role="Company_tbl" Type="Self.Company_tbl" Multiplicity="1" />
-          <End Role="WarehouseAssociation_tbl" Type="Self.WarehouseAssociation_tbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Company_tbl">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="WarehouseAssociation_tbl">
-              <PropertyRef Name="CompanyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_WarehouseAssociation_tbl_Warehouse_tbl">
-          <End Role="Warehouse_tbl" Type="Self.Warehouse_tbl" Multiplicity="1" />
-          <End Role="WarehouseAssociation_tbl" Type="Self.WarehouseAssociation_tbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Warehouse_tbl">
-              <PropertyRef Name="WarehouseID" />
-            </Principal>
-            <Dependent Role="WarehouseAssociation_tbl">
-              <PropertyRef Name="WarehouseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -387,24 +323,21 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <EntitySet Name="Customer_tbl" EntityType="Self.Customer_tbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee_tbl" EntityType="Self.Employee_tbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="History_tbl" EntityType="Self.History_tbl" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Permission_tbl" EntityType="Self.Permission_tbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service_tbl" EntityType="Self.Service_tbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status_tbl" EntityType="Self.Status_tbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Visit_tbl" EntityType="Self.Visit_tbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Warehouse_tbl" EntityType="Self.Warehouse_tbl" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="WarehouseAssociation_tbl" EntityType="Self.WarehouseAssociation_tbl" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Archive" EntityType="Self.Archive" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Archive_tbl" EntityType="Self.Archive_tbl" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [Archive].[CallID] AS [CallID], 
-    [Archive].[CustomerID] AS [CustomerID], 
-    [Archive].[BusinessDayID] AS [BusinessDayID], 
-    [Archive].[Date] AS [Date], 
-    [Archive].[Note] AS [Note], 
-    [Archive].[Priority] AS [Priority], 
-    [Archive].[CallStatusID] AS [CallStatusID], 
-    [Archive].[ServiceID] AS [ServiceID]
-    FROM [dbo].[Archive] AS [Archive]</DefiningQuery>
+    [Archive_tbl].[CallID] AS [CallID], 
+    [Archive_tbl].[CustomerID] AS [CustomerID], 
+    [Archive_tbl].[BusinessDayID] AS [BusinessDayID], 
+    [Archive_tbl].[Date] AS [Date], 
+    [Archive_tbl].[Note] AS [Note], 
+    [Archive_tbl].[CallStatusID] AS [CallStatusID], 
+    [Archive_tbl].[ServiceID] AS [ServiceID]
+    FROM [dbo].[Archive_tbl] AS [Archive_tbl]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="DailyEmployees" EntityType="Self.DailyEmployees" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -412,10 +345,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
     [DailyEmployees].[EmployeeID] AS [EmployeeID]
     FROM [dbo].[DailyEmployees] AS [DailyEmployees]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_BusinessDay_tbl_Company_tbl" Association="Self.FK_BusinessDay_tbl_Company_tbl">
-            <End Role="Company_tbl" EntitySet="Company_tbl" />
-            <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
-          </AssociationSet>
           <AssociationSet Name="FK_Call_tbl_BusinessDay_tbl" Association="Self.FK_Call_tbl_BusinessDay_tbl">
             <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
             <End Role="Call_tbl" EntitySet="Call_tbl" />
@@ -448,10 +377,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             <End Role="Status_tbl" EntitySet="Status_tbl" />
             <End Role="History_tbl" EntitySet="History_tbl" />
           </AssociationSet>
-          <AssociationSet Name="FK_Permission_tbl_Company_tbl" Association="Self.FK_Permission_tbl_Company_tbl">
-            <End Role="Company_tbl" EntitySet="Company_tbl" />
-            <End Role="Permission_tbl" EntitySet="Permission_tbl" />
-          </AssociationSet>
           <AssociationSet Name="FK_Visit_tbl_BusinessDay_tbl" Association="Self.FK_Visit_tbl_BusinessDay_tbl">
             <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
             <End Role="Visit_tbl" EntitySet="Visit_tbl" />
@@ -468,14 +393,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             <End Role="Status_tbl" EntitySet="Status_tbl" />
             <End Role="Visit_tbl" EntitySet="Visit_tbl" />
           </AssociationSet>
-          <AssociationSet Name="FK_WarehouseAssociation_tbl_Company_tbl" Association="Self.FK_WarehouseAssociation_tbl_Company_tbl">
-            <End Role="Company_tbl" EntitySet="Company_tbl" />
-            <End Role="WarehouseAssociation_tbl" EntitySet="WarehouseAssociation_tbl" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WarehouseAssociation_tbl_Warehouse_tbl" Association="Self.FK_WarehouseAssociation_tbl_Warehouse_tbl">
-            <End Role="Warehouse_tbl" EntitySet="Warehouse_tbl" />
-            <End Role="WarehouseAssociation_tbl" EntitySet="WarehouseAssociation_tbl" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -487,11 +404,9 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             <PropertyRef Name="BusinessDayID" />
           </Key>
           <Property Name="BusinessDayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CompanyID" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="OpeningTime" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ClosingTime" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="Company_tbl" Relationship="Self.FK_BusinessDay_tbl_Company_tbl" FromRole="BusinessDay_tbl" ToRole="Company_tbl" />
+          <Property Name="OpeningTime" Type="Time" Precision="7" />
+          <Property Name="ClosingTime" Type="Time" Precision="7" />
           <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Call_tbl_BusinessDay_tbl" FromRole="BusinessDay_tbl" ToRole="Call_tbl" />
           <NavigationProperty Name="Visit_tbl" Relationship="Self.FK_Visit_tbl_BusinessDay_tbl" FromRole="BusinessDay_tbl" ToRole="Visit_tbl" />
           <NavigationProperty Name="Employee_tbl" Relationship="Self.DailyEmployees" FromRole="BusinessDay_tbl" ToRole="Employee_tbl" />
@@ -505,7 +420,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <Property Name="BusinessDayID" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="Note" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Priority" Type="Int32" />
           <Property Name="CallStatusID" Type="Int32" Nullable="false" />
           <Property Name="ServiceID" Type="Int32" />
           <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.FK_Call_tbl_BusinessDay_tbl" FromRole="Call_tbl" ToRole="BusinessDay_tbl" />
@@ -523,9 +437,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="EmployeesNumber" Type="Int32" />
           <Property Name="CommitmentForSeveralBusinessDays" Type="Int32" />
-          <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.FK_BusinessDay_tbl_Company_tbl" FromRole="Company_tbl" ToRole="BusinessDay_tbl" />
-          <NavigationProperty Name="Permission_tbl" Relationship="Self.FK_Permission_tbl_Company_tbl" FromRole="Company_tbl" ToRole="Permission_tbl" />
-          <NavigationProperty Name="WarehouseAssociation_tbl" Relationship="Self.FK_WarehouseAssociation_tbl_Company_tbl" FromRole="Company_tbl" ToRole="WarehouseAssociation_tbl" />
+          <Property Name="ManagementPermissionCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Customer_tbl">
           <Key>
@@ -535,19 +447,21 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Note" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="LocationX" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="LocationY" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LocationX" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="LocationY" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Floor" Type="Int32" />
+          <Property Name="ApartmentNumber" Type="Int32" />
           <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Call_tbl_Customer_tbl" FromRole="Customer_tbl" ToRole="Call_tbl" />
         </EntityType>
         <EntityType Name="Employee_tbl">
           <Key>
             <PropertyRef Name="EmployeeID" />
           </Key>
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="CompanyEntryDate" Type="DateTime" Precision="0" />
-          <Property Name="LocationX" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="LocationY" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LocationX" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="LocationY" Type="Decimal" Precision="18" Scale="9" />
           <NavigationProperty Name="Visit_tbl" Relationship="Self.FK_Visit_tbl_Employee_tbl" FromRole="Employee_tbl" ToRole="Visit_tbl" />
           <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.DailyEmployees" FromRole="Employee_tbl" ToRole="BusinessDay_tbl" />
         </EntityType>
@@ -562,22 +476,13 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <NavigationProperty Name="Call_tbl" Relationship="Self.FK_History_tbl_Call_tbl" FromRole="History_tbl" ToRole="Call_tbl" />
           <NavigationProperty Name="Status_tbl" Relationship="Self.FK_History_tbl_Status_tbl" FromRole="History_tbl" ToRole="Status_tbl" />
         </EntityType>
-        <EntityType Name="Permission_tbl">
-          <Key>
-            <PropertyRef Name="PermissionID" />
-          </Key>
-          <Property Name="PermissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CompanyID" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Company_tbl" Relationship="Self.FK_Permission_tbl_Company_tbl" FromRole="Permission_tbl" ToRole="Company_tbl" />
-        </EntityType>
         <EntityType Name="Service_tbl">
           <Key>
             <PropertyRef Name="ServiceID" />
           </Key>
           <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Detail" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Duration" Type="Int32" />
+          <Property Name="Duration" Type="Time" Precision="7" />
           <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Call_tbl_Service_tbl" FromRole="Service_tbl" ToRole="Call_tbl" />
         </EntityType>
         <EntityType Name="Status_tbl">
@@ -622,21 +527,10 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           </Key>
           <Property Name="WarehouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="LocationX" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="LocationY" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="WarehouseAssociation_tbl" Relationship="Self.FK_WarehouseAssociation_tbl_Warehouse_tbl" FromRole="Warehouse_tbl" ToRole="WarehouseAssociation_tbl" />
+          <Property Name="LocationX" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="LocationY" Type="Decimal" Precision="18" Scale="9" />
         </EntityType>
-        <EntityType Name="WarehouseAssociation_tbl">
-          <Key>
-            <PropertyRef Name="AssociationID" />
-          </Key>
-          <Property Name="AssociationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="WarehouseID" Type="Int32" Nullable="false" />
-          <Property Name="CompanyID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Company_tbl" Relationship="Self.FK_WarehouseAssociation_tbl_Company_tbl" FromRole="WarehouseAssociation_tbl" ToRole="Company_tbl" />
-          <NavigationProperty Name="Warehouse_tbl" Relationship="Self.FK_WarehouseAssociation_tbl_Warehouse_tbl" FromRole="WarehouseAssociation_tbl" ToRole="Warehouse_tbl" />
-        </EntityType>
-        <EntityType Name="Archive">
+        <EntityType Name="Archive_tbl">
           <Key>
             <PropertyRef Name="CallID" />
             <PropertyRef Name="CustomerID" />
@@ -648,22 +542,9 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <Property Name="BusinessDayID" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="Note" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Priority" Type="Int32" />
           <Property Name="CallStatusID" Type="Int32" Nullable="false" />
           <Property Name="ServiceID" Type="Int32" />
         </EntityType>
-        <Association Name="FK_BusinessDay_tbl_Company_tbl">
-          <End Role="Company_tbl" Type="Self.Company_tbl" Multiplicity="1" />
-          <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Company_tbl">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="BusinessDay_tbl">
-              <PropertyRef Name="CompanyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Call_tbl_BusinessDay_tbl">
           <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="1" />
           <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="*" />
@@ -748,30 +629,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Permission_tbl_Company_tbl">
-          <End Role="Company_tbl" Type="Self.Company_tbl" Multiplicity="1" />
-          <End Role="Permission_tbl" Type="Self.Permission_tbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Company_tbl">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="Permission_tbl">
-              <PropertyRef Name="CompanyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_WarehouseAssociation_tbl_Company_tbl">
-          <End Role="Company_tbl" Type="Self.Company_tbl" Multiplicity="1" />
-          <End Role="WarehouseAssociation_tbl" Type="Self.WarehouseAssociation_tbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Company_tbl">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="WarehouseAssociation_tbl">
-              <PropertyRef Name="CompanyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Visit_tbl_Employee_tbl">
           <End Role="Employee_tbl" Type="Self.Employee_tbl" Multiplicity="1" />
           <End Role="Visit_tbl" Type="Self.Visit_tbl" Multiplicity="*" />
@@ -808,18 +665,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_WarehouseAssociation_tbl_Warehouse_tbl">
-          <End Role="Warehouse_tbl" Type="Self.Warehouse_tbl" Multiplicity="1" />
-          <End Role="WarehouseAssociation_tbl" Type="Self.WarehouseAssociation_tbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Warehouse_tbl">
-              <PropertyRef Name="WarehouseID" />
-            </Principal>
-            <Dependent Role="WarehouseAssociation_tbl">
-              <PropertyRef Name="WarehouseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="DailyEmployees">
           <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="*" />
           <End Role="Employee_tbl" Type="Self.Employee_tbl" Multiplicity="*" />
@@ -831,18 +676,12 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <EntitySet Name="Customer_tbl" EntityType="Self.Customer_tbl" />
           <EntitySet Name="Employee_tbl" EntityType="Self.Employee_tbl" />
           <EntitySet Name="History_tbl" EntityType="Self.History_tbl" />
-          <EntitySet Name="Permission_tbl" EntityType="Self.Permission_tbl" />
           <EntitySet Name="Service_tbl" EntityType="Self.Service_tbl" />
           <EntitySet Name="Status_tbl" EntityType="Self.Status_tbl" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Visit_tbl" EntityType="Self.Visit_tbl" />
           <EntitySet Name="Warehouse_tbl" EntityType="Self.Warehouse_tbl" />
-          <EntitySet Name="WarehouseAssociation_tbl" EntityType="Self.WarehouseAssociation_tbl" />
-          <EntitySet Name="Archive" EntityType="Self.Archive" />
-          <AssociationSet Name="FK_BusinessDay_tbl_Company_tbl" Association="Self.FK_BusinessDay_tbl_Company_tbl">
-            <End Role="Company_tbl" EntitySet="Company_tbl" />
-            <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
-          </AssociationSet>
+          <EntitySet Name="Archive_tbl" EntityType="Self.Archive_tbl" />
           <AssociationSet Name="FK_Call_tbl_BusinessDay_tbl" Association="Self.FK_Call_tbl_BusinessDay_tbl">
             <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
             <End Role="Call_tbl" EntitySet="Call_tbl" />
@@ -871,14 +710,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             <End Role="Call_tbl" EntitySet="Call_tbl" />
             <End Role="Visit_tbl" EntitySet="Visit_tbl" />
           </AssociationSet>
-          <AssociationSet Name="FK_Permission_tbl_Company_tbl" Association="Self.FK_Permission_tbl_Company_tbl">
-            <End Role="Company_tbl" EntitySet="Company_tbl" />
-            <End Role="Permission_tbl" EntitySet="Permission_tbl" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WarehouseAssociation_tbl_Company_tbl" Association="Self.FK_WarehouseAssociation_tbl_Company_tbl">
-            <End Role="Company_tbl" EntitySet="Company_tbl" />
-            <End Role="WarehouseAssociation_tbl" EntitySet="WarehouseAssociation_tbl" />
-          </AssociationSet>
           <AssociationSet Name="FK_Visit_tbl_Employee_tbl" Association="Self.FK_Visit_tbl_Employee_tbl">
             <End Role="Employee_tbl" EntitySet="Employee_tbl" />
             <End Role="Visit_tbl" EntitySet="Visit_tbl" />
@@ -890,10 +721,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <AssociationSet Name="FK_Visit_tbl_Status_tbl" Association="Self.FK_Visit_tbl_Status_tbl">
             <End Role="Status_tbl" EntitySet="Status_tbl" />
             <End Role="Visit_tbl" EntitySet="Visit_tbl" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WarehouseAssociation_tbl_Warehouse_tbl" Association="Self.FK_WarehouseAssociation_tbl_Warehouse_tbl">
-            <End Role="Warehouse_tbl" EntitySet="Warehouse_tbl" />
-            <End Role="WarehouseAssociation_tbl" EntitySet="WarehouseAssociation_tbl" />
           </AssociationSet>
           <AssociationSet Name="DailyEmployees" Association="Self.DailyEmployees">
             <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
@@ -951,7 +778,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             <EntityTypeMapping TypeName="TopTechDBModel.BusinessDay_tbl">
               <MappingFragment StoreEntitySet="BusinessDay_tbl">
                 <ScalarProperty Name="BusinessDayID" ColumnName="BusinessDayID" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="OpeningTime" ColumnName="OpeningTime" />
                 <ScalarProperty Name="ClosingTime" ColumnName="ClosingTime" />
@@ -966,7 +792,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
                 <ScalarProperty Name="BusinessDayID" ColumnName="BusinessDayID" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="CallStatusID" ColumnName="CallStatusID" />
                 <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
               </MappingFragment>
@@ -979,6 +804,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="EmployeesNumber" ColumnName="EmployeesNumber" />
                 <ScalarProperty Name="CommitmentForSeveralBusinessDays" ColumnName="CommitmentForSeveralBusinessDays" />
+                <ScalarProperty Name="ManagementPermissionCode" ColumnName="ManagementPermissionCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -991,6 +817,8 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="LocationX" ColumnName="LocationX" />
                 <ScalarProperty Name="LocationY" ColumnName="LocationY" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="ApartmentNumber" ColumnName="ApartmentNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1012,15 +840,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="CallID" ColumnName="CallID" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Permission_tbl">
-            <EntityTypeMapping TypeName="TopTechDBModel.Permission_tbl">
-              <MappingFragment StoreEntitySet="Permission_tbl">
-                <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1075,24 +894,14 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="WarehouseAssociation_tbl">
-            <EntityTypeMapping TypeName="TopTechDBModel.WarehouseAssociation_tbl">
-              <MappingFragment StoreEntitySet="WarehouseAssociation_tbl">
-                <ScalarProperty Name="AssociationID" ColumnName="AssociationID" />
-                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Archive">
-            <EntityTypeMapping TypeName="TopTechDBModel.Archive">
-              <MappingFragment StoreEntitySet="Archive">
+          <EntitySetMapping Name="Archive_tbl">
+            <EntityTypeMapping TypeName="TopTechDBModel.Archive_tbl">
+              <MappingFragment StoreEntitySet="Archive_tbl">
                 <ScalarProperty Name="CallID" ColumnName="CallID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="BusinessDayID" ColumnName="BusinessDayID" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="CallStatusID" ColumnName="CallStatusID" />
                 <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
               </MappingFragment>

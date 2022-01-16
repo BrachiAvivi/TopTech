@@ -11,27 +11,17 @@ namespace Dal
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Company_tbl
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Company_tbl()
-        {
-            this.BusinessDay_tbl = new HashSet<BusinessDay_tbl>();
-            this.Permission_tbl = new HashSet<Permission_tbl>();
-            this.WarehouseAssociation_tbl = new HashSet<WarehouseAssociation_tbl>();
-        }
-    
+        private string managementPermissionCode;
+
         public int CompanyID { get; set; }
         public string Name { get; set; }
         public Nullable<int> EmployeesNumber { get; set; }
         public Nullable<int> CommitmentForSeveralBusinessDays { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BusinessDay_tbl> BusinessDay_tbl { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Permission_tbl> Permission_tbl { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WarehouseAssociation_tbl> WarehouseAssociation_tbl { get; set; }
+        public string ManagementPermissionCode { get => managementPermissionCode; set => managementPermissionCode = value.TrimEnd(); }
+
+
     }
 }

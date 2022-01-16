@@ -11,21 +11,14 @@ namespace Dal
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Warehouse_tbl
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Warehouse_tbl()
-        {
-            this.WarehouseAssociation_tbl = new HashSet<WarehouseAssociation_tbl>();
-        }
-    
+        private string name;
+
         public int WarehouseID { get; set; }
-        public string Name { get; set; }
+        public string Name { get => name; set => name = value.TrimEnd(); }
         public Nullable<decimal> LocationX { get; set; }
         public Nullable<decimal> LocationY { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WarehouseAssociation_tbl> WarehouseAssociation_tbl { get; set; }
     }
 }

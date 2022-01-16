@@ -11,25 +11,26 @@ namespace Dal
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Call_tbl
     {
+        private string note;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Call_tbl()
         {
             this.History_tbl = new HashSet<History_tbl>();
             this.Visit_tbl = new HashSet<Visit_tbl>();
         }
-    
+
         public int CallID { get; set; }
         public int CustomerID { get; set; }
         public int BusinessDayID { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public string Note { get; set; }
-        public Nullable<int> Priority { get; set; }
+        public string Note { get => note; set => note = value.TrimEnd(); }
         public int CallStatusID { get; set; }
-        public Nullable<int> ServiceID { get; set; }
-    
+        public int ServiceID { get; set; }
+
         public virtual BusinessDay_tbl BusinessDay_tbl { get; set; }
         public virtual Customer_tbl Customer_tbl { get; set; }
         public virtual Service_tbl Service_tbl { get; set; }

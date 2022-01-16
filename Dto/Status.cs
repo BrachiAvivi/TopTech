@@ -12,8 +12,8 @@ namespace Dto
 
     public class Status
     {
-        private int StatusID { get; set; }
-        private string StatusDetail { get; set; }
+        public int StatusID { get; set; }
+        public string StatusDetail { get; set; }
         public Nullable<int> AssociatedWith { get; set; }
 
         public Status_tbl DtoToDal()

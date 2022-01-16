@@ -12,15 +12,13 @@ namespace Dto
     public class BusinessDay
     {
         public int BusinessDayID { get; set; }
-        public int CompanyID { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public TimeSpan OpeningTime { get; set; }
-        public TimeSpan ClosingTime { get; set; }
+        public Nullable<System.TimeSpan> OpeningTime { get; set; }
+        public Nullable<System.TimeSpan> ClosingTime { get; set; }
 
 
         public BusinessDay()
         {
-            //todo מה זה אומר רק חברה אחת?
             this.Date = DateTime.Today;
             this.OpeningTime = new TimeSpan(10, 0, 0);
             this.ClosingTime = new TimeSpan(16, 0, 0);
@@ -36,7 +34,7 @@ namespace Dto
 
         public TimeSpan TotalTime ()
         {
-            return OpeningTime - ClosingTime;
+            return (TimeSpan)(OpeningTime - ClosingTime);
         }
 
         public BusinessDay_tbl DtoToDal()

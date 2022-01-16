@@ -23,12 +23,10 @@ namespace Dal
         }
     
         public int BusinessDayID { get; set; }
-        public int CompanyID { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<decimal> OpeningTime { get; set; }
-        public Nullable<decimal> ClosingTime { get; set; }
+        public Nullable<System.TimeSpan> OpeningTime { get; set; }
+        public Nullable<System.TimeSpan> ClosingTime { get; set; }
     
-        public virtual Company_tbl Company_tbl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Call_tbl> Call_tbl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

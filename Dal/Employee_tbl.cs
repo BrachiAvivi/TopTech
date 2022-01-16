@@ -11,22 +11,24 @@ namespace Dal
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Employee_tbl
     {
+        private string name;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee_tbl()
         {
             this.Visit_tbl = new HashSet<Visit_tbl>();
             this.BusinessDay_tbl = new HashSet<BusinessDay_tbl>();
         }
-    
+
         public int EmployeeID { get; set; }
-        public string Name { get; set; }
+        public string Name { get => name; set => name = value.TrimEnd(); }
         public Nullable<System.DateTime> CompanyEntryDate { get; set; }
         public Nullable<decimal> LocationX { get; set; }
         public Nullable<decimal> LocationY { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Visit_tbl> Visit_tbl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

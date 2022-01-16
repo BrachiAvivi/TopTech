@@ -50,70 +50,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Archive.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
+    <Compile Include="Archive_tbl.cs">
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="BusinessDay_tbl.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Call_tbl.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="StatusOf.cs" />
     <Compile Include="Company_tbl.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer_tbl.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Employee_tbl.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="History_tbl.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Permission_tbl.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service_tbl.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="StatusOf.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Status_tbl.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="TopTech.Context.cs">
+    <Compile Include="TopTechDBEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TopTech.Context.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="TopTech.cs">
+    <Compile Include="TopTechDBEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TopTech.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="TopTech.Designer.cs">
+    <Compile Include="TopTechDBEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TopTech.edmx</DependentUpon>
+      <DependentUpon>TopTechDBEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Visit_tbl.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
-    </Compile>
-    <Compile Include="WarehouseAssociation_tbl.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Warehouse_tbl.cs">
-      <DependentUpon>TopTech.tt</DependentUpon>
+      <DependentUpon>TopTechDBEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -122,27 +116,27 @@
     </None>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="TopTech.edmx">
+    <EntityDeploy Include="TopTechDBEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TopTech.Designer.cs</LastGenOutput>
+      <LastGenOutput>TopTechDBEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="TopTech.edmx.diagram">
-      <DependentUpon>TopTech.edmx</DependentUpon>
+    <None Include="TopTechDBEntities.edmx.diagram">
+      <DependentUpon>TopTechDBEntities.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TopTech.Context.tt">
+    <Content Include="TopTechDBEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TopTech.edmx</DependentUpon>
-      <LastGenOutput>TopTech.Context.cs</LastGenOutput>
+      <DependentUpon>TopTechDBEntities.edmx</DependentUpon>
+      <LastGenOutput>TopTechDBEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="TopTech.tt">
+    <Content Include="TopTechDBEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TopTech.edmx</DependentUpon>
-      <LastGenOutput>TopTech.cs</LastGenOutput>
+      <DependentUpon>TopTechDBEntities.edmx</DependentUpon>
+      <LastGenOutput>TopTechDBEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

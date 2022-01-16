@@ -14,6 +14,7 @@ namespace Dto
         public string Name { get; set; }
         public Nullable<int> EmployeesNumber { get; set; }
         public Nullable<int> CommitmentForSeveralBusinessDays { get; set; }
+        public string ManagementPermissionCode { get; set; }
 
 
         public Company_tbl DtoToDal()

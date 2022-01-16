@@ -12,7 +12,7 @@ namespace Dto
     {
         public int ServiceID { get; set; }
         public string Detail { get; set; }
-        public Nullable<int> Duration { get; set; }
+        public Nullable<System.TimeSpan> Duration { get; set; }
 
         public Service_tbl DtoToDal()
         {

@@ -15,9 +15,8 @@ namespace Dto
         public int BusinessDayID { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public string Note { get; set; }
-        public Nullable<int> Priority { get; set; }
         public int CallStatusID { get; set; }
-        public Nullable<int> ServiceID { get; set; }
+        public int ServiceID { get; set; }
 
 
         public Call_tbl DtoToDal()

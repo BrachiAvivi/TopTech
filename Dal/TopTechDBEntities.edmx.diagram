@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="511f8e7dd70f483da7e300e951e08674" Name="Diagram1">
+        <EntityTypeShape EntityType="TopTechDBModel.BusinessDay_tbl" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopTechDBModel.Call_tbl" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopTechDBModel.Company_tbl" Width="1.5" PointX="2.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopTechDBModel.Customer_tbl" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopTechDBModel.Employee_tbl" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopTechDBModel.History_tbl" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopTechDBModel.Service_tbl" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopTechDBModel.Status_tbl" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopTechDBModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopTechDBModel.Visit_tbl" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopTechDBModel.Warehouse_tbl" Width="1.5" PointX="6.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopTechDBModel.Archive_tbl" Width="1.5" PointX="7.75" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="TopTechDBModel.FK_Call_tbl_BusinessDay_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="TopTechDBModel.FK_Visit_tbl_BusinessDay_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="TopTechDBModel.FK_Call_tbl_Customer_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="TopTechDBModel.FK_Call_tbl_Service_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="TopTechDBModel.FK_Call_tbl_Status_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="TopTechDBModel.FK_History_tbl_Call_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="TopTechDBModel.FK_Visit_tbl_Call_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="TopTechDBModel.FK_Visit_tbl_Employee_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="TopTechDBModel.FK_History_tbl_Status_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="TopTechDBModel.FK_Visit_tbl_Status_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="TopTechDBModel.DailyEmployees" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

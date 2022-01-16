@@ -16,6 +16,8 @@ namespace Dto
         public string Phone { get; set; }
         public Nullable<decimal> LocationX { get; set; }
         public Nullable<decimal> LocationY { get; set; }
+        public Nullable<int> Floor { get; set; }
+        public Nullable<int> ApartmentNumber { get; set; }
         public Location Location { get; set; }
 
         public Customer()

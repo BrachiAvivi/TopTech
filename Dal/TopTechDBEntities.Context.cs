@@ -33,13 +33,11 @@ namespace Dal
         public virtual DbSet<Customer_tbl> Customer_tbl { get; set; }
         public virtual DbSet<Employee_tbl> Employee_tbl { get; set; }
         public virtual DbSet<History_tbl> History_tbl { get; set; }
-        public virtual DbSet<Permission_tbl> Permission_tbl { get; set; }
         public virtual DbSet<Service_tbl> Service_tbl { get; set; }
         public virtual DbSet<Status_tbl> Status_tbl { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Visit_tbl> Visit_tbl { get; set; }
         public virtual DbSet<Warehouse_tbl> Warehouse_tbl { get; set; }
-        public virtual DbSet<WarehouseAssociation_tbl> WarehouseAssociation_tbl { get; set; }
         public virtual DbSet<Archive_tbl> Archive_tbl { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
