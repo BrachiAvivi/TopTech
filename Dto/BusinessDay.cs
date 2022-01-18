@@ -13,8 +13,8 @@ namespace Dto
     {
         public int BusinessDayID { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<System.TimeSpan> OpeningTime { get; set; }
-        public Nullable<System.TimeSpan> ClosingTime { get; set; }
+        public System.TimeSpan OpeningTime { get; set; }
+        public TimeSpan ClosingTime { get; set; }
 
 
         public BusinessDay()

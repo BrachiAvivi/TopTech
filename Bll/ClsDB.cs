@@ -92,7 +92,7 @@ namespace Bll
                     index,
                     new Location(customer.LocationX, customer.LocationY),
                     (TimeSpan)item.Service_tbl.Duration,
-                    priority, 
+                    priority,
                     openTime,
                     Call.DalToDto(item)
                     );

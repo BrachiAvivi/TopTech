@@ -9,7 +9,7 @@ namespace Bll
     {
         //צריך משהוא מלמעלה שמנהל את הענינים
         //פונקציה זו מופעלת כל יום בשעה מסוימת
-        
+
         //רשימה של קריאות שלא טופלו
         ClsDB db;
         Company company;
@@ -25,23 +25,36 @@ namespace Bll
 
         public OpenBusinessDay()
         {
-            db = ClsDB.Instance;
-            company = db.GetCompany();
             //opening new day to save in database
             day = new BusinessDay();
+            Init();
+        }
+
+        public OpenBusinessDay(TimeSpan open, TimeSpan close)
+        {
+            day = new BusinessDay(open, close);
+            Init();
+        }
+        private void Init()
+        {
+            db = ClsDB.Instance;
+            db.AddBusinessDay(day);
+            company = db.GetCompany();
             destinations = db.GetDestinations(day.OpeningTime);
             employeesData = db.GetEmployees();
+            //Create a destination object from the employees' house
             int index = 0;
             foreach (var item in employeesData)
             {
-                employees.Add(new Destination(index++, item.Location, day.OpeningTime,KindOf.home));
+                employees.Add(new Destination(index++, item.Location, day.OpeningTime, KindOf.home));
             }
+            //Create a destination object from the warehouses
             index = 0;
             foreach (var item in db.GetWarehouses())
             {
-                warehouses.Add(new Destination(index++,item.Location, day.ClosingTime,KindOf.warehouse));
+                warehouses.Add(new Destination(index++, item.Location, day.ClosingTime, KindOf.warehouse));
             }
-            GoogleMapsData = CopyDataFromGoogleMaps(destinations,destinations);
+            GoogleMapsData = CopyDataFromGoogleMaps(destinations, destinations);
             GoogleMapsDataEmplyee = CopyDataFromGoogleMaps(employees, destinations);
             GoogleMapsDataWarehouse = CopyDataFromGoogleMaps(destinations, warehouses);
 
@@ -50,11 +63,17 @@ namespace Bll
             OpenDay();
         }
 
+        /// <summary>
+        /// Creates 4 cost matrix for 4 different time periods
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns>return TimeSpan[][,] for time of the way between source to destination</returns>
         private TimeSpan[][,] CopyDataFromGoogleMaps(List<Destination> from, List<Destination> to)
         {
             TimeSpan[][,] googleMaps = new TimeSpan[4][,];
-            googleMaps[0] = CopyDataFromGoogleMaps(new TimeSpan(7, 0, 0),from,to);
-            googleMaps[1] = CopyDataFromGoogleMaps(new TimeSpan(9, 0, 0),from,to);
+            googleMaps[0] = CopyDataFromGoogleMaps(new TimeSpan(7, 0, 0), from, to);
+            googleMaps[1] = CopyDataFromGoogleMaps(new TimeSpan(9, 0, 0), from, to);
             googleMaps[2] = CopyDataFromGoogleMaps(new TimeSpan(14, 0, 0), from, to);
             googleMaps[3] = CopyDataFromGoogleMaps(new TimeSpan(16, 0, 0), from, to);
             return googleMaps;
@@ -104,7 +123,6 @@ namespace Bll
                     db.UpdateCallStatus(destination.Call, Dal.StatusOf.Inlade);
                 }
             }
-            db.AddBusinessDay(day);
         }
 
         //------------------FIND NEAREST DESTIANTIONS-------------------
@@ -173,9 +191,8 @@ namespace Bll
                     bestMark = nextMark;
                 }
                 double diff = nextMark - currMark;
-                double t = temp / (i + 1);
-                //לא יודעת
-                //
+                double t = temp / Convert.ToDouble(i + 1);
+                if (diff < 0 || random.NextDouble() < Math.Exp(-diff / t))
                 {
                     curr = next;
                     currMark = nextMark;
@@ -336,9 +353,14 @@ namespace Bll
             return step;
         }
 
+        /// <summary>
+        /// Calculates the current step mark
+        /// </summary>
+        /// <param name="step"></param>
+        /// <returns>get marking about all the destinations for all the employees</returns>
         private int Marking(List<Destination>[] step)
         {
-            return step.Sum(x => x.Sum(y => y.Priority));
+            return step.Sum(employee => employee.Sum(destination => destination.Priority * Convert.ToInt32(destination.Duration.TotalMinutes)));
         }
 
 
@@ -346,7 +368,7 @@ namespace Bll
         {
             if (source.Kind == KindOf.customer && destination.Kind == KindOf.customer)
                 return GoogleMapsData[GetTime(time)][source.Index, destination.Index];
-            if(source.Kind==KindOf.warehouse)
+            if (source.Kind == KindOf.warehouse)
                 return GoogleMapsDataWarehouse[GetTime(time)][source.Index, destination.Index];
             return GoogleMapsDataEmplyee[GetTime(time)][source.Index, destination.Index];
         }
@@ -365,7 +387,11 @@ namespace Bll
         private TimeSpan GoogleMaps(Location source, Location destination, TimeSpan time)
         {
             //data from GoogleMaps site
-            return new TimeSpan();
+
+            //-----checking------
+            double x = Math.Sqrt(Math.Pow(source.X - destination.X, 2) + Math.Pow(source.Y - destination.Y, 2));
+            x *= 10;
+            return new TimeSpan(Convert.ToInt32(x) / 60, Convert.ToInt32(x) % 60, 0);
         }
     }
 }
