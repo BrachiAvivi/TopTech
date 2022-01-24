@@ -27,6 +27,7 @@ warning 6002: The table/view 'TopTechDB.dbo.Archive_tbl' does not have a primary
             <PropertyRef Name="BusinessDayID" />
           </Key>
           <Property Name="BusinessDayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BusinessDayIndex" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" />
           <Property Name="OpeningTime" Type="time" Precision="7" />
           <Property Name="ClosingTime" Type="time" Precision="7" />
@@ -41,7 +42,7 @@ warning 6002: The table/view 'TopTechDB.dbo.Archive_tbl' does not have a primary
           <Property Name="Date" Type="datetime" />
           <Property Name="Note" Type="nchar" MaxLength="50" />
           <Property Name="CallStatusID" Type="int" Nullable="false" />
-          <Property Name="ServiceID" Type="int" />
+          <Property Name="ServiceID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Company_tbl">
           <Key>
@@ -166,7 +167,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Call_tbl_Service_tbl">
-          <End Role="Service_tbl" Type="Self.Service_tbl" Multiplicity="0..1" />
+          <End Role="Service_tbl" Type="Self.Service_tbl" Multiplicity="1" />
           <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Service_tbl">
@@ -285,37 +286,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="TopTechDBModelStoreContainer">
           <EntitySet Name="BusinessDay_tbl" EntityType="Self.BusinessDay_tbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Call_tbl" EntityType="Self.Call_tbl" Schema="dbo" store:Type="Tables" />
@@ -404,6 +374,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             <PropertyRef Name="BusinessDayID" />
           </Key>
           <Property Name="BusinessDayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BusinessDayIndex" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="OpeningTime" Type="Time" Precision="7" />
           <Property Name="ClosingTime" Type="Time" Precision="7" />
@@ -421,7 +392,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="Note" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="CallStatusID" Type="Int32" Nullable="false" />
-          <Property Name="ServiceID" Type="Int32" />
+          <Property Name="ServiceID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.FK_Call_tbl_BusinessDay_tbl" FromRole="Call_tbl" ToRole="BusinessDay_tbl" />
           <NavigationProperty Name="Customer_tbl" Relationship="Self.FK_Call_tbl_Customer_tbl" FromRole="Call_tbl" ToRole="Customer_tbl" />
           <NavigationProperty Name="Service_tbl" Relationship="Self.FK_Call_tbl_Service_tbl" FromRole="Call_tbl" ToRole="Service_tbl" />
@@ -582,7 +553,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Call_tbl_Service_tbl">
-          <End Role="Service_tbl" Type="Self.Service_tbl" Multiplicity="0..1" />
+          <End Role="Service_tbl" Type="Self.Service_tbl" Multiplicity="1" />
           <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Service_tbl">
@@ -726,48 +697,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
             <End Role="Employee_tbl" EntitySet="Employee_tbl" />
           </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TopTechDBModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TopTechDBModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -778,6 +708,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             <EntityTypeMapping TypeName="TopTechDBModel.BusinessDay_tbl">
               <MappingFragment StoreEntitySet="BusinessDay_tbl">
                 <ScalarProperty Name="BusinessDayID" ColumnName="BusinessDayID" />
+                <ScalarProperty Name="BusinessDayIndex" ColumnName="BusinessDayIndex" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="OpeningTime" ColumnName="OpeningTime" />
                 <ScalarProperty Name="ClosingTime" ColumnName="ClosingTime" />
@@ -915,30 +846,6 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
               <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="TopTechDBModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="TopTechDBModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="TopTechDBModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="TopTechDBModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TopTechDBModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="TopTechDBModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TopTechDBModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="TopTechDBModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="TopTechDBModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

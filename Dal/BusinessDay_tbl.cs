@@ -23,6 +23,7 @@ namespace Dal
         }
     
         public int BusinessDayID { get; set; }
+        public int BusinessDayIndex { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<System.TimeSpan> OpeningTime { get; set; }
         public Nullable<System.TimeSpan> ClosingTime { get; set; }

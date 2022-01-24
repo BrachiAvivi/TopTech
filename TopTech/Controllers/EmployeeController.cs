@@ -17,7 +17,7 @@ namespace TopTech.Controllers
         public RequestResponse Get()
         {
             OpenBusinessDay algoritem = new OpenBusinessDay();
-            return db.GetEmployeesResponse();
+            return  db.GetEmployeesResponse();
         }
         
 

@@ -11,28 +11,24 @@ namespace Dal
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Customer_tbl
     {
-        private string name;
-        private string note;
-        private string phone;
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customer_tbl()
         {
             this.Call_tbl = new HashSet<Call_tbl>();
         }
-
+    
         public int CustomerID { get; set; }
-        public string Name { get => name; set => name = value.TrimEnd(); }
-        public string Note { get => note; set => note = value.TrimEnd(); }
-        public string Phone { get => phone; set => phone = value.TrimEnd(); }
+        public string Name { get; set; }
+        public string Note { get; set; }
+        public string Phone { get; set; }
         public Nullable<decimal> LocationX { get; set; }
         public Nullable<decimal> LocationY { get; set; }
         public Nullable<int> Floor { get; set; }
         public Nullable<int> ApartmentNumber { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Call_tbl> Call_tbl { get; set; }
     }

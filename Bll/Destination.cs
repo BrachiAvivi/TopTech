@@ -20,10 +20,10 @@ namespace Bll
         public KindOf Kind { get; set; }
         public List<Destination> Nearest { get; set; }
 
-        public Destination(int index, Location location, TimeSpan timeline, KindOf kind)//without index & duration & priority & call => warehouse
-            : this(0, location, new TimeSpan(), 0, timeline, null, kind) { }
+        public Destination(int index, Location location, TimeSpan timeline, KindOf kind)//without duration & priority & call => warehouse / customer
+            : this(index, location, new TimeSpan(), 0, timeline, null, kind) { }
 
-        //public Destination(int index, Location location, TimeSpan timeline)//index -> id ,without duration & priority & call => employee
+        //public Destination(int index, Location location, TimeSpan timeline)//without duration & priority & call => employee
         //    : this(index, location, new TimeSpan(), 0, timeline, null, KindOf.customer) { }
 
         public Destination(int index, Location location, TimeSpan duration, int priority, TimeSpan timeline, Call call)
@@ -35,6 +35,7 @@ namespace Bll
             Location = location;
             Duration = duration;
             Priority = priority;
+            Timeline = timeline;
             Call = call;
             Kind = kind;
             Nearest = new List<Destination>();
@@ -42,7 +43,8 @@ namespace Bll
 
         public void AddNearestDestination(Destination near)
         {
-            Nearest.Add(near);
+            if(!Nearest.Contains(near))
+                Nearest.Add(near);
         }
 
         //public Destination(int index, Location location, TimeSpan duration, int priority, KindOf customer)

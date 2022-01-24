@@ -11,16 +11,14 @@ namespace Dal
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Archive_tbl
     {
-        private string note;
-
         public int CallID { get; set; }
         public int CustomerID { get; set; }
         public int BusinessDayID { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public string Note { get => note; set => note = value.TrimEnd(); }
+        public string Note { get; set; }
         public int CallStatusID { get; set; }
         public Nullable<int> ServiceID { get; set; }
     }

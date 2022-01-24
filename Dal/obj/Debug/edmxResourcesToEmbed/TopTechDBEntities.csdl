@@ -5,6 +5,7 @@
       <PropertyRef Name="BusinessDayID" />
     </Key>
     <Property Name="BusinessDayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BusinessDayIndex" Type="Int32" Nullable="false" />
     <Property Name="Date" Type="DateTime" Precision="0" />
     <Property Name="OpeningTime" Type="Time" Precision="7" />
     <Property Name="ClosingTime" Type="Time" Precision="7" />
@@ -22,7 +23,7 @@
     <Property Name="Date" Type="DateTime" Precision="3" />
     <Property Name="Note" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="CallStatusID" Type="Int32" Nullable="false" />
-    <Property Name="ServiceID" Type="Int32" />
+    <Property Name="ServiceID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.FK_Call_tbl_BusinessDay_tbl" FromRole="Call_tbl" ToRole="BusinessDay_tbl" />
     <NavigationProperty Name="Customer_tbl" Relationship="Self.FK_Call_tbl_Customer_tbl" FromRole="Call_tbl" ToRole="Customer_tbl" />
     <NavigationProperty Name="Service_tbl" Relationship="Self.FK_Call_tbl_Service_tbl" FromRole="Call_tbl" ToRole="Service_tbl" />
@@ -183,7 +184,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Call_tbl_Service_tbl">
-    <End Role="Service_tbl" Type="Self.Service_tbl" Multiplicity="0..1" />
+    <End Role="Service_tbl" Type="Self.Service_tbl" Multiplicity="1" />
     <End Role="Call_tbl" Type="Self.Call_tbl" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Service_tbl">
@@ -327,46 +328,5 @@
       <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
       <End Role="Employee_tbl" EntitySet="Employee_tbl" />
     </AssociationSet>
-    <FunctionImport Name="sp_alterdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_creatediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_dropdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TopTechDBModel.sp_helpdiagramdefinition_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TopTechDBModel.sp_helpdiagrams_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_renamediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="new_diagramname" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
-  <ComplexType Name="sp_helpdiagramdefinition_Result">
-    <Property Type="Int32" Name="version" Nullable="true" />
-    <Property Type="Binary" Name="definition" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagrams_Result">
-    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-    <Property Type="Int32" Name="OwnerID" Nullable="false" />
-  </ComplexType>
 </Schema>

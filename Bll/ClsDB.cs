@@ -20,7 +20,7 @@ namespace Bll
             db = new TopTechDBEntities();
             //there is just one company
             //todo ask teacher why it save just one company - edilshtein
-            //company = db.Company_tbl.First();
+            company = db.Company_tbl.First();
         }
 
         public RequestResponse GetServicesRequest()
@@ -31,6 +31,14 @@ namespace Bll
                 Status = "sucsess",
                 Massage = "that all services"
             };
+        }
+
+        public int GetLastBusinessDayIndex()
+        {
+            List<BusinessDay_tbl> l = db.BusinessDay_tbl.ToList();
+            BusinessDay_tbl b = l.Last();
+            return b.BusinessDayIndex;
+            //return db.BusinessDay_tbl.Last().BusinessDayID + 1;
         }
 
         internal Company GetCompany()
@@ -69,6 +77,8 @@ namespace Bll
             return db.Status_tbl.Select(item => Status.DalToDto(item)).ToList();
         }
 
+
+
         internal void AddVisit(Visit visit)
         {
             db.Visit_tbl.Add(visit.DtoToDal());
@@ -81,22 +91,25 @@ namespace Bll
         public List<Destination> GetDestinations(TimeSpan openTime)
         {
             List<Destination> lst = new List<Destination>();
-            List<Call_tbl> calls = db.Call_tbl
-                .Where(x => x.Status_tbl.StatusID == Convert.ToInt32(StatusOf.AwaitingPlacement)).ToList();
+            var abc = db.Call_tbl.ToList();
+            List<Call_tbl> calls = abc
+                .Where(x => x.Status_tbl.StatusID == (int)StatusOf.AwaitingPlacement).ToList();
+            
+            
             int index = 0;
             foreach (Call_tbl item in calls)
             {
                 Customer_tbl customer = item.Customer_tbl;
                 int priority = CalculatePriority(item);
                 Destination d = new Destination(
-                    index,
+                    index++,
                     new Location(customer.LocationX, customer.LocationY),
                     (TimeSpan)item.Service_tbl.Duration,
                     priority,
                     openTime,
                     Call.DalToDto(item)
                     );
-                index++;
+                //index++;
                 lst.Add(d);
             }
             return lst;
@@ -110,7 +123,8 @@ namespace Bll
         private int CalculatePriority(Call_tbl call)
         {
             //How many days have passed since the calling
-            int dayOver = db.BusinessDay_tbl.Last().BusinessDayID - call.BusinessDayID;
+            int today = GetLastBusinessDayIndex()+1;//todo למחוק +1 כששומר באמת
+            int dayOver = today - call.BusinessDayID;
             if (dayOver >= company.CommitmentForSeveralBusinessDays)
                 //מספר גבוה מאוד שיחייב את האלגוריתם לבחור יעד זה דווקא
                 return 1000;
@@ -127,7 +141,9 @@ namespace Bll
         internal void AddBusinessDay(BusinessDay day)
         {
             db.BusinessDay_tbl.Add(day.DtoToDal());
-            db.SaveChanges();
+            //todo להפעיל
+            //db.SaveChanges();
+
         }
 
         /// <summary>

@@ -11,17 +11,13 @@ namespace Dal
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Company_tbl
     {
-        private string managementPermissionCode;
-
         public int CompanyID { get; set; }
         public string Name { get; set; }
         public Nullable<int> EmployeesNumber { get; set; }
         public Nullable<int> CommitmentForSeveralBusinessDays { get; set; }
-        public string ManagementPermissionCode { get => managementPermissionCode; set => managementPermissionCode = value.TrimEnd(); }
-
-
+        public string ManagementPermissionCode { get; set; }
     }
 }

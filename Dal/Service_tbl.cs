@@ -11,21 +11,19 @@ namespace Dal
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Service_tbl
     {
-        private string detail;
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Service_tbl()
         {
             this.Call_tbl = new HashSet<Call_tbl>();
         }
-
+    
         public int ServiceID { get; set; }
-        public string Detail { get => detail; set => detail = value.TrimEnd(); }
+        public string Detail { get; set; }
         public Nullable<System.TimeSpan> Duration { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Call_tbl> Call_tbl { get; set; }
     }

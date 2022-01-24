@@ -11,11 +11,9 @@ namespace Dal
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Status_tbl
     {
-        private string statusDetail;
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Status_tbl()
         {
@@ -23,11 +21,11 @@ namespace Dal
             this.History_tbl = new HashSet<History_tbl>();
             this.Visit_tbl = new HashSet<Visit_tbl>();
         }
-
+    
         public int StatusID { get; set; }
-        public string StatusDetail { get => statusDetail; set => statusDetail = value.TrimEnd(); }
+        public string StatusDetail { get; set; }
         public Nullable<int> AssociatedWith { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Call_tbl> Call_tbl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -12,20 +12,23 @@ namespace Dto
     public class BusinessDay
     {
         public int BusinessDayID { get; set; }
+        public int BusinessDayIndex { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public System.TimeSpan OpeningTime { get; set; }
         public TimeSpan ClosingTime { get; set; }
 
 
-        public BusinessDay()
+        public BusinessDay(int index)
         {
+            this.BusinessDayIndex = index;
             this.Date = DateTime.Today;
             this.OpeningTime = new TimeSpan(10, 0, 0);
             this.ClosingTime = new TimeSpan(16, 0, 0);
         }
 
-        public BusinessDay(TimeSpan openingTime, TimeSpan closingTime)
+        public BusinessDay(int index, TimeSpan openingTime, TimeSpan closingTime)
         {
+            this.BusinessDayIndex = index;
             this.Date = DateTime.Today;
             OpeningTime = openingTime;
             ClosingTime = closingTime;

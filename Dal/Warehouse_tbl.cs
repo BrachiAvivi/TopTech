@@ -11,13 +11,11 @@ namespace Dal
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Warehouse_tbl
     {
-        private string name;
-
         public int WarehouseID { get; set; }
-        public string Name { get => name; set => name = value.TrimEnd(); }
+        public string Name { get; set; }
         public Nullable<decimal> LocationX { get; set; }
         public Nullable<decimal> LocationY { get; set; }
     }

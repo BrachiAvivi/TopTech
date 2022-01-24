@@ -25,38 +25,43 @@ namespace Bll
 
         public OpenBusinessDay()
         {
+            db = ClsDB.Instance;
             //opening new day to save in database
-            day = new BusinessDay();
+            day = new BusinessDay(db.GetLastBusinessDayIndex()+1);
             Init();
         }
 
         public OpenBusinessDay(TimeSpan open, TimeSpan close)
         {
-            day = new BusinessDay(open, close);
+            db = ClsDB.Instance;
+            day = new BusinessDay(db.GetLastBusinessDayIndex()+1,open, close);
             Init();
         }
         private void Init()
         {
-            db = ClsDB.Instance;
             db.AddBusinessDay(day);
             company = db.GetCompany();
             destinations = db.GetDestinations(day.OpeningTime);
             employeesData = db.GetEmployees();
             //Create a destination object from the employees' house
             int index = 0;
+            employees = new List<Destination>();
             foreach (var item in employeesData)
             {
-                employees.Add(new Destination(index++, item.Location, day.OpeningTime, KindOf.home));
+                employees.Add(new Destination(index, item.Location, day.ClosingTime, KindOf.home));
+                index++;
             }
             //Create a destination object from the warehouses
             index = 0;
+            warehouses = new List<Destination>();
             foreach (var item in db.GetWarehouses())
             {
-                warehouses.Add(new Destination(index++, item.Location, day.ClosingTime, KindOf.warehouse));
+                warehouses.Add(new Destination(index, item.Location, day.OpeningTime, KindOf.warehouse));
+                index++;
             }
             GoogleMapsData = CopyDataFromGoogleMaps(destinations, destinations);
-            GoogleMapsDataEmplyee = CopyDataFromGoogleMaps(employees, destinations);
-            GoogleMapsDataWarehouse = CopyDataFromGoogleMaps(destinations, warehouses);
+            GoogleMapsDataEmplyee = CopyDataFromGoogleMaps(destinations, employees);
+            GoogleMapsDataWarehouse = CopyDataFromGoogleMaps(warehouses, destinations);
 
             random = new Random();
 
@@ -108,7 +113,7 @@ namespace Bll
 
         public void Save(List<Destination>[] destinations)
         {
-            for (int i = 0; i < destinations.Length; i++)
+            for (int i = 1; i < destinations.Length-1; i++)
             {
                 foreach (var destination in destinations[i])
                 {
@@ -134,7 +139,7 @@ namespace Bll
         /// </summary>
         private void FindNearest()
         {
-            TimeSpan[,] times = GoogleMapsData[1];//9-13 pm
+            TimeSpan[,] times = GoogleMapsData[1];//9-13 am
             //The distance in this time range
             TimeSpan min20 = new TimeSpan(0, 20, 0);
             for (int i = 0; i < destinations.Count; i++)
@@ -151,8 +156,8 @@ namespace Bll
                 }
                 if (count == 1)
                 {
-                    destinations[i].AddNearestDestination(destinations[j]);
-                    destinations[j].AddNearestDestination(destinations[i]);
+                    destinations[i].AddNearestDestination(destinations[index]);
+                    destinations[index].AddNearestDestination(destinations[i]);
                 }
             }
         }
@@ -166,8 +171,8 @@ namespace Bll
         /// <returns></returns>
         public List<Destination>[] Simulated_Annealing()
         {
-            int iterations = 5;
-            int step_size = 3;
+            int iterations = 1000;
+            int step_size = 2;
 
             bool[] isUsed = new bool[destinations.Count];
             const int temp = 100;
@@ -185,7 +190,7 @@ namespace Bll
                 bool[] localUsed = CopyIsUsed(isUsed);
                 next = NextStep(next, step_size, localUsed);
                 int nextMark = Marking(next);
-                if (nextMark < bestMark)
+                if (nextMark > bestMark)
                 {
                     best = CopyStep(next);
                     bestMark = nextMark;
@@ -199,13 +204,14 @@ namespace Bll
                     isUsed = localUsed;
                 }
             }
+            int x = bestMark;
             return best;
         }
 
         public List<Destination>[] InitFirstStep(bool[] isUsed)
         {
-            for (int i = 0; i < isUsed.Length; i++)
-                isUsed[i] = false;
+            //for (int i = 0; i < isUsed.Length; i++)
+            //    isUsed[i] = false;
 
 
             List<Destination>[] arr = new List<Destination>[employees.Count];
@@ -221,7 +227,8 @@ namespace Bll
                 Destination destination = FindDestination(list[0], list[1], isUsed);
                 while (destination != null)
                 {
-                    list[list.Count - 1] = destination;
+                    list.Insert( list.Count - 1,destination);
+                    var x = list;//todo drop
                     destination = FindDestination(list[list.Count - 2], list[list.Count - 1], isUsed);
                 }
                 arr[i] = list;
