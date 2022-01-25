@@ -201,7 +201,7 @@ namespace Bll
                 }
                 double diff = nextMark - currMark;
                 double t = temp / Convert.ToDouble(i + 1);
-                if ( random.NextDouble() < Math.Exp(diff / t))
+                if (random.NextDouble() < Math.Exp(diff / t))
                 {//diff > 0 ||
                     curr = next;
                     currMark = nextMark;
