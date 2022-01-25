@@ -23,6 +23,9 @@ namespace Bll
         TimeSpan[][,] GoogleMapsDataWarehouse;
         TimeSpan[][,] GoogleMapsDataEmplyee;
 
+        public List<int> mark = new List<int>();//todo d
+         //List<int> 
+
         public OpenBusinessDay()
         {
             db = ClsDB.Instance;
@@ -65,8 +68,9 @@ namespace Bll
 
             random = new Random();
 
-            OpenDay();
+            
         }
+
 
         /// <summary>
         /// Creates 4 cost matrix for 4 different time periods
@@ -108,7 +112,7 @@ namespace Bll
             FindNearest();
             //all the destinations that can by chosen today
             List<Destination>[] destinations = Simulated_Annealing();
-            Save(destinations);
+            //Save(destinations);
         }
 
         public void Save(List<Destination>[] destinations)
@@ -197,14 +201,15 @@ namespace Bll
                 }
                 double diff = nextMark - currMark;
                 double t = temp / Convert.ToDouble(i + 1);
-                if (diff < 0 || random.NextDouble() < Math.Exp(-diff / t))
-                {
+                if ( random.NextDouble() < Math.Exp(diff / t))
+                {//diff > 0 ||
                     curr = next;
                     currMark = nextMark;
-                    isUsed = localUsed;
+                    isUsed  = localUsed;
                 }
+                mark.Add(currMark);//todo d
             }
-            int x = bestMark;
+            
             return best;
         }
 
@@ -328,11 +333,11 @@ namespace Bll
             return null;
         }
 
-        private List<Destination>[] NextStep(List<Destination>[] step, int size, bool[] localUsed)
+        private List<Destination>[] NextStep(List<Destination>[] step, int stepSize, bool[] localUsed)
         {
             for (int i = 0; i < step.Length; i++)
             {
-                int r = random.Next(0, size);
+                int r = random.Next(1, stepSize);
                 if (r <= step[i].Count - 2)
                 {
                     for (int j = 0; j < r; j++)
