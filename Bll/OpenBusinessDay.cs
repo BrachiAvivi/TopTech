@@ -177,6 +177,7 @@ namespace Bll
         {
             int iterations = 1000;
             int step_size = 2;
+            int count = 0;//todo d
 
             bool[] isUsed = new bool[destinations.Count];
             const int temp = 100;
@@ -199,18 +200,21 @@ namespace Bll
                     best = CopyStep(next);
                     bestMark = nextMark;
                 }
-                double diff = nextMark - currMark;
+                double diff = nextMark/bestMark - currMark/bestMark;
                 double t = temp / Convert.ToDouble(i + 1);
-                if (random.NextDouble() < Math.Exp(diff / t))
-                {//diff > 0 ||
+                if (diff > 0 ||random.NextDouble() < Math.Exp(diff / t))
+                {
+                    count++;
                     curr = next;
                     currMark = nextMark;
                     isUsed  = localUsed;
                 }
                 mark.Add(currMark);//todo d
             }
-            
+            var maximum = bestMark;
+            var c = count;
             return best;
+
         }
 
         public List<Destination>[] InitFirstStep(bool[] isUsed)
