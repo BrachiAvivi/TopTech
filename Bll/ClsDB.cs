@@ -94,8 +94,8 @@ namespace Bll
             var abc = db.Call_tbl.ToList();
             List<Call_tbl> calls = abc
                 .Where(x => x.Status_tbl.StatusID == (int)StatusOf.AwaitingPlacement).ToList();
-            
-            
+
+
             int index = 0;
             foreach (Call_tbl item in calls)
             {
@@ -123,12 +123,12 @@ namespace Bll
         private int CalculatePriority(Call_tbl call)
         {
             //How many days have passed since the calling
-            int today = GetLastBusinessDayIndex()+1;//todo למחוק +1 כששומר באמת
+            int today = GetLastBusinessDayIndex() + 1;//todo למחוק +1 כששומר באמת
             int dayOver = today - call.BusinessDayID;
             if (dayOver >= company.CommitmentForSeveralBusinessDays)
                 //מספר גבוה מאוד שיחייב את האלגוריתם לבחור יעד זה דווקא
-                return 1000;
-            return dayOver;
+                return 1000 * Convert.ToInt32(call.Service_tbl.Duration.TotalMinutes);
+            return dayOver * Convert.ToInt32(call.Service_tbl.Duration.TotalMinutes);
         }
 
         private List<Call> GetCalls()

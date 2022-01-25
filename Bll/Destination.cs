@@ -47,6 +47,13 @@ namespace Bll
                 Nearest.Add(near);
         }
 
+        public override string ToString()
+        {
+            return (this.Index + 1).ToString();
+        }
+
+
+
         //public Destination(int index, Location location, TimeSpan duration, int priority, KindOf customer)
         //{
         //    Index = index;

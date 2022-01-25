@@ -23,21 +23,21 @@ namespace Bll
         TimeSpan[][,] GoogleMapsDataWarehouse;
         TimeSpan[][,] GoogleMapsDataEmplyee;
 
-        public List<int> mark = new List<int>();//todo d
-         //List<int> 
+        private int maxMark;
+        public List<double> mark = new List<double>();//drop
 
         public OpenBusinessDay()
         {
             db = ClsDB.Instance;
             //opening new day to save in database
-            day = new BusinessDay(db.GetLastBusinessDayIndex()+1);
+            day = new BusinessDay(db.GetLastBusinessDayIndex() + 1);
             Init();
         }
 
         public OpenBusinessDay(TimeSpan open, TimeSpan close)
         {
             db = ClsDB.Instance;
-            day = new BusinessDay(db.GetLastBusinessDayIndex()+1,open, close);
+            day = new BusinessDay(db.GetLastBusinessDayIndex() + 1, open, close);
             Init();
         }
         private void Init()
@@ -45,6 +45,7 @@ namespace Bll
             db.AddBusinessDay(day);
             company = db.GetCompany();
             destinations = db.GetDestinations(day.OpeningTime);
+            maxMark = destinations.Sum(y => y.Priority);
             employeesData = db.GetEmployees();
             //Create a destination object from the employees' house
             int index = 0;
@@ -68,7 +69,7 @@ namespace Bll
 
             random = new Random();
 
-            
+
         }
 
 
@@ -111,13 +112,22 @@ namespace Bll
         {
             FindNearest();
             //all the destinations that can by chosen today
-            List<Destination>[] destinations = Simulated_Annealing();
-            //Save(destinations);
+            //List<Destination>[] destinations = Simulated_Annealing();
+            List<double> l = new List<double>();//drop
+            for (int i = 0; i < 100; i++)
+            {
+                l.Add(Simulated_Annealing());
+            }
+            double max = l.Max();
+            double min = l.Min();
+            double avg = l.Average();
+            //Save(destinations);//ok
+        
         }
 
         public void Save(List<Destination>[] destinations)
         {
-            for (int i = 1; i < destinations.Length-1; i++)
+            for (int i = 1; i < destinations.Length - 1; i++)
             {
                 foreach (var destination in destinations[i])
                 {
@@ -173,20 +183,19 @@ namespace Bll
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<Destination>[] Simulated_Annealing()
+        public /*drop List<Destination>[]*/double Simulated_Annealing()
         {
-            int iterations = 1000;
-            int step_size = 2;
-            int count = 0;//todo d
+            const int iterations = 1000;
+            const int step_size = 2;//todo change
 
             bool[] isUsed = new bool[destinations.Count];
-            const int temp = 100;
+            const int temp = 10;
             //best
             List<Destination>[] best = InitFirstStep(isUsed);
-            int bestMark = Marking(best);
+            double bestMark = Marking(best);
             //current
             List<Destination>[] curr = CopyStep(best);
-            int currMark = bestMark;
+            double currMark = bestMark;
 
             for (int i = 0; i < iterations; i++)
             {
@@ -194,27 +203,26 @@ namespace Bll
                 //גיוון
                 bool[] localUsed = CopyIsUsed(isUsed);
                 next = NextStep(next, step_size, localUsed);
-                int nextMark = Marking(next);
+                double nextMark = Marking(next);
                 if (nextMark > bestMark)
                 {
                     best = CopyStep(next);
                     bestMark = nextMark;
                 }
-                double diff = nextMark/bestMark - currMark/bestMark;
+                double diff = nextMark  - currMark;
                 double t = temp / Convert.ToDouble(i + 1);
-                if (diff > 0 ||random.NextDouble() < Math.Exp(diff / t))
+                double d = random.NextDouble(), e = Math.Exp(diff / t);
+
+                if (diff > 0 || d < e)//todo problem
                 {
-                    count++;
                     curr = next;
                     currMark = nextMark;
-                    isUsed  = localUsed;
+                    isUsed = localUsed;
                 }
-                mark.Add(currMark);//todo d
+                mark.Add(currMark);//drop
             }
-            var maximum = bestMark;
-            var c = count;
-            return best;
-
+            //return best; ok
+            return bestMark;//drop
         }
 
         public List<Destination>[] InitFirstStep(bool[] isUsed)
@@ -236,8 +244,8 @@ namespace Bll
                 Destination destination = FindDestination(list[0], list[1], isUsed);
                 while (destination != null)
                 {
-                    list.Insert( list.Count - 1,destination);
-                    var x = list;//todo drop
+                    list.Insert(list.Count - 1, destination);
+                    var x = list;//drop
                     destination = FindDestination(list[list.Count - 2], list[list.Count - 1], isUsed);
                 }
                 arr[i] = list;
@@ -374,11 +382,11 @@ namespace Bll
         /// </summary>
         /// <param name="step"></param>
         /// <returns>get marking about all the destinations for all the employees</returns>
-        private int Marking(List<Destination>[] step)
-        {
-            return step.Sum(employee => employee.Sum(destination => destination.Priority * Convert.ToInt32(destination.Duration.TotalMinutes)));
+        private double Marking(List<Destination>[] step)
+        { 
+            int x = step.Sum(employee => employee.Sum(destination => destination.Priority));
+            return x*100/(double)maxMark;
         }
-
 
         private TimeSpan GoogleMaps(Destination source, Destination destination, TimeSpan time)
         {
@@ -391,11 +399,11 @@ namespace Bll
 
         private int GetTime(TimeSpan time)
         {
-            if (time.Hours > 9)
+            if (time.Hours < 9)
                 return 0;
-            if (time.Hours > 13)
+            if (time.Hours < 13)
                 return 1;
-            if (time.Hours > 16)
+            if (time.Hours < 16)
                 return 2;
             return 3;
         }

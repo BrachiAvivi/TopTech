@@ -5,40 +5,35 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using Bll;
 
 namespace TopTech.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class EmployeeController : ApiController
+    public class DestinationController : ApiController
     {
-        ClsDB db = ClsDB.Instance;
-        // GET: api/Employee
-        public RequestResponse Get()
+        // GET: api/Destination
+        public IEnumerable<string> Get()
         {
-            //OpenBusinessDay algoritem = new OpenBusinessDay();
-            //algoritem.OpenDay();
-            return  db.GetEmployeesResponse();
+            return new string[] { "value1", "value2" };
         }
-        
 
-        // GET: api/Employee/5
+        // GET: api/Destination/5
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/Employee
+        // POST: api/Destination
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Employee/5
+        // PUT: api/Destination/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE: api/Employee/5
+        // DELETE: api/Destination/5
         public void Delete(int id)
         {
         }

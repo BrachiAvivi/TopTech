@@ -22,7 +22,7 @@ namespace Dal
     
         public int ServiceID { get; set; }
         public string Detail { get; set; }
-        public Nullable<System.TimeSpan> Duration { get; set; }
+        public System.TimeSpan Duration { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Call_tbl> Call_tbl { get; set; }
