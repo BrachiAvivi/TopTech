@@ -43,8 +43,10 @@ namespace Bll
 
         public void AddNearestDestination(Destination near)
         {
-            if(!Nearest.Contains(near))
+            if (!Nearest.Contains(near))
                 Nearest.Add(near);
+            if (!near.Nearest.Contains(this))
+                near.Nearest.Add(this);
         }
 
         public override string ToString()

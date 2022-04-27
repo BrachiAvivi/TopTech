@@ -12,6 +12,7 @@ namespace Bll
     //TODO ask the theacher where all the mapping are -סירוקה
     public class ClsDB
     {
+        public int PriorityForMustDestinations { get; }
         TopTechDBEntities db;
         Company_tbl company;
         public static ClsDB Instance { get; } = new ClsDB();
@@ -21,6 +22,8 @@ namespace Bll
             //there is just one company
             //todo ask teacher why it save just one company - edilshtein
             company = db.Company_tbl.First();
+            //I choosed number 3 to duplicate the number of promised day
+            PriorityForMustDestinations = (int)company.CommitmentForSeveralBusinessDays * 10;
         }
 
         public RequestResponse GetServicesRequest()
@@ -91,8 +94,8 @@ namespace Bll
         public List<Destination> GetDestinations(TimeSpan openTime)
         {
             List<Destination> lst = new List<Destination>();
-            var abc = db.Call_tbl.ToList();
-            List<Call_tbl> calls = abc
+            var c = db.Call_tbl.ToList();
+            List<Call_tbl> calls = c
                 .Where(x => x.Status_tbl.StatusID == (int)StatusOf.AwaitingPlacement).ToList();
 
 
@@ -127,7 +130,7 @@ namespace Bll
             int dayOver = today - call.BusinessDayID;
             if (dayOver >= company.CommitmentForSeveralBusinessDays)
                 //מספר גבוה מאוד שיחייב את האלגוריתם לבחור יעד זה דווקא
-                return 1000 * Convert.ToInt32(call.Service_tbl.Duration.TotalMinutes);
+                return PriorityForMustDestinations * Convert.ToInt32(call.Service_tbl.Duration.TotalMinutes);
             return dayOver * Convert.ToInt32(call.Service_tbl.Duration.TotalMinutes);
         }
 

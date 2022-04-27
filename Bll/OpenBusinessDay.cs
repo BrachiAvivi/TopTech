@@ -24,7 +24,7 @@ namespace Bll
         TimeSpan[][,] GoogleMapsDataEmplyee;
 
         private int maxMark;
-        public List<double> mark = new List<double>();//drop
+        private int numberOfMustDestinations;
 
         public OpenBusinessDay()
         {
@@ -68,7 +68,7 @@ namespace Bll
             GoogleMapsDataWarehouse = CopyDataFromGoogleMaps(warehouses, destinations);
 
             random = new Random();
-
+            numberOfMustDestinations = destinations.Count(x => x.Priority == db.PriorityForMustDestinations * (int)x.Duration.TotalMinutes);
 
         }
 
@@ -113,16 +113,30 @@ namespace Bll
             FindNearest();
             //all the destinations that can by chosen today
             //List<Destination>[] destinations = Simulated_Annealing();
+            ClsDB cls = ClsDB.Instance;
             List<double> l = new List<double>();//drop
-            for (int i = 0; i < 100; i++)
+            List<double> l1 = new List<double>();//drop
+            for (int j = 1; j < 10; j++)
             {
-                l.Add(Simulated_Annealing());
+                temp = j;
+                for (int i = 0; i < 500; i++)
+                {
+                    l.Add(Simulated_Annealing());
+                }
+                double max = l.Max();
+                double min = l.Min();
+                double avg = l.Average();
+                l1.Add(avg);
+                
+                l = new List<double>();
             }
-            double max = l.Max();
-            double min = l.Min();
-            double avg = l.Average();
+            double max1 = l1.Max();
+            double min1 = l1.Min();
+            double avg1 = l1.Average();
+
+
+            l1 = new List<double>();
             //Save(destinations);//ok
-        
         }
 
         public void Save(List<Destination>[] destinations)
@@ -168,61 +182,83 @@ namespace Bll
                     }
                     j++;
                 }
+                //אם יש רק יעד נוסף ברדיוס הקרוב
                 if (count == 1)
-                {
                     destinations[i].AddNearestDestination(destinations[index]);
-                    destinations[index].AddNearestDestination(destinations[i]);
-                }
             }
         }
 
 
         //---------------Algoritem------------
-
+        /// <summary>
+        /// הרצתי על המספרים בין 1 ל 100, בכל ההרצות 16 הוציא תוצאה הכי טובה
+        /// </summary>
+        int temp = 16;
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         public /*drop List<Destination>[]*/double Simulated_Annealing()
         {
-            const int iterations = 1000;
+            const int iterations = 100;
             const int step_size = 2;//todo change
 
-            bool[] isUsed = new bool[destinations.Count];
-            const int temp = 10;
+            //const int temp = 10;//ok
             //best
-            List<Destination>[] best = InitFirstStep(isUsed);
+            bool[] bestUsed = new bool[destinations.Count];
+            List<Destination>[] best = InitFirstStep(bestUsed);
             double bestMark = Marking(best);
             //current
             List<Destination>[] curr = CopyStep(best);
             double currMark = bestMark;
+            bool[] isUsed = CopyIsUsed(bestUsed);
+            double e = 0;
+            //next
+            List<Destination>[] next = null;
+            double nextMark = 0;
 
-            for (int i = 0; i < iterations; i++)
+            //drop
+            List<double> vs = new List<double>();
+            for (int j = 0; j < 20; j++)
             {
-                List<Destination>[] next = CopyStep(curr);
-                //גיוון
-                bool[] localUsed = CopyIsUsed(isUsed);
-                next = NextStep(next, step_size, localUsed);
-                double nextMark = Marking(next);
-                if (nextMark > bestMark)
+                for (int i = 0; i < iterations; i++)
                 {
-                    best = CopyStep(next);
-                    bestMark = nextMark;
-                }
-                double diff = nextMark  - currMark;
-                double t = temp / Convert.ToDouble(i + 1);
-                double d = random.NextDouble(), e = Math.Exp(diff / t);
+                    next = CopyStep(curr);
+                    //גיוון
+                    bool[] localUsed = CopyIsUsed(isUsed);
+                    next = NextStep(next, step_size, localUsed);
+                    nextMark = Marking(next);
+                    if (nextMark > bestMark)
+                    {
+                        best = CopyStep(next);
+                        bestMark = nextMark;
+                        bestUsed = CopyIsUsed(localUsed);
+                    }
+                    double diff = nextMark - currMark;
+                    double t = temp / Convert.ToDouble(i + 1);
+                    //double t = temp / Convert.ToDouble(j * iterations + i + 1);
+                    double d = random.NextDouble();
+                    e = Math.Exp(diff / t);
 
-                if (diff > 0 || d < e)//todo problem
-                {
-                    curr = next;
-                    currMark = nextMark;
-                    isUsed = localUsed;
+                    if (diff > 0 || d < e)//todo problem
+                    {
+                        curr = next;
+                        currMark = nextMark;
+                        isUsed = localUsed;
+                    }
+
+                    vs.Add(currMark);
                 }
-                mark.Add(currMark);//drop
+                curr = CopyStep(best);
+                currMark = bestMark;
+                isUsed = CopyIsUsed(bestUsed);
+
+                vs.Add(currMark + 10000);
             }
             //return best; ok
+            var vss = vs;
             return bestMark;//drop
+            //return CheckIfAllMustDestinationsChoosen(best);
         }
 
         public List<Destination>[] InitFirstStep(bool[] isUsed)
@@ -345,33 +381,85 @@ namespace Bll
             return null;
         }
 
+        //private List<Destination>[] NextStep(List<Destination>[] step, int stepSize, bool[] localUsed)
+        //{
+        //    for (int i = 0; i < step.Length; i++)
+        //    {
+        //        int r = random.Next(1, stepSize);
+        //        if (r <= step[i].Count - 2)
+        //        {
+        //            for (int j = 0; j < r; j++)
+        //            {
+        //                //Selecting a random number
+        //                int r_r = random.Next(1, step[i].Count - 1);
+        //                //sign this destination is not in used
+        //                localUsed[step[i].ElementAt(r_r).Index] = false;
+        //                //Delete the destination in the selected location
+        //                step[i].RemoveAt(r_r);
+        //                //Selecting another destination(s) in its place
+        //                Destination destination = FindDestination(step[i].ElementAt(r_r - 1), step[i].ElementAt(r_r), localUsed);
+        //                while (destination != null)
+        //                {
+        //                    //insert the selected destination
+        //                    step[i].Insert(r_r, destination);
+        //                    //Increase by 1 because it inserted 1 destination
+        //                    r_r++;
+        //                    //More choice, if possible
+        //                    destination = FindDestination(step[i].ElementAt(r_r - 1), step[i].ElementAt(r_r), localUsed);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return step;
+        //}
         private List<Destination>[] NextStep(List<Destination>[] step, int stepSize, bool[] localUsed)
         {
             for (int i = 0; i < step.Length; i++)
             {
-                int r = random.Next(1, stepSize);
-                if (r <= step[i].Count - 2)
+                int limit = step[i].Count - 1;
+                //Randomly selects 2 numbers whose maximum difference is the step size
+                int r1 = random.Next(1, limit);
+                int r2 = random.Next(Math.Max(1, r1 - stepSize), Math.Min(limit, r1 + stepSize));
+                int min = Math.Min(r1, r2);
+                int max = Math.Max(r1, r2);
+                if (r1 <= step[i].Count - 2)
                 {
-                    for (int j = 0; j < r; j++)
+                    for (int j = min; j <= max; j++)
                     {
-                        //Selecting a random number
-                        int r_r = random.Next(1, step[i].Count - 1);
-                        //sign this destination is not in used
-                        localUsed[step[i].ElementAt(r_r).Index] = false;
-                        //Delete the destination in the selected location
-                        step[i].RemoveAt(r_r);
-                        //Selecting another destination(s) in its place
-                        Destination destination = FindDestination(step[i].ElementAt(r_r - 1), step[i].ElementAt(r_r), localUsed);
+                        localUsed[step[i].ElementAt(min).Index] = false;
+                        step[i].RemoveAt(min);
+
+                        Destination destination = FindDestination(step[i].ElementAt(min - 1), step[i].ElementAt(min), localUsed);
                         while (destination != null)
                         {
                             //insert the selected destination
-                            step[i].Insert(r_r, destination);
+                            step[i].Insert(min, destination);
                             //Increase by 1 because it inserted 1 destination
-                            r_r++;
+                            min++;
                             //More choice, if possible
-                            destination = FindDestination(step[i].ElementAt(r_r - 1), step[i].ElementAt(r_r), localUsed);
+                            destination = FindDestination(step[i].ElementAt(min - 1), step[i].ElementAt(min), localUsed);
                         }
                     }
+                    //for (int j = 0; j < r; j++)
+                    //{
+                    //    //Selecting a random number
+                    //    int r_r = random.Next(1, step[i].Count - 1);
+                    //    //sign this destination is not in used
+                    //    localUsed[step[i].ElementAt(r_r).Index] = false;
+                    //    //Delete the destination in the selected location
+                    //    step[i].RemoveAt(r_r);
+                    //    //Selecting another destination(s) in its place
+                    //    Destination destination = FindDestination(step[i].ElementAt(r_r - 1), step[i].ElementAt(r_r), localUsed);
+                    //    while (destination != null)
+                    //    {
+                    //        //insert the selected destination
+                    //        step[i].Insert(r_r, destination);
+                    //        //Increase by 1 because it inserted 1 destination
+                    //        r_r++;
+                    //        //More choice, if possible
+                    //        destination = FindDestination(step[i].ElementAt(r_r - 1), step[i].ElementAt(r_r), localUsed);
+                    //    }
+                    //}
                 }
             }
             return step;
@@ -383,11 +471,16 @@ namespace Bll
         /// <param name="step"></param>
         /// <returns>get marking about all the destinations for all the employees</returns>
         private double Marking(List<Destination>[] step)
-        { 
+        {
             int x = step.Sum(employee => employee.Sum(destination => destination.Priority));
-            return x*100/(double)maxMark;
+            return x * 100 / (double)maxMark;
         }
 
+        private double CheckIfAllMustDestinationsChoosen(List<Destination>[] step)
+        {
+            int mustInThatStep = step.Sum(y => y.Count(x => x.Priority == db.PriorityForMustDestinations * (int)x.Duration.TotalMinutes));//todo drop if
+            return mustInThatStep / numberOfMustDestinations;
+        }
         private TimeSpan GoogleMaps(Destination source, Destination destination, TimeSpan time)
         {
             if (source.Kind == KindOf.customer && destination.Kind == KindOf.customer)

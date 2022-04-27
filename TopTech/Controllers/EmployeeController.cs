@@ -16,11 +16,11 @@ namespace TopTech.Controllers
         // GET: api/Employee
         public RequestResponse Get()
         {
-            //OpenBusinessDay algoritem = new OpenBusinessDay();
-            //algoritem.OpenDay();
-            return  db.GetEmployeesResponse();
+            OpenBusinessDay algoritem = new OpenBusinessDay();
+            algoritem.OpenDay();
+            return db.GetEmployeesResponse();
         }
-        
+
 
         // GET: api/Employee/5
         public string Get(int id)
