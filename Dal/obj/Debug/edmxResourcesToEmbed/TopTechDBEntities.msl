@@ -39,6 +39,7 @@
     <EntitySetMapping Name="Customer_tbl">
       <EntityTypeMapping TypeName="TopTechDBModel.Customer_tbl">
         <MappingFragment StoreEntitySet="Customer_tbl">
+          <ScalarProperty Name="Gmail" ColumnName="Gmail" />
           <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Note" ColumnName="Note" />
@@ -53,6 +54,7 @@
     <EntitySetMapping Name="Employee_tbl">
       <EntityTypeMapping TypeName="TopTechDBModel.Employee_tbl">
         <MappingFragment StoreEntitySet="Employee_tbl">
+          <ScalarProperty Name="Gmail" ColumnName="Gmail" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="CompanyEntryDate" ColumnName="CompanyEntryDate" />

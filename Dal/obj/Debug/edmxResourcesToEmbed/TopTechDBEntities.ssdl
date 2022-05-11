@@ -61,6 +61,7 @@ warning 6002: The table/view 'TopTechDB.dbo.Archive_tbl' does not have a primary
     <Property Name="LocationY" Type="decimal" Precision="18" Scale="9" />
     <Property Name="Floor" Type="int" />
     <Property Name="ApartmentNumber" Type="int" />
+    <Property Name="Gmail" Type="nchar" MaxLength="30" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -81,6 +82,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
     <Property Name="CompanyEntryDate" Type="date" />
     <Property Name="LocationX" Type="decimal" Precision="18" Scale="9" />
     <Property Name="LocationY" Type="decimal" Precision="18" Scale="9" />
+    <Property Name="Gmail" Type="nchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="History_tbl">
     <Key>

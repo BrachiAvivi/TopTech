@@ -16,6 +16,7 @@ namespace Dto
         public Nullable<decimal> LocationX { get; set; }
         public Nullable<decimal> LocationY { get; set; }
         public Location Location { get; set; }
+        public string Gmail { get; set; }
 
 
         public Employee_tbl DtoToDal()

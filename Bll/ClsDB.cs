@@ -85,6 +85,7 @@ namespace Bll
         internal void AddVisit(Visit visit)
         {
             db.Visit_tbl.Add(visit.DtoToDal());
+            db.SaveChanges();
         }
 
         /// <summary>
@@ -134,19 +135,17 @@ namespace Bll
             return dayOver * Convert.ToInt32(call.Service_tbl.Duration.TotalMinutes);
         }
 
-        private List<Call> GetCalls()
-        {
-            var calls = db.Call_tbl.Where(x => x.Status_tbl.StatusID == (int)StatusOf.AwaitingPlacement).ToList();
-            return (from item in calls
-                    select Call.DalToDto(item)).ToList();
-        }
+        //private List<Call> GetCalls()
+        //{
+        //    var calls = db.Call_tbl.Where(x => x.Status_tbl.StatusID == (int)StatusOf.AwaitingPlacement).ToList();
+        //    return (from item in calls
+        //            select Call.DalToDto(item)).ToList();
+        //}
 
         internal void AddBusinessDay(BusinessDay day)
         {
             db.BusinessDay_tbl.Add(day.DtoToDal());
-            //todo להפעיל
-            //db.SaveChanges();
-
+            db.SaveChanges();
         }
 
         /// <summary>
@@ -184,5 +183,32 @@ namespace Bll
             db.History_tbl.Add(history);
             db.SaveChanges();
         }
+
+        public Employee_tbl GetEmployee (string gmail)
+        {
+            return db.Employee_tbl.First(x => x.Gmail == gmail);
+        }
+        
+        public List<ShowDestination> ShowDestinations(string gmail)
+        {
+            Employee_tbl employee = GetEmployee(gmail);
+            List<ShowDestination> lst = new List<ShowDestination>();
+            int day = GetLastBusinessDayIndex();
+            var visits = db.Visit_tbl.Where(x => x.EmploeeID == employee.EmployeeID && x.BusinessDayID == day).ToList();
+            foreach (var item in visits)
+            {
+                ShowDestination des = new ShowDestination()
+                {
+                    X = (decimal)item.Call_tbl.Customer_tbl.LocationX,
+                    Y = (decimal)item.Call_tbl.Customer_tbl.LocationY,
+                    Duratino = (TimeSpan)item.Call_tbl.Service_tbl.Duration,
+                    WorkDetail = item.Call_tbl.Service_tbl.Detail,
+                    EstimatedTime = (TimeSpan)item.EstimatedTime
+                };
+                lst.Add(des);
+            }
+            return lst;
+        }
+        
     }
 }

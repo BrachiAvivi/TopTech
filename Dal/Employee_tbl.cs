@@ -26,6 +26,7 @@ namespace Dal
         public Nullable<System.DateTime> CompanyEntryDate { get; set; }
         public Nullable<decimal> LocationX { get; set; }
         public Nullable<decimal> LocationY { get; set; }
+        public string Gmail { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Visit_tbl> Visit_tbl { get; set; }

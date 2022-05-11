@@ -54,6 +54,7 @@
     <Property Name="Floor" Type="Int32" />
     <Property Name="ApartmentNumber" Type="Int32" />
     <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Call_tbl_Customer_tbl" FromRole="Customer_tbl" ToRole="Call_tbl" />
+    <Property Name="Gmail" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Employee_tbl">
     <Key>
@@ -66,6 +67,7 @@
     <Property Name="LocationY" Type="Decimal" Precision="18" Scale="9" />
     <NavigationProperty Name="Visit_tbl" Relationship="Self.FK_Visit_tbl_Employee_tbl" FromRole="Employee_tbl" ToRole="Visit_tbl" />
     <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.DailyEmployees" FromRole="Employee_tbl" ToRole="BusinessDay_tbl" />
+    <Property Name="Gmail" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="History_tbl">
     <Key>

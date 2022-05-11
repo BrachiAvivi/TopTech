@@ -7,8 +7,8 @@ namespace Bll
 {
     public class OpenBusinessDay
     {
-        //צריך משהוא מלמעלה שמנהל את הענינים
-        //פונקציה זו מופעלת כל יום בשעה מסוימת
+        //todo צריך משהוא מלמעלה שמנהל את הענינים
+        //אחרת פונקציה זו מופעלת כל יום בשעה מסוימת
 
         //רשימה של קריאות שלא טופלו
         ClsDB db;
@@ -108,35 +108,50 @@ namespace Bll
             return googleMaps;
         }
 
+        //private void checking()
+        //{
+        //    List<double> l = new List<double>();//drop
+        //    List<double> l1 = new List<double>();//drop
+        //    for (int j = 1; j < 10; j++)
+        //    {
+        //        temp = j;
+        //        for (int i = 0; i < 500; i++)
+        //        {
+        //            l.Add(Simulated_Annealing());
+        //        }
+        //        double max = l.Max();
+        //        double min = l.Min();
+        //        double avg = l.Average();
+        //        l1.Add(avg);
+
+        //        l = new List<double>();
+        //    }
+        //    double max1 = l1.Max();
+        //    double min1 = l1.Min();
+        //    double avg1 = l1.Average();
+
+
+        //    l1 = new List<double>();
+        //}
+
         public void OpenDay()
         {
             FindNearest();
             //all the destinations that can by chosen today
-            //List<Destination>[] destinations = Simulated_Annealing();
-            ClsDB cls = ClsDB.Instance;
-            List<double> l = new List<double>();//drop
-            List<double> l1 = new List<double>();//drop
-            for (int j = 1; j < 10; j++)
+            List<Destination>[] destinations = Simulated_Annealing();
+            
+            int i = 0;
+            for (; i < 100; i++)
             {
-                temp = j;
-                for (int i = 0; i < 500; i++)
-                {
-                    l.Add(Simulated_Annealing());
-                }
-                double max = l.Max();
-                double min = l.Min();
-                double avg = l.Average();
-                l1.Add(avg);
-                
-                l = new List<double>();
+                if (!CheckIfAllMustDestinationsChoosen(destinations))
+                    destinations = Simulated_Annealing();
             }
-            double max1 = l1.Max();
-            double min1 = l1.Min();
-            double avg1 = l1.Average();
-
-
-            l1 = new List<double>();
-            //Save(destinations);//ok
+            if (i == 100)
+            {
+                System.Windows.Forms.MessageBox.Show("המערכת לא יכולה להגיע לכל הלקוחות ההכרחיים, יש לתגבר בעובד/ים נוסף/ים");
+                return;
+            }
+            Save(destinations);
         }
 
         public void Save(List<Destination>[] destinations)
@@ -193,17 +208,16 @@ namespace Bll
         /// <summary>
         /// הרצתי על המספרים בין 1 ל 100, בכל ההרצות 16 הוציא תוצאה הכי טובה
         /// </summary>
-        int temp = 16;
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public /*drop List<Destination>[]*/double Simulated_Annealing()
+        public List<Destination>[] Simulated_Annealing()
         {
             const int iterations = 100;
-            const int step_size = 2;//todo change
+            const int step_size = 2;// it can change
 
-            //const int temp = 10;//ok
+            const int temp = 16;//ok
             //best
             bool[] bestUsed = new bool[destinations.Count];
             List<Destination>[] best = InitFirstStep(bestUsed);
@@ -217,8 +231,7 @@ namespace Bll
             List<Destination>[] next = null;
             double nextMark = 0;
 
-            //drop
-            List<double> vs = new List<double>();
+
             for (int j = 0; j < 20; j++)
             {
                 for (int i = 0; i < iterations; i++)
@@ -236,37 +249,25 @@ namespace Bll
                     }
                     double diff = nextMark - currMark;
                     double t = temp / Convert.ToDouble(i + 1);
-                    //double t = temp / Convert.ToDouble(j * iterations + i + 1);
                     double d = random.NextDouble();
                     e = Math.Exp(diff / t);
 
-                    if (diff > 0 || d < e)//todo problem
+                    if (diff > 0 || d < e)
                     {
                         curr = next;
                         currMark = nextMark;
                         isUsed = localUsed;
                     }
-
-                    vs.Add(currMark);
                 }
                 curr = CopyStep(best);
                 currMark = bestMark;
                 isUsed = CopyIsUsed(bestUsed);
-
-                vs.Add(currMark + 10000);
             }
-            //return best; ok
-            var vss = vs;
-            return bestMark;//drop
-            //return CheckIfAllMustDestinationsChoosen(best);
+            return best;
         }
 
         public List<Destination>[] InitFirstStep(bool[] isUsed)
         {
-            //for (int i = 0; i < isUsed.Length; i++)
-            //    isUsed[i] = false;
-
-
             List<Destination>[] arr = new List<Destination>[employees.Count];
             for (int i = 0; i < employees.Count; i++)
             {
@@ -440,26 +441,6 @@ namespace Bll
                             destination = FindDestination(step[i].ElementAt(min - 1), step[i].ElementAt(min), localUsed);
                         }
                     }
-                    //for (int j = 0; j < r; j++)
-                    //{
-                    //    //Selecting a random number
-                    //    int r_r = random.Next(1, step[i].Count - 1);
-                    //    //sign this destination is not in used
-                    //    localUsed[step[i].ElementAt(r_r).Index] = false;
-                    //    //Delete the destination in the selected location
-                    //    step[i].RemoveAt(r_r);
-                    //    //Selecting another destination(s) in its place
-                    //    Destination destination = FindDestination(step[i].ElementAt(r_r - 1), step[i].ElementAt(r_r), localUsed);
-                    //    while (destination != null)
-                    //    {
-                    //        //insert the selected destination
-                    //        step[i].Insert(r_r, destination);
-                    //        //Increase by 1 because it inserted 1 destination
-                    //        r_r++;
-                    //        //More choice, if possible
-                    //        destination = FindDestination(step[i].ElementAt(r_r - 1), step[i].ElementAt(r_r), localUsed);
-                    //    }
-                    //}
                 }
             }
             return step;
@@ -476,10 +457,11 @@ namespace Bll
             return x * 100 / (double)maxMark;
         }
 
-        private double CheckIfAllMustDestinationsChoosen(List<Destination>[] step)
+        private bool CheckIfAllMustDestinationsChoosen(List<Destination>[] step)
         {
-            int mustInThatStep = step.Sum(y => y.Count(x => x.Priority == db.PriorityForMustDestinations * (int)x.Duration.TotalMinutes));//todo drop if
-            return mustInThatStep / numberOfMustDestinations;
+            //y-טכנאי x-יעד של כל טכנאי
+            int mustInThatStep = step.Sum(y => y.Count(x => x.Priority == db.PriorityForMustDestinations * (int)x.Duration.TotalMinutes));
+            return mustInThatStep == numberOfMustDestinations;
         }
         private TimeSpan GoogleMaps(Destination source, Destination destination, TimeSpan time)
         {
