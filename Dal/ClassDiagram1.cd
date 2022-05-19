@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Dal.TopTechDBEntities">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABIAAAAAAAAAAAAAAAAACAAEFQAAAAAACgAAEQAABAg=</HashCode>
+      <FileName>TopTechDBEntities.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dal.Archive_tbl">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAQAAAAAAAAAAAAAAAEAAAAAARAAAAAAEIAAA=</HashCode>
+      <FileName>Archive_tbl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dal.BusinessDay_tbl">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAACAAAEQAAAAARCAAAAAAAAAQ=</HashCode>
+      <FileName>BusinessDay_tbl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dal.Call_tbl">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAACAAQAAAAAAAAAAAAAAEFQAAAAARAgAAAAEIBAA=</HashCode>
+      <FileName>Call_tbl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dal.Company_tbl">
+    <Position X="9.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAIAAAAAAAAAAAQACAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Company_tbl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dal.Customer_tbl">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAgAAAIACAQAEAAAAAAAAAAAIAEAAIA=</HashCode>
+      <FileName>Customer_tbl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dal.Employee_tbl">
+    <Position X="2.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAIAAAQMAQAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Employee_tbl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dal.History_tbl">
+    <Position X="11" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAACAAIAAAAAAABAgAAAAAIAAA=</HashCode>
+      <FileName>History_tbl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dal.Service_tbl">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAACAAAAAAAACAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Service_tbl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dal.Status_tbl">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAEAAAAACAAIAQAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Status_tbl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dal.sysdiagrams">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAIAAAAAAAAAAAAAAAQAAAFAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>sysdiagrams.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dal.Visit_tbl">
+    <Position X="4" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAACAAEAAAAgCCQCgAAAAAIAAA=</HashCode>
+      <FileName>Visit_tbl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dal.Warehouse_tbl">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAIAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Warehouse_tbl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Dal.StatusOf">
+    <Position X="9.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAABAACAACAAAAAABAAAAAAAACAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>StatusOf.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

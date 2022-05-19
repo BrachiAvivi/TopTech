@@ -34,10 +34,11 @@ namespace Bll
             Init();
         }
 
-        public OpenBusinessDay(TimeSpan open, TimeSpan close)
+        public OpenBusinessDay(TimeSpan open, TimeSpan close, List<Employee> choosenEmployees)
         {
             db = ClsDB.Instance;
             day = new BusinessDay(db.GetLastBusinessDayIndex() + 1, open, close);
+            employeesData = choosenEmployees;
             Init();
         }
         private void Init()
@@ -46,7 +47,6 @@ namespace Bll
             company = db.GetCompany();
             destinations = db.GetDestinations(day.OpeningTime);
             maxMark = destinations.Sum(y => y.Priority);
-            employeesData = db.GetEmployees();
             //Create a destination object from the employees' house
             int index = 0;
             employees = new List<Destination>();
@@ -164,7 +164,7 @@ namespace Bll
                     {
                         BusinessDayID = day.BusinessDayID,
                         CallId = destination.Call.CallID,
-                        EmploeeID = employeesData[i].EmployeeID,
+                        EmployeeID = employeesData[i].EmployeeID,
                         EstimatedTime = destination.Timeline
                     };
                     db.AddVisit(visit);

@@ -14,7 +14,7 @@ namespace Dto
         public int BusinessDayID { get; set; }
         public Nullable<System.TimeSpan> EstimatedTime { get; set; }
         public int CallId { get; set; }
-        public int EmploeeID { get; set; }
+        public int EmployeeID { get; set; }
         public int VisitStatusID { get; set; }
 
         public Visit_tbl DtoToDal()

@@ -109,6 +109,7 @@
       <Link>.editorconfig</Link>
     </None>
     <None Include="App.Config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <EntityDeploy Include="TopTechDBEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

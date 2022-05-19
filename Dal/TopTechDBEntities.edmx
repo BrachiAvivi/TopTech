@@ -67,6 +67,7 @@ warning 6002: The table/view 'TopTechDB.dbo.Archive_tbl' does not have a primary
           <Property Name="Floor" Type="int" />
           <Property Name="ApartmentNumber" Type="int" />
           <Property Name="Gmail" Type="nchar" MaxLength="30" />
+          <Property Name="Password" Type="nchar" MaxLength="30" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -88,6 +89,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <Property Name="LocationX" Type="decimal" Precision="18" Scale="9" />
           <Property Name="LocationY" Type="decimal" Precision="18" Scale="9" />
           <Property Name="Gmail" Type="nchar" MaxLength="30" />
+          <Property Name="Password" Type="nchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="History_tbl">
           <Key>
@@ -131,7 +133,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <Property Name="VisitingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BusinessDayID" Type="int" Nullable="false" />
           <Property Name="EstimatedTime" Type="time" Precision="7" />
-          <Property Name="CallId" Type="int" Nullable="false" />
+          <Property Name="CallID" Type="int" Nullable="false" />
           <Property Name="EmploeeID" Type="int" Nullable="false" />
           <Property Name="VisitStatusID" Type="int" Nullable="false" />
         </EntityType>
@@ -260,7 +262,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
               <PropertyRef Name="CallID" />
             </Principal>
             <Dependent Role="Visit_tbl">
-              <PropertyRef Name="CallId" />
+              <PropertyRef Name="CallID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -400,6 +402,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <NavigationProperty Name="Status_tbl" Relationship="Self.FK_Call_tbl_Status_tbl" FromRole="Call_tbl" ToRole="Status_tbl" />
           <NavigationProperty Name="History_tbl" Relationship="Self.FK_History_tbl_Call_tbl" FromRole="Call_tbl" ToRole="History_tbl" />
           <NavigationProperty Name="Visit_tbl" Relationship="Self.FK_Visit_tbl_Call_tbl" FromRole="Call_tbl" ToRole="Visit_tbl" />
+          <NavigationProperty Name="Visit_tbl1" Relationship="TopTechDBModel.FK_Visit_tbl_Call_tbl1" FromRole="Call_tbl" ToRole="Visit_tbl" />
         </EntityType>
         <EntityType Name="Company_tbl">
           <Key>
@@ -425,6 +428,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <Property Name="ApartmentNumber" Type="Int32" />
           <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Call_tbl_Customer_tbl" FromRole="Customer_tbl" ToRole="Call_tbl" />
           <Property Name="Gmail" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Employee_tbl">
           <Key>
@@ -438,6 +442,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <NavigationProperty Name="Visit_tbl" Relationship="Self.FK_Visit_tbl_Employee_tbl" FromRole="Employee_tbl" ToRole="Visit_tbl" />
           <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.DailyEmployees" FromRole="Employee_tbl" ToRole="BusinessDay_tbl" />
           <Property Name="Gmail" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="History_tbl">
           <Key>
@@ -494,6 +499,8 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Visit_tbl_Call_tbl" FromRole="Visit_tbl" ToRole="Call_tbl" />
           <NavigationProperty Name="Employee_tbl" Relationship="Self.FK_Visit_tbl_Employee_tbl" FromRole="Visit_tbl" ToRole="Employee_tbl" />
           <NavigationProperty Name="Status_tbl" Relationship="Self.FK_Visit_tbl_Status_tbl" FromRole="Visit_tbl" ToRole="Status_tbl" />
+          <Property Name="CallID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Call_tbl1" Relationship="TopTechDBModel.FK_Visit_tbl_Call_tbl1" FromRole="Visit_tbl" ToRole="Call_tbl" />
         </EntityType>
         <EntityType Name="Warehouse_tbl">
           <Key>
@@ -700,7 +707,23 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
             <End Role="Employee_tbl" EntitySet="Employee_tbl" />
           </AssociationSet>
+          <AssociationSet Name="FK_Visit_tbl_Call_tbl1" Association="TopTechDBModel.FK_Visit_tbl_Call_tbl1">
+            <End Role="Call_tbl" EntitySet="Call_tbl" />
+            <End Role="Visit_tbl" EntitySet="Visit_tbl" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Visit_tbl_Call_tbl1">
+          <End Type="TopTechDBModel.Call_tbl" Role="Call_tbl" Multiplicity="1" />
+          <End Type="TopTechDBModel.Visit_tbl" Role="Visit_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Call_tbl">
+              <PropertyRef Name="CallID" />
+            </Principal>
+            <Dependent Role="Visit_tbl">
+              <PropertyRef Name="CallID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -745,6 +768,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <EntitySetMapping Name="Customer_tbl">
             <EntityTypeMapping TypeName="TopTechDBModel.Customer_tbl">
               <MappingFragment StoreEntitySet="Customer_tbl">
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Gmail" ColumnName="Gmail" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -760,6 +784,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <EntitySetMapping Name="Employee_tbl">
             <EntityTypeMapping TypeName="TopTechDBModel.Employee_tbl">
               <MappingFragment StoreEntitySet="Employee_tbl">
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Gmail" ColumnName="Gmail" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -811,10 +836,10 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <EntitySetMapping Name="Visit_tbl">
             <EntityTypeMapping TypeName="TopTechDBModel.Visit_tbl">
               <MappingFragment StoreEntitySet="Visit_tbl">
+                <ScalarProperty Name="CallID" ColumnName="CallID" />
                 <ScalarProperty Name="VisitingID" ColumnName="VisitingID" />
                 <ScalarProperty Name="BusinessDayID" ColumnName="BusinessDayID" />
                 <ScalarProperty Name="EstimatedTime" ColumnName="EstimatedTime" />
-                <ScalarProperty Name="CallId" ColumnName="CallId" />
                 <ScalarProperty Name="EmploeeID" ColumnName="EmploeeID" />
                 <ScalarProperty Name="VisitStatusID" ColumnName="VisitStatusID" />
               </MappingFragment>

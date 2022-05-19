@@ -22,7 +22,7 @@ namespace WindowForm
         {
             TimeSpan openTime = new TimeSpan(open.DecimalPlaces, 0, 0);
             TimeSpan closeTime = new TimeSpan(close.DecimalPlaces, 0, 0);
-            OpenBusinessDay algoritem = new OpenBusinessDay(openTime, closeTime);
+            //OpenBusinessDay algoritem = new OpenBusinessDay(openTime, closeTime);
             algoritem.OpenDay();
             
         }

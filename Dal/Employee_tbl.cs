@@ -27,6 +27,7 @@ namespace Dal
         public Nullable<decimal> LocationX { get; set; }
         public Nullable<decimal> LocationY { get; set; }
         public string Gmail { get; set; }
+        public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Visit_tbl> Visit_tbl { get; set; }

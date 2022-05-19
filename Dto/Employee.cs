@@ -17,6 +17,7 @@ namespace Dto
         public Nullable<decimal> LocationY { get; set; }
         public Location Location { get; set; }
         public string Gmail { get; set; }
+        public string Password { get; set; }
 
 
         public Employee_tbl DtoToDal()
@@ -36,5 +37,6 @@ namespace Dto
             e.Location = new Location(e.LocationX, e.LocationY);
             return e;
         }
+
     }
 }

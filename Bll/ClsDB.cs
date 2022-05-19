@@ -20,9 +20,8 @@ namespace Bll
         {
             db = new TopTechDBEntities();
             //there is just one company
-            //todo ask teacher why it save just one company - edilshtein
             company = db.Company_tbl.First();
-            //I choosed number 3 to duplicate the number of promised day
+            //I choosed number 10 to duplicate the number of promised day
             PriorityForMustDestinations = (int)company.CommitmentForSeveralBusinessDays * 10;
         }
 
@@ -38,9 +37,11 @@ namespace Bll
 
         public int GetLastBusinessDayIndex()
         {
-            List<BusinessDay_tbl> l = db.BusinessDay_tbl.ToList();
-            BusinessDay_tbl b = l.Last();
-            return b.BusinessDayIndex;
+            //List<BusinessDay_tbl> l = db.BusinessDay_tbl.ToList();
+            //BusinessDay_tbl b = l.Last();
+            //return b.BusinessDayIndex;
+
+            return db.BusinessDay_tbl.Last().BusinessDayIndex;
             //return db.BusinessDay_tbl.Last().BusinessDayID + 1;
         }
 
@@ -209,6 +210,42 @@ namespace Bll
             }
             return lst;
         }
+
+        public List<Visit> FindVisitOfEmployee(string gmail, string password)
+        {
+            Employee_tbl emp = db.Employee_tbl.FirstOrDefault(x => x.Gmail == gmail && x.Password==password);
+            if(emp!=null)
+            {
+                int index = GetLastBusinessDayIndex();
+                return db.Visit_tbl
+                    .Where(x => x.EmploeeID == emp.EmployeeID && x.BusinessDayID == index)
+                    .Select(x=>Visit.DalToDto(x))
+                    .ToList();
+            }
+            return null;
+        }
+
+        public bool ManagerEnter(string password)
+        {
+            return password == company.ManagementPermissionCode;
+        }
+
+        public bool CustomerEnter(string gmail, string password)
+        {
+            return db.Customer_tbl.FirstOrDefault(x => x.Gmail == gmail && x.Password == password) != null;
+        }
         
+        public void NewCustomer(string name, string phone, string gmail, string password, string location_word, int floor, int apartmentNumber)
+        {
+            Customer customer = new Customer()
+            {
+                Name = name,
+                Phone = phone,
+                Gmail=gmail,
+                Password=password,
+                Floor = floor,
+                ApartmentNumber = apartmentNumber
+            };
+        }
     }
 }

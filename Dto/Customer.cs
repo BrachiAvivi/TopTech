@@ -19,6 +19,8 @@ namespace Dto
         public Nullable<int> Floor { get; set; }
         public Nullable<int> ApartmentNumber { get; set; }
         public Location Location { get; set; }
+        public string Gmail { get; set; }
+        public string Password { get; set; }
 
         public Customer()
         {   }

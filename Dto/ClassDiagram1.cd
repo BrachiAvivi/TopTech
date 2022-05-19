@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Dto.Archive">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAQAAAQAAAAAAAAAAIEAAAAAARAAAAAAEIAAA=</HashCode>
+      <FileName>Archive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.BusinessDay">
+    <Position X="2.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAIAAAAAAAAIEAAAAAERAAAAAAAAAAQ=</HashCode>
+      <FileName>BusinessDay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.Call">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAQAAAQAAAAAAAAAAIEAAAAAARAAAAAAEIAAA=</HashCode>
+      <FileName>Call.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.Company">
+    <Position X="6.75" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAIAQAAAAAAAAAQICAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Company.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.Customer">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAQAgAAAIAAAQIEAAAAAAAAAAAIAEAAAA=</HashCode>
+      <FileName>Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.Employee">
+    <Position X="2.5" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAQAAAAAIAAAQIAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.History">
+    <Position X="8" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAQAAAAAAAAAAIAAAAAAABAAAAAAAIAAA=</HashCode>
+      <FileName>History.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.Location">
+    <Position X="10" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Location.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.Service">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAACQAAAAAAAAAAIAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Service.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.Status">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAQAEAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Status.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.Visit">
+    <Position X="6.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAIAAAAAAAAIAAAAgCCQAAAAAAAIAAA=</HashCode>
+      <FileName>Visit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.Warehouse">
+    <Position X="4.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAQAAAAAIAAAQIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Warehouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
