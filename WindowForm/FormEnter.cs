@@ -36,7 +36,7 @@ namespace WindowForm
             if (e.KeyChar == 13)
             {
                 ClsDB db = ClsDB.Instance;
-                dataGridView1.DataSource = db.ShowDestinations(textBox2.Text).ToList();
+                dataGridView1.DataSource = db.ShowDestinations(textBox2.Text,"60306").ToList();
             }
         }
     }

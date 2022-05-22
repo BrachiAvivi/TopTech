@@ -4,36 +4,34 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Bll;
 
 namespace TopTech.Controllers
 {
-    public class ServiceController : ApiController
+    public class MamagerController : ApiController
     {
-        ClsDB db = ClsDB.Instance;
-        // GET: api/Service
-        public RequestResponse Get()
+        // GET: api/Mamager
+        public IEnumerable<string> Get()
         {
-            return db.GetServicesResponse();
+            return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Service/5
-        public object Get(int id)
+        // GET: api/Mamager/5
+        public string Get(int id)
         {
-            return "abc";
+            return "value";
         }
 
-        // POST: api/Service
+        // POST: api/Mamager
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Service/5
+        // PUT: api/Mamager/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE: api/Service/5
+        // DELETE: api/Mamager/5
         public void Delete(int id)
         {
         }

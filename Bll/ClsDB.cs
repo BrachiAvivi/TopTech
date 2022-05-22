@@ -25,15 +25,7 @@ namespace Bll
             PriorityForMustDestinations = (int)company.CommitmentForSeveralBusinessDays * 10;
         }
 
-        public RequestResponse GetServicesRequest()
-        {
-            return new RequestResponse()
-            {
-                Data = GetServices(),
-                Status = "sucsess",
-                Massage = "that all services"
-            };
-        }
+
 
         public int GetLastBusinessDayIndex()
         {
@@ -66,15 +58,7 @@ namespace Bll
             return db.Employee_tbl.ToList().Select(item => Employee.DalToDto(item)).ToList();
         }
 
-        public RequestResponse GetEmployeesResponse()
-        {
-            return new RequestResponse()
-            {
-                Data = GetEmployees(),
-                Status = "sucsess",
-                Massage = "it's all ok"
-            };
-        }
+
 
         public List<Status> GetStatuses()
         {
@@ -185,14 +169,14 @@ namespace Bll
             db.SaveChanges();
         }
 
-        public Employee_tbl GetEmployee (string gmail)
+        public Employee_tbl GetEmployee(string gmail, string password)
         {
-            return db.Employee_tbl.First(x => x.Gmail == gmail);
+            return db.Employee_tbl.First(x => x.Gmail == gmail && x.Password == password);
         }
-        
-        public List<ShowDestination> ShowDestinations(string gmail)
+
+        public List<ShowDestination> ShowDestinations(string gmail, string password)
         {
-            Employee_tbl employee = GetEmployee(gmail);
+            Employee_tbl employee = GetEmployee(gmail, password);
             List<ShowDestination> lst = new List<ShowDestination>();
             int day = GetLastBusinessDayIndex();
             var visits = db.Visit_tbl.Where(x => x.EmploeeID == employee.EmployeeID && x.BusinessDayID == day).ToList();
@@ -211,18 +195,34 @@ namespace Bll
             return lst;
         }
 
-        public List<Visit> FindVisitOfEmployee(string gmail, string password)
+
+
+
+
+
+
+
+
+        //----------- response for controllers-----------
+        public RequestResponse GetVisitsResponse(string gmail, string password)
         {
-            Employee_tbl emp = db.Employee_tbl.FirstOrDefault(x => x.Gmail == gmail && x.Password==password);
-            if(emp!=null)
+            Employee_tbl emp = GetEmployee(gmail, password);
+            if (emp == null)
+                return null;
+            return new RequestResponse()
             {
-                int index = GetLastBusinessDayIndex();
-                return db.Visit_tbl
-                    .Where(x => x.EmploeeID == emp.EmployeeID && x.BusinessDayID == index)
-                    .Select(x=>Visit.DalToDto(x))
-                    .ToList();
-            }
-            return null;
+                Data = FindVisitsOfEmployee(emp),
+                Status = "sucsess",
+                Massage = "that all visits of this employee"
+            };
+        }
+        public List<Visit> FindVisitsOfEmployee(Employee_tbl emp)
+        {
+            int index = GetLastBusinessDayIndex();
+            return db.Visit_tbl
+                .Where(x => x.EmploeeID == emp.EmployeeID && x.BusinessDayID == index)
+                .Select(x => Visit.DalToDto(x))
+                .ToList();
         }
 
         public bool ManagerEnter(string password)
@@ -230,19 +230,23 @@ namespace Bll
             return password == company.ManagementPermissionCode;
         }
 
-        public bool CustomerEnter(string gmail, string password)
+
+
+        public RequestResponse CustomerEnter(string gmail, string password)
         {
-            return db.Customer_tbl.FirstOrDefault(x => x.Gmail == gmail && x.Password == password) != null;
+            if (db.Customer_tbl.FirstOrDefault(x => x.Gmail == gmail && x.Password == password) != null)
+                return GetServicesResponse();
+            return null; //no customer found
         }
-        
+
         public void NewCustomer(string name, string phone, string gmail, string password, string location_word, int floor, int apartmentNumber)
         {
             Customer customer = new Customer()
             {
                 Name = name,
                 Phone = phone,
-                Gmail=gmail,
-                Password=password,
+                Gmail = gmail,
+                Password = password,
                 Floor = floor,
                 ApartmentNumber = apartmentNumber
             };
@@ -254,5 +258,20 @@ namespace Bll
         {
 
         }
+
+
+        public RequestResponse GetEmployeesResponse(string password)
+        {
+            return ManagerEnter(password) ?
+             new RequestResponse()
+             {
+                 Data = GetEmployees(),
+                 Status = "sucsess",
+                 Massage = "it's all ok"
+             } 
+             : null;
+        }
+
+
     }
 }
