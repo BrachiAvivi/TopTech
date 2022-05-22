@@ -156,10 +156,14 @@ namespace Bll
 
         public void Save(List<Destination>[] destinations)
         {
-            for (int i = 1; i < destinations.Length - 1; i++)
+            //--------- saveing destination => visints -----------
+            //each technition
+            for (int i = 0; i < destinations.Length ; i++)
             {
-                foreach (var destination in destinations[i])
+                //ehch destination of the employee without first - warehose and last - his home
+                for (int j = 1; j < destinations[i].Count-1; j++)
                 {
+                    Destination destination = destinations[i].ElementAt(j);
                     Visit visit = new Visit
                     {
                         BusinessDayID = day.BusinessDayID,

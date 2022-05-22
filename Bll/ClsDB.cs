@@ -246,6 +246,13 @@ namespace Bll
                 Floor = floor,
                 ApartmentNumber = apartmentNumber
             };
+            db.Customer_tbl.Add(customer.DtoToDal());
+            db.SaveChanges();
+        }
+
+        public void InsertCall()
+        {
+
         }
     }
 }
