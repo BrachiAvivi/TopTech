@@ -47,6 +47,7 @@ namespace Bll
             return db.Service_tbl.Select(s => Service.DalToDto(s)).ToList();
         }
 
+
         public List<Warehouse> GetWarehouses()
         {
             return db.Warehouse_tbl.ToList().Select(item => Warehouse.DalToDto(item)).ToList();
@@ -196,7 +197,7 @@ namespace Bll
         }
 
 
-
+        
 
 
 
@@ -232,11 +233,22 @@ namespace Bll
 
 
 
+
         public RequestResponse CustomerEnter(string gmail, string password)
         {
             if (db.Customer_tbl.FirstOrDefault(x => x.Gmail == gmail && x.Password == password) != null)
                 return GetServicesResponse();
             return null; //no customer found
+        }
+
+        private RequestResponse GetServicesResponse()
+        {
+            return new RequestResponse()
+            {
+                Data = GetServices(),
+                Status = "sucsess",
+                Massage = "it's all ok"
+            };
         }
 
         public void NewCustomer(string name, string phone, string gmail, string password, string location_word, int floor, int apartmentNumber)
