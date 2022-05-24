@@ -19,9 +19,9 @@ namespace TopTech.Controllers
         }
 
         // GET: api/Customer/5
-        public string Get(int id)
+        public RequestResponse Get(string gmail, string password)
         {
-            return "value";
+            return db.GetCustomerResponse(gmail, password);
         }
 
         // POST: api/Customer

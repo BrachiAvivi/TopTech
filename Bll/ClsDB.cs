@@ -233,8 +233,19 @@ namespace Bll
             return password == company.ManagementPermissionCode;
         }
 
-
-
+        public Customer GetCustomer(string gmail, string password)
+        {
+            return Customer.DalToDto(db.Customer_tbl.First(x => x.Gmail == gmail && x.Password == password));
+        }
+        public RequestResponse GetCustomerResponse(string gmail, string password)
+        {
+            return new RequestResponse()
+            {
+                Data = GetCustomer(gmail,password),
+                Status = "sucsess",
+                Massage = "it's all ok"
+            };
+        }
 
         public RequestResponse CustomerEnter(string gmail, string password)
         {
