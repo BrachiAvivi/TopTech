@@ -62,6 +62,7 @@ warning 6002: The table/view 'TopTechDB.dbo.Archive_tbl' does not have a primary
     <Property Name="Floor" Type="int" />
     <Property Name="ApartmentNumber" Type="int" />
     <Property Name="Gmail" Type="nchar" MaxLength="30" />
+    <Property Name="Password" Type="nchar" MaxLength="30" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -83,6 +84,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
     <Property Name="LocationX" Type="decimal" Precision="18" Scale="9" />
     <Property Name="LocationY" Type="decimal" Precision="18" Scale="9" />
     <Property Name="Gmail" Type="nchar" MaxLength="30" />
+    <Property Name="Password" Type="nchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="History_tbl">
     <Key>
@@ -126,7 +128,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
     <Property Name="VisitingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="BusinessDayID" Type="int" Nullable="false" />
     <Property Name="EstimatedTime" Type="time" Precision="7" />
-    <Property Name="CallId" Type="int" Nullable="false" />
+    <Property Name="CallID" Type="int" Nullable="false" />
     <Property Name="EmploeeID" Type="int" Nullable="false" />
     <Property Name="VisitStatusID" Type="int" Nullable="false" />
   </EntityType>
@@ -255,7 +257,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
         <PropertyRef Name="CallID" />
       </Principal>
       <Dependent Role="Visit_tbl">
-        <PropertyRef Name="CallId" />
+        <PropertyRef Name="CallID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

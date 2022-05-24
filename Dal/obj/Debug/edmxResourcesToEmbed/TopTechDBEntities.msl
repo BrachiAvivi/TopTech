@@ -39,6 +39,7 @@
     <EntitySetMapping Name="Customer_tbl">
       <EntityTypeMapping TypeName="TopTechDBModel.Customer_tbl">
         <MappingFragment StoreEntitySet="Customer_tbl">
+          <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Gmail" ColumnName="Gmail" />
           <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -54,6 +55,7 @@
     <EntitySetMapping Name="Employee_tbl">
       <EntityTypeMapping TypeName="TopTechDBModel.Employee_tbl">
         <MappingFragment StoreEntitySet="Employee_tbl">
+          <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Gmail" ColumnName="Gmail" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -105,10 +107,10 @@
     <EntitySetMapping Name="Visit_tbl">
       <EntityTypeMapping TypeName="TopTechDBModel.Visit_tbl">
         <MappingFragment StoreEntitySet="Visit_tbl">
+          <ScalarProperty Name="CallID" ColumnName="CallID" />
           <ScalarProperty Name="VisitingID" ColumnName="VisitingID" />
           <ScalarProperty Name="BusinessDayID" ColumnName="BusinessDayID" />
           <ScalarProperty Name="EstimatedTime" ColumnName="EstimatedTime" />
-          <ScalarProperty Name="CallId" ColumnName="CallId" />
           <ScalarProperty Name="EmploeeID" ColumnName="EmploeeID" />
           <ScalarProperty Name="VisitStatusID" ColumnName="VisitStatusID" />
         </MappingFragment>

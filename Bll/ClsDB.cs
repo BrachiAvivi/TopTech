@@ -119,6 +119,8 @@ namespace Bll
                 //מספר גבוה מאוד שיחייב את האלגוריתם לבחור יעד זה דווקא
                 return PriorityForMustDestinations * Convert.ToInt32(call.Service_tbl.Duration.TotalMinutes);
             return dayOver * Convert.ToInt32(call.Service_tbl.Duration.TotalMinutes);
+            return 1;
+            return 1;
         }
 
         //private List<Call> GetCalls()
@@ -241,7 +243,7 @@ namespace Bll
             return null; //no customer found
         }
 
-        private RequestResponse GetServicesResponse()
+        public RequestResponse GetServicesResponse()
         {
             return new RequestResponse()
             {

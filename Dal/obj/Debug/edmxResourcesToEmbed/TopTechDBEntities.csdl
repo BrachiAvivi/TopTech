@@ -30,6 +30,7 @@
     <NavigationProperty Name="Status_tbl" Relationship="Self.FK_Call_tbl_Status_tbl" FromRole="Call_tbl" ToRole="Status_tbl" />
     <NavigationProperty Name="History_tbl" Relationship="Self.FK_History_tbl_Call_tbl" FromRole="Call_tbl" ToRole="History_tbl" />
     <NavigationProperty Name="Visit_tbl" Relationship="Self.FK_Visit_tbl_Call_tbl" FromRole="Call_tbl" ToRole="Visit_tbl" />
+    <NavigationProperty Name="Visit_tbl1" Relationship="TopTechDBModel.FK_Visit_tbl_Call_tbl1" FromRole="Call_tbl" ToRole="Visit_tbl" />
   </EntityType>
   <EntityType Name="Company_tbl">
     <Key>
@@ -55,6 +56,7 @@
     <Property Name="ApartmentNumber" Type="Int32" />
     <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Call_tbl_Customer_tbl" FromRole="Customer_tbl" ToRole="Call_tbl" />
     <Property Name="Gmail" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Employee_tbl">
     <Key>
@@ -68,6 +70,7 @@
     <NavigationProperty Name="Visit_tbl" Relationship="Self.FK_Visit_tbl_Employee_tbl" FromRole="Employee_tbl" ToRole="Visit_tbl" />
     <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.DailyEmployees" FromRole="Employee_tbl" ToRole="BusinessDay_tbl" />
     <Property Name="Gmail" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="History_tbl">
     <Key>
@@ -124,6 +127,8 @@
     <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Visit_tbl_Call_tbl" FromRole="Visit_tbl" ToRole="Call_tbl" />
     <NavigationProperty Name="Employee_tbl" Relationship="Self.FK_Visit_tbl_Employee_tbl" FromRole="Visit_tbl" ToRole="Employee_tbl" />
     <NavigationProperty Name="Status_tbl" Relationship="Self.FK_Visit_tbl_Status_tbl" FromRole="Visit_tbl" ToRole="Status_tbl" />
+    <Property Name="CallID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Call_tbl1" Relationship="TopTechDBModel.FK_Visit_tbl_Call_tbl1" FromRole="Visit_tbl" ToRole="Call_tbl" />
   </EntityType>
   <EntityType Name="Warehouse_tbl">
     <Key>
@@ -330,5 +335,21 @@
       <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
       <End Role="Employee_tbl" EntitySet="Employee_tbl" />
     </AssociationSet>
+    <AssociationSet Name="FK_Visit_tbl_Call_tbl1" Association="TopTechDBModel.FK_Visit_tbl_Call_tbl1">
+      <End Role="Call_tbl" EntitySet="Call_tbl" />
+      <End Role="Visit_tbl" EntitySet="Visit_tbl" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_Visit_tbl_Call_tbl1">
+    <End Type="TopTechDBModel.Call_tbl" Role="Call_tbl" Multiplicity="1" />
+    <End Type="TopTechDBModel.Visit_tbl" Role="Visit_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Call_tbl">
+        <PropertyRef Name="CallID" />
+      </Principal>
+      <Dependent Role="Visit_tbl">
+        <PropertyRef Name="CallID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
