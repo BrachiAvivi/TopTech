@@ -253,17 +253,8 @@ namespace Bll
             };
         }
 
-        public void NewCustomer(string name, string phone, string gmail, string password, string location_word, int floor, int apartmentNumber)
+        public void NewCustomer(Customer customer)
         {
-            Customer customer = new Customer()
-            {
-                Name = name,
-                Phone = phone,
-                Gmail = gmail,
-                Password = password,
-                Floor = floor,
-                ApartmentNumber = apartmentNumber
-            };
             db.Customer_tbl.Add(customer.DtoToDal());
             db.SaveChanges();
         }

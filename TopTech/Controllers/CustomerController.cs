@@ -4,11 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Bll;
+using Dto;
 
 namespace TopTech.Controllers
 {
     public class CustomerController : ApiController
     {
+        ClsDB db = ClsDB.Instance;
         // GET: api/Customer
         public IEnumerable<string> Get()
         {
@@ -24,6 +27,10 @@ namespace TopTech.Controllers
         // POST: api/Customer
         public void Post([FromBody]string value)
         {
+        }
+        public void Post(Customer customer)
+        {
+            db.NewCustomer(customer);
         }
 
         // PUT: api/Customer/5
