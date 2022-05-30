@@ -4,36 +4,51 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Cors;
+using Bll;
+using Dto;
 
 namespace TopTech.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class DestinationController : ApiController
+    public class VisitController : ApiController
     {
-        // GET: api/Destination
-        public IEnumerable<string> Get()
+        ClsDB db = ClsDB.Instance;
+        // GET: api/Visit
+        public RequestResponse Get(Employee employee)
         {
-            return new string[] { "value1", "value2" };
+            return db.GetVisitsResponse(employee);
         }
 
-        // GET: api/Destination/5
+
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //----------delete--------
+
+        // GET: api/Visit/5
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/Destination
+        // POST: api/Visit
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Destination/5
+        // PUT: api/Visit/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE: api/Destination/5
+        // DELETE: api/Visit/5
         public void Delete(int id)
         {
         }

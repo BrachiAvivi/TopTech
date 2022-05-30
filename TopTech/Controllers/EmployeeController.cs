@@ -13,21 +13,31 @@ namespace TopTech.Controllers
     public class EmployeeController : ApiController
     {
         ClsDB db = ClsDB.Instance;
-        // GET: api/Employee
+
+        // GET: api/Employee/5/5
+        public RequestResponse Get(string gmail, string password)
+        {
+            return db.GetEmployeeResponse(gmail, password);
+        }
+
+        //return all employees
         public RequestResponse Get()
         {
-            OpenBusinessDay algoritem = new OpenBusinessDay();
-            algoritem.OpenDay();
-            return db.GetEmployeesResponse("60306");
+            return db.GetEmployeesResponse();
         }
 
 
-        // GET: api/Employee/5
-        public string Get(int id)
-        {
-            return "value";
-        }
 
+
+
+
+
+
+
+
+
+
+        //----------delete--------
         // POST: api/Employee
         public void Post([FromBody]string value)
         {

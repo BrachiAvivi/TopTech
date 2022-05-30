@@ -25,8 +25,7 @@ namespace Bll
             PriorityForMustDestinations = (int)company.CommitmentForSeveralBusinessDays * 10;
         }
 
-
-
+        
         public int GetLastBusinessDayIndex()
         {
             //List<BusinessDay_tbl> l = db.BusinessDay_tbl.ToList();
@@ -53,7 +52,7 @@ namespace Bll
             return db.Warehouse_tbl.ToList().Select(item => Warehouse.DalToDto(item)).ToList();
 
         }
-        public List<Employee> GetEmployees()
+        private List<Employee> GetEmployees()
         {
 
             return db.Employee_tbl.ToList().Select(item => Employee.DalToDto(item)).ToList();
@@ -119,16 +118,8 @@ namespace Bll
                 //מספר גבוה מאוד שיחייב את האלגוריתם לבחור יעד זה דווקא
                 return PriorityForMustDestinations * Convert.ToInt32(call.Service_tbl.Duration.TotalMinutes);
             return dayOver * Convert.ToInt32(call.Service_tbl.Duration.TotalMinutes);
-            return 1;
-            return 1;
         }
 
-        //private List<Call> GetCalls()
-        //{
-        //    var calls = db.Call_tbl.Where(x => x.Status_tbl.StatusID == (int)StatusOf.AwaitingPlacement).ToList();
-        //    return (from item in calls
-        //            select Call.DalToDto(item)).ToList();
-        //}
 
         internal void AddBusinessDay(BusinessDay day)
         {
@@ -177,9 +168,8 @@ namespace Bll
             return db.Employee_tbl.First(x => x.Gmail == gmail && x.Password == password);
         }
 
-        public List<ShowDestination> ShowDestinations(string gmail, string password)
+        public List<ShowDestination> ShowDestinations(Employee employee)
         {
-            Employee_tbl employee = GetEmployee(gmail, password);
             List<ShowDestination> lst = new List<ShowDestination>();
             int day = GetLastBusinessDayIndex();
             var visits = db.Visit_tbl.Where(x => x.EmploeeID == employee.EmployeeID && x.BusinessDayID == day).ToList();
@@ -207,19 +197,16 @@ namespace Bll
 
 
         //----------- response for controllers-----------
-        public RequestResponse GetVisitsResponse(string gmail, string password)
+        public RequestResponse GetVisitsResponse(Employee employee)
         {
-            Employee_tbl emp = GetEmployee(gmail, password);
-            if (emp == null)
-                return null;
             return new RequestResponse()
             {
-                Data = FindVisitsOfEmployee(emp),
+                Data = FindVisitsOfEmployee(employee),
                 Status = "sucsess",
                 Massage = "that all visits of this employee"
             };
         }
-        public List<Visit> FindVisitsOfEmployee(Employee_tbl emp)
+        public List<Visit> FindVisitsOfEmployee(Employee emp)
         {
             int index = GetLastBusinessDayIndex();
             return db.Visit_tbl
@@ -237,6 +224,16 @@ namespace Bll
         {
             return Customer.DalToDto(db.Customer_tbl.First(x => x.Gmail == gmail && x.Password == password));
         }
+        public RequestResponse GetEmployeeResponse(string gmail, string password)
+        {
+            return new RequestResponse()
+            {
+                Data = GetEmployee(gmail, password),
+                Status = "sucsess",
+                Massage = "this is employee"
+            };
+        }
+
         public RequestResponse GetCustomerResponse(string gmail, string password)
         {
             return new RequestResponse()
@@ -276,16 +273,15 @@ namespace Bll
         }
 
 
-        public RequestResponse GetEmployeesResponse(string password)
+        public RequestResponse GetEmployeesResponse()
         {
-            return ManagerEnter(password) ?
+            return
              new RequestResponse()
              {
                  Data = GetEmployees(),
                  Status = "sucsess",
                  Massage = "it's all ok"
-             } 
-             : null;
+             };
         }
 
 

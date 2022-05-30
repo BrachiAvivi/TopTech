@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Bll;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Bll;
 
 namespace TopTech.Controllers
 {
@@ -15,9 +15,20 @@ namespace TopTech.Controllers
         public RequestResponse Get()
         {
             return db.GetServicesResponse();
-
         }
 
+
+
+
+
+
+
+
+
+
+
+
+        //----------delete--------
         // GET: api/Service/5
         public object Get(int id)
         {
@@ -25,12 +36,12 @@ namespace TopTech.Controllers
         }
 
         // POST: api/Service
-        public void Post([FromBody]string value)
+        public void Post([FromBody] string value)
         {
         }
 
         // PUT: api/Service/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
         }
 
