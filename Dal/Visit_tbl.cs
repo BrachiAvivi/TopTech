@@ -17,15 +17,13 @@ namespace Dal
         public int VisitingID { get; set; }
         public int BusinessDayID { get; set; }
         public Nullable<System.TimeSpan> EstimatedTime { get; set; }
-        public int CallId { get; set; }
+        public int CallID { get; set; }
         public int EmploeeID { get; set; }
         public int VisitStatusID { get; set; }
-        public int CallID { get; set; }
     
         public virtual BusinessDay_tbl BusinessDay_tbl { get; set; }
         public virtual Call_tbl Call_tbl { get; set; }
         public virtual Employee_tbl Employee_tbl { get; set; }
         public virtual Status_tbl Status_tbl { get; set; }
-        public virtual Call_tbl Call_tbl1 { get; set; }
     }
 }

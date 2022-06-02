@@ -30,7 +30,6 @@
     <NavigationProperty Name="Status_tbl" Relationship="Self.FK_Call_tbl_Status_tbl" FromRole="Call_tbl" ToRole="Status_tbl" />
     <NavigationProperty Name="History_tbl" Relationship="Self.FK_History_tbl_Call_tbl" FromRole="Call_tbl" ToRole="History_tbl" />
     <NavigationProperty Name="Visit_tbl" Relationship="Self.FK_Visit_tbl_Call_tbl" FromRole="Call_tbl" ToRole="Visit_tbl" />
-    <NavigationProperty Name="Visit_tbl1" Relationship="TopTechDBModel.FK_Visit_tbl_Call_tbl1" FromRole="Call_tbl" ToRole="Visit_tbl" />
   </EntityType>
   <EntityType Name="Company_tbl">
     <Key>
@@ -54,9 +53,9 @@
     <Property Name="LocationY" Type="Decimal" Precision="18" Scale="9" />
     <Property Name="Floor" Type="Int32" />
     <Property Name="ApartmentNumber" Type="Int32" />
-    <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Call_tbl_Customer_tbl" FromRole="Customer_tbl" ToRole="Call_tbl" />
     <Property Name="Gmail" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
     <Property Name="Password" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Call_tbl_Customer_tbl" FromRole="Customer_tbl" ToRole="Call_tbl" />
   </EntityType>
   <EntityType Name="Employee_tbl">
     <Key>
@@ -67,10 +66,10 @@
     <Property Name="CompanyEntryDate" Type="DateTime" Precision="0" />
     <Property Name="LocationX" Type="Decimal" Precision="18" Scale="9" />
     <Property Name="LocationY" Type="Decimal" Precision="18" Scale="9" />
-    <NavigationProperty Name="Visit_tbl" Relationship="Self.FK_Visit_tbl_Employee_tbl" FromRole="Employee_tbl" ToRole="Visit_tbl" />
-    <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.DailyEmployees" FromRole="Employee_tbl" ToRole="BusinessDay_tbl" />
     <Property Name="Gmail" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
     <Property Name="Password" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Visit_tbl" Relationship="Self.FK_Visit_tbl_Employee_tbl" FromRole="Employee_tbl" ToRole="Visit_tbl" />
+    <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.DailyEmployees" FromRole="Employee_tbl" ToRole="BusinessDay_tbl" />
   </EntityType>
   <EntityType Name="History_tbl">
     <Key>
@@ -89,7 +88,7 @@
     </Key>
     <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Detail" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="Duration" Type="Time" Precision="7" />
+    <Property Name="Duration" Type="Time" Precision="7" Nullable="false" />
     <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Call_tbl_Service_tbl" FromRole="Service_tbl" ToRole="Call_tbl" />
   </EntityType>
   <EntityType Name="Status_tbl">
@@ -120,15 +119,13 @@
     <Property Name="VisitingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="BusinessDayID" Type="Int32" Nullable="false" />
     <Property Name="EstimatedTime" Type="Time" Precision="7" />
-    <Property Name="CallId" Type="Int32" Nullable="false" />
+    <Property Name="CallID" Type="Int32" Nullable="false" />
     <Property Name="EmploeeID" Type="Int32" Nullable="false" />
     <Property Name="VisitStatusID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="BusinessDay_tbl" Relationship="Self.FK_Visit_tbl_BusinessDay_tbl" FromRole="Visit_tbl" ToRole="BusinessDay_tbl" />
     <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Visit_tbl_Call_tbl" FromRole="Visit_tbl" ToRole="Call_tbl" />
     <NavigationProperty Name="Employee_tbl" Relationship="Self.FK_Visit_tbl_Employee_tbl" FromRole="Visit_tbl" ToRole="Employee_tbl" />
     <NavigationProperty Name="Status_tbl" Relationship="Self.FK_Visit_tbl_Status_tbl" FromRole="Visit_tbl" ToRole="Status_tbl" />
-    <Property Name="CallID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Call_tbl1" Relationship="TopTechDBModel.FK_Visit_tbl_Call_tbl1" FromRole="Visit_tbl" ToRole="Call_tbl" />
   </EntityType>
   <EntityType Name="Warehouse_tbl">
     <Key>
@@ -234,7 +231,7 @@
         <PropertyRef Name="CallID" />
       </Principal>
       <Dependent Role="Visit_tbl">
-        <PropertyRef Name="CallId" />
+        <PropertyRef Name="CallID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -335,21 +332,46 @@
       <End Role="BusinessDay_tbl" EntitySet="BusinessDay_tbl" />
       <End Role="Employee_tbl" EntitySet="Employee_tbl" />
     </AssociationSet>
-    <AssociationSet Name="FK_Visit_tbl_Call_tbl1" Association="TopTechDBModel.FK_Visit_tbl_Call_tbl1">
-      <End Role="Call_tbl" EntitySet="Call_tbl" />
-      <End Role="Visit_tbl" EntitySet="Visit_tbl" />
-    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TopTechDBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TopTechDBModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
-  <Association Name="FK_Visit_tbl_Call_tbl1">
-    <End Type="TopTechDBModel.Call_tbl" Role="Call_tbl" Multiplicity="1" />
-    <End Type="TopTechDBModel.Visit_tbl" Role="Visit_tbl" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Call_tbl">
-        <PropertyRef Name="CallID" />
-      </Principal>
-      <Dependent Role="Visit_tbl">
-        <PropertyRef Name="CallID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
 </Schema>

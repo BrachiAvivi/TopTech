@@ -19,7 +19,6 @@ namespace Dal
         {
             this.History_tbl = new HashSet<History_tbl>();
             this.Visit_tbl = new HashSet<Visit_tbl>();
-            this.Visit_tbl1 = new HashSet<Visit_tbl>();
         }
     
         public int CallID { get; set; }
@@ -38,7 +37,5 @@ namespace Dal
         public virtual ICollection<History_tbl> History_tbl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Visit_tbl> Visit_tbl { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Visit_tbl> Visit_tbl1 { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TopTechDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TopTechDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'TopTechDB.dbo.Archive_tbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Archive_tbl">
@@ -106,7 +106,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           </Key>
           <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Detail" Type="nchar" MaxLength="50" />
-          <Property Name="Duration" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Duration" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="Status_tbl">
           <Key>
@@ -399,7 +399,8 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
             <End Role="Visit_tbl" EntitySet="Visit_tbl" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TopTechDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -491,7 +492,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           </Key>
           <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Detail" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Duration" Type="Time" Precision="7" Nullable="false" />
+          <Property Name="Duration" Type="Time" Precision="7" />
           <NavigationProperty Name="Call_tbl" Relationship="Self.FK_Call_tbl_Service_tbl" FromRole="Service_tbl" ToRole="Call_tbl" />
         </EntityType>
         <EntityType Name="Status_tbl">
@@ -678,7 +679,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
           <End Role="BusinessDay_tbl" Type="Self.BusinessDay_tbl" Multiplicity="*" />
           <End Role="Employee_tbl" Type="Self.Employee_tbl" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="TopTechDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TopTechDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BusinessDay_tbl" EntityType="Self.BusinessDay_tbl" />
           <EntitySet Name="Call_tbl" EntityType="Self.Call_tbl" />
           <EntitySet Name="Company_tbl" EntityType="Self.Company_tbl" />
@@ -782,7 +783,7 @@ warning 6002: The table/view 'TopTechDB.dbo.DailyEmployees' does not have a prim
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TopTechDBModelStoreContainer" CdmEntityContainer="TopTechDBEntities">
+        <EntityContainerMapping StorageEntityContainer="TopTechDBModelStoreContainer" CdmEntityContainer="TopTechDBEntities1">
           <EntitySetMapping Name="BusinessDay_tbl">
             <EntityTypeMapping TypeName="TopTechDBModel.BusinessDay_tbl">
               <MappingFragment StoreEntitySet="BusinessDay_tbl">
