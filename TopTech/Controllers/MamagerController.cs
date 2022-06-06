@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace TopTech.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class MamagerController : ApiController
     {
         ClsDB db = ClsDB.Instance;
@@ -38,10 +39,7 @@ namespace TopTech.Controllers
 
         //----------delete--------
         // GET: api/Mamager/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+
 
 
 

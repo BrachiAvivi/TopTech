@@ -8,6 +8,7 @@ using Bll;
 
 namespace TopTech.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class StatusController : ApiController
     {
         ClsDB db = ClsDB.Instance;

@@ -9,6 +9,7 @@ using Dto;
 
 namespace TopTech.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CustomerController : ApiController
     {
         ClsDB db = ClsDB.Instance;

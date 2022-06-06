@@ -8,6 +8,7 @@ using System.Web.Http;
 
 namespace TopTech.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ServiceController : ApiController
     {
         ClsDB db = ClsDB.Instance;
