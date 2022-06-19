@@ -23,7 +23,14 @@ namespace Dal
         }
     
         public int StatusID { get; set; }
-        public string StatusDetail { get; set; }
+        private string statusDetail;
+
+        public string StatusDetail
+        {
+            get { return statusDetail; }
+            set { statusDetail = value.TrimEnd(); }
+        }
+
         public Nullable<int> AssociatedWith { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

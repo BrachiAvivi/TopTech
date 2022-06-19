@@ -22,13 +22,31 @@ namespace Dal
         }
     
         public int EmployeeID { get; set; }
-        public string Name { get; set; }
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value.TrimEnd(); }
+        }
         public Nullable<System.DateTime> CompanyEntryDate { get; set; }
         public Nullable<decimal> LocationX { get; set; }
         public Nullable<decimal> LocationY { get; set; }
-        public string Gmail { get; set; }
-        public string Password { get; set; }
-    
+        private string gmail;
+
+        public string Gmail
+        {
+            get { return gmail; }
+            set { gmail = value.TrimEnd(); }
+        }
+
+        private string password;
+
+        public string Password
+        {
+            get { return password; }
+            set { password = value.TrimEnd(); }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Visit_tbl> Visit_tbl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -15,7 +15,14 @@ namespace Dal
     public partial class Company_tbl
     {
         public int CompanyID { get; set; }
-        public string Name { get; set; }
+        private string name;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value.TrimEnd(); }
+        }
+
         public Nullable<int> EmployeesNumber { get; set; }
         public Nullable<int> CommitmentForSeveralBusinessDays { get; set; }
         public string ManagementPermissionCode { get; set; }

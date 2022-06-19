@@ -386,37 +386,6 @@ namespace Bll
             return null;
         }
 
-        //private List<Destination>[] NextStep(List<Destination>[] step, int stepSize, bool[] localUsed)
-        //{
-        //    for (int i = 0; i < step.Length; i++)
-        //    {
-        //        int r = random.Next(1, stepSize);
-        //        if (r <= step[i].Count - 2)
-        //        {
-        //            for (int j = 0; j < r; j++)
-        //            {
-        //                //Selecting a random number
-        //                int r_r = random.Next(1, step[i].Count - 1);
-        //                //sign this destination is not in used
-        //                localUsed[step[i].ElementAt(r_r).Index] = false;
-        //                //Delete the destination in the selected location
-        //                step[i].RemoveAt(r_r);
-        //                //Selecting another destination(s) in its place
-        //                Destination destination = FindDestination(step[i].ElementAt(r_r - 1), step[i].ElementAt(r_r), localUsed);
-        //                while (destination != null)
-        //                {
-        //                    //insert the selected destination
-        //                    step[i].Insert(r_r, destination);
-        //                    //Increase by 1 because it inserted 1 destination
-        //                    r_r++;
-        //                    //More choice, if possible
-        //                    destination = FindDestination(step[i].ElementAt(r_r - 1), step[i].ElementAt(r_r), localUsed);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return step;
-        //}
         private List<Destination>[] NextStep(List<Destination>[] step, int stepSize, bool[] localUsed)
         {
             for (int i = 0; i < step.Length; i++)
